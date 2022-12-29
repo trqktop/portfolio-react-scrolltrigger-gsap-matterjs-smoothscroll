@@ -1,0 +1,25 @@
+.greeting {
+  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  position: relative;
+  background-color: rgb(220, 122, 122);
+  z-index: 1;
+  border: 11px black solid;
+}
+.greeting__container {
+  max-width: 848px;
+  padding: 16px;
+  display: flex;
+  margin: auto;
+  align-self: center;
+  justify-self: center;
+}
+.greeting__cat-svg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: rotate(-90deg);
+}/*# sourceMappingURL=Greeting.css.map */

@@ -1,0 +1,9 @@
+.works {
+  border: 11px rgb(4, 1, 1) solid;
+  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  z-index: 4;
+  background-color: aquamarine;
+}/*# sourceMappingURL=works.css.map */

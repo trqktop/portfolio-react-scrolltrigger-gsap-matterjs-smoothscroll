@@ -1,0 +1,27 @@
+.greeting {
+    min-height: 100vh;
+    height: fit-content;
+    display: flex;
+    position: relative;
+    background-color: rgb(220, 122, 122);
+    z-index: 1;
+    border: 11px black solid;
+    // position: sticky;
+    // top: 0;
+
+    &__container {
+        max-width: calc(880px - 32px);
+        padding: 16px;
+        display: flex;
+        margin: auto;
+        align-self: center;
+        justify-self: center;
+    }
+
+    &__cat-svg {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: rotate(-90deg);
+    }
+}

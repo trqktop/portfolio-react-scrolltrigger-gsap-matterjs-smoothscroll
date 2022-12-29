@@ -1,0 +1,10 @@
+.about {
+  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: white;
+  z-index: 2;
+  background-color: rgb(124, 42, 200);
+  border: 11px black solid;
+}/*# sourceMappingURL=about.css.map */

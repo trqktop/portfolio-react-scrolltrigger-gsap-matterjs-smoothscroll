@@ -1,0 +1,22 @@
+.footer {
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  height: 100vh;
+  padding: 72px 32px;
+  z-index: 4;
+  background-color: bisque;
+}
+.footer__container {
+  background-color: gainsboro;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 103px;
+  padding-bottom: 83px;
+  border-radius: 56px;
+}
+.footer__contacts {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}/*# sourceMappingURL=footer.css.map */
