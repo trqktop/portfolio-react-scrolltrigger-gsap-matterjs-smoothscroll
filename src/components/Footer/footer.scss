@@ -1,8 +1,11 @@
 .footer {
     min-height: fit-content;
     padding: 72px 32px;
-    z-index: 4;
+    z-index: 3;
+    margin-top: 34px;
     background-color: bisque;
+
+
 
     &__container {
         background-color: gainsboro;

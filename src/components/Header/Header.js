@@ -4,16 +4,14 @@ import { selector } from 'gsap';
 
 
 export function Header(props) {
-    const { gsap, ScrollTrigger, ScrollToPlugin } = { ...props }
-    let [sectionSelector, setCurrentSectionSelector] = useState('about')
+    const { gsap, ScrollTrigger, ScrollToPlugin, sectionSelector ,setCurrentSectionSelector} = { ...props }
+  
     const menuRef = useRef(null)
-
     const activeSectionHeaderItem = useRef(null)
 
     useLayoutEffect(() => scrollPageListener(setCurrentSectionSelector, gsap, activeSectionHeaderItem, ScrollTrigger), [])
     useEffect(() => {
         setElementPosition(sectionSelector, gsap, activeSectionHeaderItem)
-
         window.onresize = () => setElementPosition(sectionSelector, gsap, activeSectionHeaderItem)
     })
 
