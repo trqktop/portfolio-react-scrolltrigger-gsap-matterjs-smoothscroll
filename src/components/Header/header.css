@@ -26,15 +26,18 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  cursor: none;
 }
 .header__menu-item {
-  cursor: pointer;
-  z-index: 2;
+  z-index: 3;
 }
 .header__menu-link {
   display: block;
   padding: 14px 20px;
   text-decoration: none;
+}
+.header__menu-link_hover {
+  color: white;
 }
 .header__theme-button {
   width: 50px;
@@ -50,6 +53,15 @@
   position: fixed;
   top: 0;
   opacity: 1;
+  background: #1F1F21;
+  border-radius: 24px;
+  z-index: 2;
+  width: 300px;
+  height: 30px;
+  visibility: hidden;
+}
+.header__interactive-elements .header__hover-item_active {
+  visibility: visible;
 }
 .header__interactive-elements .header__active-section-item {
   position: fixed;
