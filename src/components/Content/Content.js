@@ -4,13 +4,13 @@ import { About } from '../About/About';
 import { Works } from '../Works/Works';
 
 
-export function Content() {
-    
+export function Content(props) {
+    const { gsap } = { ...props }
 
     return (
         <main className='content'>
-            <Greeting />
-            <About />
+            <Greeting gsap={gsap} />
+            <About gsap={gsap} />
             <Works />
         </main>
     );

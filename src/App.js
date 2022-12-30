@@ -50,7 +50,7 @@ function App() {
   return (
     <div className={'page__container'} ref={pageContainer}>
       <Header gsap={gsap} ScrollTrigger={ScrollTrigger} ScrollToPlugin={ScrollToPlugin} sectionSelector={sectionSelector} setCurrentSectionSelector={setCurrentSectionSelector} />
-      <Content />
+      <Content gsap={gsap} />
       <Footer />
     </div>
   );
@@ -138,6 +138,8 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
   }, pageContainer);
   return ctx
 }
+
+
 
 
 

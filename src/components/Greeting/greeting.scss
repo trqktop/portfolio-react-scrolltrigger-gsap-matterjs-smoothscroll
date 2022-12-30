@@ -16,12 +16,17 @@
         margin: auto;
         align-self: center;
         justify-self: center;
+
     }
 
     &__cat-svg {
         position: absolute;
         right: 0;
-        bottom: 0;
+        bottom: 10vh;
         transform: rotate(-90deg);
+        border: 1px red solid;
+        overflow: visible;
+
+        &-hand {}
     }
 }

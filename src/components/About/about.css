@@ -6,5 +6,55 @@
   background-color: white;
   z-index: 4;
   background-color: rgb(124, 42, 200);
+  border-radius: 64px 64px 0px 0px;
   border: 11px black solid;
+  padding: 32px 16px;
+  display: flex;
+}
+.about__container {
+  border: 11px red solid;
+  display: grid;
+  margin: auto;
+  grid-template-columns: -webkit-min-content auto;
+  grid-template-columns: min-content auto;
+  flex-wrap: wrap;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -moz-column-gap: 8vw;
+       column-gap: 8vw;
+}
+.about__image-container {
+  display: block;
+  border: 11px black solid;
+}
+.about__list-container {
+  display: flex;
+}
+.about__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  row-gap: 24px;
+  max-width: 778px;
+}
+.about__list .about__item {
+  display: flex;
+  -moz-column-gap: 41px;
+       column-gap: 41px;
+}
+.about__list .about__item-text-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.about__list .about__item-header {
+  max-width: 100%;
+}
+.about__list .about__item-description {
+  max-width: 100%;
 }/*# sourceMappingURL=about.css.map */

@@ -20,6 +20,8 @@
 .greeting__cat-svg {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 10vh;
   transform: rotate(-90deg);
+  border: 1px red solid;
+  overflow: visible;
 }/*# sourceMappingURL=greeting.css.map */

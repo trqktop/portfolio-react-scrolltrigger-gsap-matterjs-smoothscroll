@@ -4,6 +4,56 @@
     height: fit-content;
     z-index: 4;
     background-color: aquamarine;
-    height: 120vh;
     position: relative;
+    border-radius: 64px 64px 0px 0px;
+    padding: 40px 16px;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        border: 1px red solid;
+        display: block;
+        padding-bottom: 40px;
+        text-align: center;
+    }
+
+    &__container {
+        border: 11px red solid;
+        margin: auto;
+
+        .works__list {
+            display: grid;
+            list-style: none;
+            grid-template-columns: repeat(2, 407px);
+            gap: 32px;
+
+            .works__item {
+                display: block;
+                border: 1px black solid;
+                height: 270px;
+                width: 407px;
+                overflow: hidden;
+                border-radius: 24px;
+
+                .works__work-screen {
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    transition: transform 1s linear;
+                    cursor: pointer;
+
+                    &:hover {
+                        transform: translateY(calc(-100% + 270px));
+                    }
+                }
+
+                &_soon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
 }

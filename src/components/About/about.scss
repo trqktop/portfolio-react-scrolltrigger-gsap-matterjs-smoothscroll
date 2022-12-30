@@ -1,11 +1,62 @@
 .about {
     min-height: 100vh;
     height: fit-content;
-
     background-color: white;
     z-index: 4;
     background-color: rgb(124, 42, 200);
+    border-radius: 64px 64px 0px 0px;
     border: 11px black solid;
     // position: sticky;
     // top: 0;
+    padding: 32px 16px;
+    display: flex;
+
+    &__container {
+        border: 11px red solid;
+        display: grid;
+        margin: auto;
+        grid-template-columns: min-content auto;
+        flex-wrap: wrap;
+        height: fit-content;
+        column-gap: 8vw;
+    }
+
+    &__image-container {
+        display: block;
+        border: 11px black solid;
+    }
+
+    &__list-container {
+        display: flex;
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        row-gap: 24px;
+        max-width: 778px;
+
+
+        .about__item {
+            display: flex;
+            column-gap: 41px;
+
+            &-text-container {
+                display: flex;
+                flex-direction: column;
+                row-gap: 12px;
+                width: fit-content;
+            }
+
+            &-header {
+                max-width: 100%;
+            }
+
+            &-description {
+                max-width: 100%;
+            }
+        }
+    }
 }
