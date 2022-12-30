@@ -23,9 +23,7 @@ function App() {
     return () => ctx.revert();
   }, [])
 
-  // useLayoutEffect(() => {
 
-  // }, [])
 
 
 
@@ -48,16 +46,9 @@ function App() {
     return () => ctx.revert();
   }, [])
 
-  // window.onresize = function (event) {
-  //   const STs = ScrollTrigger.getAll();
-  //   STs.forEach(ST => {
-  //     ST.enable()
-  //   })
-  // };
-
-  // ref={refContainer}
+  // className={true ? 'page__container' : 'page__container page__container-true'}
   return (
-    <div className='page__container' ref={pageContainer}>
+    <div className={'page__container'} ref={pageContainer}>
       <Header gsap={gsap} ScrollTrigger={ScrollTrigger} ScrollToPlugin={ScrollToPlugin} sectionSelector={sectionSelector} setCurrentSectionSelector={setCurrentSectionSelector} />
       <Content />
       <Footer />
@@ -72,7 +63,6 @@ function App() {
 
 function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
   let ctx = gsap.context(() => {
-
     const panelGreeting = pageContainer.current.querySelector('.greeting')
     gsap.to(panelGreeting, {
       scrollTrigger: {
@@ -86,46 +76,64 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
       }
     });
     const panelAbout = pageContainer.current.querySelector('.about')
+    const panelWorks = pageContainer.current.querySelector('.works')
     gsap.to(panelAbout, {
       scrollTrigger: {
         trigger: panelAbout,
         pin: true,
         start: "+=100% bottom",
-        end: '+=100% top',
-        pinSpacing: false,
-        onUpdate: self => {
-          if (self.progress.toFixed(3) > .6)
-            setCurrentSectionSelector('works')
-          else {
-            setCurrentSectionSelector('about')
-          }
+        onEnter: e => {
+          setCurrentSectionSelector(panelAbout.className)
         },
+        onEnterBack: (e) => {
+          setCurrentSectionSelector(panelAbout.className)
+        },
+        onLeave: (e) => {
+          setCurrentSectionSelector(panelWorks.className)
+        },
+        end: '+=100% top+=1%',
+        pinSpacing: false,
         scrub: 1,
+        markers: true,
         pinType: 'fixed',
       }
     })
 
-    const panelWorks = pageContainer.current.querySelector('.works')
-    gsap.to(panelWorks, {
+
+    // gsap.to(panelWorks, {
+    //   scrollTrigger: {
+    //     trigger: panelWorks,
+    //     pin: false,
+    //     start: "center center+=30%",
+    //     pinSpacing: false,
+    //     scrub: 1,
+    //     onEnter: e => {
+    //       setCurrentSectionSelector(panelWorks.className)
+    //     },
+    //     onEnterBack: e => {
+    //       setCurrentSectionSelector(panelWorks.className)
+    //     },
+    //     pinType: 'fixed',
+    //     markers: true,
+    //   }
+    // })
+    const footer = pageContainer.current.querySelector('.footer')
+    gsap.to(footer, {
       scrollTrigger: {
-        trigger: panelWorks,
+        trigger: footer,
         pin: false,
+        pinSpacing: false,
         start: "center bottom",
         pinSpacing: false,
-        onUpdate: self => {
-          console.log(self.progress.toFixed(3))
-          if (self.progress.toFixed(3) > 0.6) {
-            setCurrentSectionSelector('footer')
-          }
-          else {
-            setCurrentSectionSelector('works')
-          }
+        onEnter: e => {
+          setCurrentSectionSelector(footer.className)
         },
-        scrub: 1,
-        pinType: 'fixed',
-        markers: true,
+        onLeaveBack: () => {
+          setCurrentSectionSelector(panelWorks.className)
+        }
       }
     })
+
 
   }, pageContainer);
   return ctx

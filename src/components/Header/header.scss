@@ -26,8 +26,9 @@
     }
 
     &__menu-item {
-        border: 1px red solid;
+       
         cursor: pointer;
+        z-index: 2;
     }
 
     &__menu-link {
@@ -48,11 +49,21 @@
         position: fixed;
         pointer-events: none;
 
-        .header__active-section-item {
-            border: 11px black solid;
+        .header__hover-item {
+            border-radius: 20px;
             position: fixed;
             top: 0;
-            opacity: 0;
+            opacity: 1;
+        }
+
+        .header__active-section-item {
+            position: fixed;
+            top: 0;
+            opacity: 1;
+            background: #FFFFFF;
+            border: 1px solid #D3DAE6;
+            border-radius: 24px;
+            z-index: 1;
         }
     }
 }
