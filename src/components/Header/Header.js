@@ -5,7 +5,7 @@ import { Greeting } from '../Greeting/Greeting';
 
 
 export function Header(props) {
-    const { gsap, ScrollTrigger, ScrollToPlugin, sectionSelector, setCurrentSectionSelector } = { ...props }
+    const { gsap, ScrollTrigger, ScrollToPlugin, sectionSelector, setCurrentSectionSelector, setBlackTheme } = { ...props }
     const menuRef = useRef(null)
     const activeSectionHeaderItem = useRef(null)
     const hoverMenuItem = useRef(null)
@@ -14,10 +14,12 @@ export function Header(props) {
     // useLayoutEffect(() => scrollPageListener(setCurrentSe`ctionSelector, gsap, activeSectionHeaderItem, ScrollTrigger), [])
     useEffect(() => {
         setHoverElementPosition(activeSectionHeaderItem.current, 1, .3)
+
     })
     useLayoutEffect(() => {
         setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
         setHoverElementPosition(hoverMenuItem.current, 0, -1)
+        window.onresize = () => setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
     }, [])
 
 
@@ -74,17 +76,23 @@ export function Header(props) {
             <div className='header__container'>
                 <div className='header__logo'>PavelShirin</div>
                 <nav className='header__menu'>
-                    <ul className='header__menu-items' ref={menuRef} onClick={(e) => scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector)} onMouseLeave={hideHoverElementHandler}>
-                        <li className='header__menu-item' ><a className='header__menu-link' id='about' onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>О себе</a></li>
-                        <li className='header__menu-item' ><a className='header__menu-link' id='works' onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>Мои работы</a></li>
-                        <li className='header__menu-item' ><a className='header__menu-link' id='footer' onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>Контакты</a></li>
+                    <ul className='header__menu-items'
+                        ref={menuRef}
+                        onClick={(e) => scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector)}
+                        onMouseLeave={hideHoverElementHandler}>
+                        <li className='header__menu-item' ><a className='header__menu-link' id='about' 
+                         onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>О себе</a></li>
+                        <li className='header__menu-item' ><a className='header__menu-link' id='works' 
+                         onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>Мои работы</a></li>
+                        <li className='header__menu-item' ><a className='header__menu-link' id='footer'
+                          onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>Контакты</a></li>
                         <li className='header__interactive-elements'>
                             <div className={isHover ? 'header__hover-item header__hover-item_active' : 'header__hover-item'} ref={hoverMenuItem}></div>
                             <div className='header__active-section-item' ref={activeSectionHeaderItem}></div>
                         </li>
                     </ul>
                 </nav>
-                <button className='header__theme-button'></button>
+                <button onClick={() => setBlackTheme((prev) => !prev)} className='header__theme-button'></button>
             </div>
         </header>
     );

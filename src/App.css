@@ -1,5 +1,46 @@
-.page__container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+::-webkit-scrollbar {
+  width: 6px;
 }
+
+::-webkit-scrollbar-thumb {
+  background: #A7A9E3;
+  width: 6px;
+  border-radius: 32px;
+}
+
+.page__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+  color: #1F1F21;
+}
+.page__container_black {
+  background-color: #1F1F21;
+  color: #FFFFFF;
+}
+.page__container_black .header__menu-items {
+  background: #333438;
+  border: 0.5px solid #333438;
+  box-shadow: 0px 2.7px 9px rgba(0, 0, 0, 0.3), 0px 9.4px 24px rgba(0, 0, 0, 0.2), 20px 21.8px 43px rgba(0, 0, 0, 0.1);
+}
+.page__container_black .header__menu-items .header__active-section-item {
+  background: #1F1F21;
+  border: none;
+}
+.page__container_black .header__menu-items .header__hover-item {
+  background: #FFFFFF;
+}
+.page__container_black .header__menu-items .header__menu-link:hover {
+  color: black;
+}
+.page__container_black .footer__container-padding {
+  background: #FFFFFF;
+  color: black;
+}
+.page__container_black .footer__container-padding .footer__contact path:not(:hover) {
+  fill: black;
+}
+.page__container_black .footer__container-padding .footer__contact:hover path {
+  fill: #A7A9E3;
+}/*# sourceMappingURL=App.css.map */

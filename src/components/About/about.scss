@@ -1,18 +1,15 @@
 .about {
     min-height: 100vh;
     height: fit-content;
-    background-color: white;
     z-index: 4;
     background-color: rgb(124, 42, 200);
+    color: white;
     border-radius: 64px 64px 0px 0px;
-    border: 11px black solid;
-    // position: sticky;
-    // top: 0;
     padding: 32px 16px;
     display: flex;
 
     &__container {
-        border: 11px red solid;
+
         display: grid;
         margin: auto;
         grid-template-columns: min-content auto;
@@ -23,7 +20,7 @@
 
     &__image-container {
         display: block;
-        border: 11px black solid;
+
     }
 
     &__list-container {

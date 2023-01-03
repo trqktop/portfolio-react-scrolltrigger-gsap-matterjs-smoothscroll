@@ -9,11 +9,15 @@
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   display: block;
+  background-color: white;
+  color: black;
 }
 
 #root {
   min-height: 100vh;
   display: block;
+  background-color: white;
+  color: black;
 }
 
 

@@ -11,7 +11,7 @@ export function Content(props) {
         <main className='content'>
             <Greeting gsap={gsap} />
             <About gsap={gsap} />
-            <Works />
+            <Works gsap={gsap} />
         </main>
     );
 }
