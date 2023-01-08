@@ -1,4 +1,5 @@
 import './App.css';
+import Preloader from './components/Preloader/Preloader';
 import { Header } from './components/Header/Header'
 import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
@@ -18,19 +19,18 @@ gsap.registerPlugin(ScrollToPlugin)
 
 
 function App() {
-    const [state, setState] = useState([])
     let [sectionSelector, setCurrentSectionSelector] = useState('about')
     let pageContainer = useRef(null)
-    let [blackTheme, setBlackTheme] = useState(true)
+    let [blackTheme, setBlackTheme] = useState(false)
+
+
 
     useLayoutEffect(() => {
+
+
         let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector)
         return () => ctx.revert();
     }, [])
-
-
-
-
 
 
     useLayoutEffect(() => {
@@ -47,13 +47,13 @@ function App() {
                 pulseNormalize: 1,
                 touchpadSupport: true,
             })
-        }, pageContainer)
+        }, pageContainer.current)
         return () => ctx.revert();
     }, [])
 
     // className={true ? 'page__container' : 'page__container page__container-true'}
     return (
-        <div className={blackTheme ? 'page__container' : 'page__container page__container_black'}
+        <div className={blackTheme ? 'page__container page__container_black' : 'page__container'}
             ref={pageContainer}>
             <Header gsap={gsap}
                 ScrollTrigger={ScrollTrigger}
@@ -61,14 +61,14 @@ function App() {
                 sectionSelector={sectionSelector}
                 setCurrentSectionSelector={setCurrentSectionSelector}
                 setBlackTheme={setBlackTheme}
+                blackTheme={blackTheme}
             />
-            <Content gsap={gsap} />
+            <Content gsap={gsap} blackTheme={blackTheme} ScrollTrigger={ScrollTrigger} />
             <Footer portfolio={portfolio} />
+            {/* <Preloader blackTheme={blackTheme} /> */}
         </div>
     );
 }
-
-
 
 
 
@@ -93,7 +93,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
             scrollTrigger: {
                 trigger: panelAbout,
                 pin: true,
-                start: "+=100% bottom",
+                start: "+=100% bottom+=1px",
                 onEnter: e => {
                     setCurrentSectionSelector(panelAbout.className)
                 },
@@ -106,7 +106,8 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
                 end: '+=100% top+=1%',
                 pinSpacing: false,
                 scrub: 1,
-                markers: true,
+                anticipatePin: 1 / 10,
+                // markers: true,
                 pinType: 'fixed',
             }
         })
@@ -147,7 +148,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
         })
 
 
-    }, pageContainer);
+    }, pageContainer.current);
     return ctx
 }
 

@@ -2,14 +2,27 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import './about.css'
 
 export function About(props) {
-    const { gsap } = { ...props }
+    const { gsap, ScrollTrigger } = { ...props }
     const catRigthEye = useRef(null)
     const catLeftEye = useRef(null)
     useLayoutEffect(() => {
         enableCatAnimations(catRigthEye, catLeftEye, gsap)
     }, [])
 
-
+    function clickHandler() {
+        gsap.to(window, {
+            scrollTo: () => `.footer`,
+            onComplete: (e) => {
+                const STs = ScrollTrigger.getAll();
+                STs.forEach(ST => {
+                    ST.enable()
+                })
+            },
+            duration: 1,
+            delay: -1,
+            ease: "power4",
+        })
+    }
 
     return (
         <section className='about'>
@@ -95,8 +108,17 @@ export function About(props) {
                                 </g>
                             </svg>
                             <div className='about__item-text-container'>
-                                <h4 className='about__item-header'>Сначала Образование</h4>
+                                <h4 className='about__item-header'><span>Сначала </span>Образование</h4>
                                 <p className='about__item-description'>Получил среднее специальное образование по направлению «банковское дело», а затем экономическую специальность в степени бакалавр.</p>
+                            </div>
+                        </li>
+                        <li className='about__item about__item_vertical'>
+                            <div className='about__item_vertical-svg-container'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                                    <path d="M10 1.66669C10 7.15146 10 18.5635 10 20.3334" stroke="#A7A9E3" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <div className='about__item-text-container'>
                             </div>
                         </li>
                         <li className='about__item'>
@@ -106,8 +128,17 @@ export function About(props) {
                                 </g>
                             </svg>
                             <div className='about__item-text-container'>
-                                <h4 className='about__item-header'>Сначала Образование</h4>
+                                <h4 className='about__item-header'><span>Сначала </span>Образование</h4>
                                 <p className='about__item-description'>Получил среднее специальное образование по направлению «банковское дело», а затем экономическую специальность в степени бакалавр.</p>
+                            </div>
+                        </li>
+                        <li className='about__item about__item_vertical'>
+                            <div className='about__item_vertical-svg-container'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                                    <path d="M10 1.66669C10 7.15146 10 18.5635 10 20.3334" stroke="#A7A9E3" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <div className='about__item-text-container'>
                             </div>
                         </li>
                         <li className='about__item'>
@@ -117,8 +148,17 @@ export function About(props) {
                                 </g>
                             </svg>
                             <div className='about__item-text-container'>
-                                <h4 className='about__item-header'>Сначала Образование</h4>
+                                <h4 className='about__item-header'><span>Сначала </span>Образование</h4>
                                 <p className='about__item-description'>Получил среднее специальное образование по направлению «банковское дело», а затем экономическую специальность в степени бакалавр.</p>
+                            </div>
+                        </li>
+                        <li className='about__item about__item_vertical'>
+                            <div className='about__item_vertical-svg-container'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                                    <path d="M10 1.66669C10 7.15146 10 18.5635 10 20.3334" stroke="#A7A9E3" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <div className='about__item-text-container'>
                             </div>
                         </li>
                         <li className='about__item'>
@@ -128,8 +168,27 @@ export function About(props) {
                                 </g>
                             </svg>
                             <div className='about__item-text-container'>
-                                <h4 className='about__item-header'>Сначала Образование</h4>
+                                <h4 className='about__item-header'><span>Сначала </span>Образование</h4>
                                 <p className='about__item-description'>Получил среднее специальное образование по направлению «банковское дело», а затем экономическую специальность в степени бакалавр.</p>
+                            </div>
+                        </li>
+                        <li className="about__item">
+                            <div className='about__item_vertical-svg-container'></div>
+                            <div className="about__element-text-container">
+                                <a onClick={clickHandler} className="about__element-resume-link">
+                                    <p className="about__element-description">Больше подробной
+                                        информации в моём резюме</p>
+                                    <div className="about__svg-item">
+                                        <svg id="about-link-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M12.907 3.59998V19.9463" stroke="#F5F7FA" strokeWidth="3"
+                                                strokeLinecap="round" />
+                                            <path
+                                                d="M21.3499 12.0425C18.7031 14.6893 16.3677 17.6249 13.8654 20.4052C13.0245 21.3396 12.5579 20.5747 11.7897 19.8065C9.85977 18.0216 5.52001 14.3319 3.60001 13.8519"
+                                                stroke="#F5F7FA" strokeWidth="3" strokeLinecap="round" />
+                                        </svg>
+                                    </div>
+                                </a>
                             </div>
                         </li>
                     </ul>

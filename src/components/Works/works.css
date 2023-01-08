@@ -11,11 +11,15 @@
   padding: 40px 16px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
 }
 .works__title {
   display: block;
   padding-bottom: 40px;
   text-align: center;
+  font-size: 40px;
+  line-height: 48px;
+  font-family: "Inter-SemiBold";
 }
 .works__container {
   margin: auto;

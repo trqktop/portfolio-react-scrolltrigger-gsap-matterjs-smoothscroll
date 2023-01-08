@@ -1,31 +1,13 @@
 import './works.css'
 import { WorkElement } from '../WorkElement/WorkElement';
 import { useLayoutEffect, useRef, useState } from 'react';
-import htl from '../../images/works/how-to-learn-plus.png'
-import m from '../../images/works/mesto-project.png'
-import rt from '../../images/works/mesto-project.png'
-import p from '../../images/works/portfolio.png'
+
+
 export function Works(props) {
-    const { gsap } = { ...props }
-    const [data, setData] = useState([
-        {
-            projectName: 'portfolio',
-            images: p
-        },
-        {
-            projectName: 'mesto',
-            images: m
-        },
-        {
-            projectName: 'russiaTravel',
-            images: rt
-        },
-        {
-            projectName: 'howToLearn',
-            images: htl,
-        },
-    ])
+    const { gsap, data ,blackTheme} = { ...props }
     const catTailSvg = useRef(null)
+
+
 
 
 
@@ -34,9 +16,14 @@ export function Works(props) {
             <div className='works__container'>
                 <h2 className='works__title'>Мои работы</h2>
                 <ul className='works__list'>
-                    {data.map((data, i) => <WorkElement key={i} data={data} i={i} gsap={gsap} />)}
+                    {data.map((data, i) => (
+                        <WorkElement
+                            key={i}
+                            blackTheme={blackTheme}
+                            data={data}
+                            gsap={gsap} />
+                    ))}
                     <li className='works__item works__item_soon'>
-
                         <svg xmlns="http://www.w3.org/2000/svg" width="152" height="124" viewBox="0 0 152 124"
                             fill="none">
                             <path className="tail" ref={catTailSvg}

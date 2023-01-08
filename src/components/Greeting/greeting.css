@@ -10,12 +10,21 @@
   z-index: 1;
 }
 .greeting__container {
-  max-width: 848px;
   padding: 16px;
   display: flex;
+  flex-direction: column;
   margin: auto;
   align-self: center;
   justify-self: center;
+  font-family: "BellotaText-Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+}
+.greeting__container .greeting__text {
+  display: block;
+  max-width: 880px;
 }
 .greeting__cat-svg {
   position: absolute;

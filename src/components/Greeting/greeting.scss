@@ -7,13 +7,25 @@
     color: inherit;
     z-index: 1;
 
+
+
     &__container {
-        max-width: calc(880px - 32px);
         padding: 16px;
         display: flex;
+        flex-direction: column;
         margin: auto;
         align-self: center;
         justify-self: center;
+        font-family: 'BellotaText-Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 60px;
+
+        .greeting__text {
+            display: block;
+            max-width: 880px;
+        }
     }
 
     &__cat-svg {
@@ -21,11 +33,7 @@
         right: 0;
         bottom: 10vh;
         transform: rotate(-90deg);
-   
         overflow: visible;
-
     }
-
-    
 
 }

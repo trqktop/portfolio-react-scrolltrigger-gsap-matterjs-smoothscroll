@@ -15,6 +15,7 @@
   background-color: white;
   color: #1F1F21;
 }
+
 .page__container_black {
   background-color: #1F1F21;
   color: #FFFFFF;
@@ -34,13 +35,80 @@
 .page__container_black .header__menu-items .header__menu-link:hover {
   color: black;
 }
+.page__container_black .greeting {
+  color: white;
+  background-color: #1F1F21;
+}
+.page__container_black .greeting .greeting__cat-svg path {
+  stroke: #A7A9E3;
+}
+.page__container_black .greeting .greeting__cat-svg .greeting-cat-blouse {
+  fill: #333438;
+  stroke: none;
+}
+.page__container_black .greeting .greeting__cat-svg .greeting-cat-hand {
+  fill: #333438;
+  stroke: none;
+}
+.page__container_black .greeting .greeting__cat-svg .catSvgRigthEye,
+.page__container_black .greeting .greeting__cat-svg .catSvgLefthEye {
+  fill: #A7A9E3;
+}
+.page__container_black .works__item {
+  border: 1px solid #333438;
+}
+.page__container_black .works .tail {
+  fill: #A7A9E3;
+}
+.page__container_black .works .package-inside {
+  fill: #A7A9E3;
+}
+.page__container_black .works .package {
+  fill: #1F1F21;
+  stroke: #A7A9E3;
+}
+.page__container_black .works .package-corner {
+  stroke: #A7A9E3;
+}
+.page__container_black .footer .footer__container-background {
+  background-image: url("./images/footer/grid_black.svg");
+}
 .page__container_black .footer__container-padding {
   background: #FFFFFF;
   color: black;
+}
+.page__container_black .footer__container-padding .footer__title {
+  color: #98A2B3;
 }
 .page__container_black .footer__container-padding .footer__contact path:not(:hover) {
   fill: black;
 }
 .page__container_black .footer__container-padding .footer__contact:hover path {
   fill: #A7A9E3;
+}
+.page__container_black .footer__container-padding .footer__copyright {
+  color: white;
+}
+.page__container_black .footer__container-padding #footerCatVector_1,
+.page__container_black .footer__container-padding #footerCatVector_4 {
+  stroke: #595BA7;
+  fill: white;
+}
+.page__container_black .footer__container-padding #footerCatVector_5,
+.page__container_black .footer__container-padding #footerCatVector_6 {
+  fill: #595BA7;
+}
+.page__container_black .footer__container-padding #footerCatVector_7,
+.page__container_black .footer__container-padding #footerCatVector_8,
+.page__container_black .footer__container-padding #footerCatVector_10,
+.page__container_black .footer__container-padding #footerCatVector_11 {
+  stroke: #595BA7;
+}
+.page__container_black .footer__container-padding #footerCatVector_2,
+.page__container_black .footer__container-padding #footerCatVector_3 {
+  stroke: white;
+  fill: white;
+}
+.page__container_black .footer__container-padding #footerCatVector_9 {
+  fill: white;
 }/*# sourceMappingURL=App.css.map */

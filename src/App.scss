@@ -2,7 +2,6 @@
     width: 6px;
 }
 
-
 ::-webkit-scrollbar-thumb {
     background: #A7A9E3;
     width: 6px;
@@ -15,53 +14,226 @@
     min-height: 100vh;
     background-color: white;
     color: #1F1F21;
+}
 
+.page__container_black {
+    background-color: #1F1F21;
+    color: #FFFFFF;
 
+    .header {
+        &__menu-items {
+            background: #333438;
+            border: 0.5px solid #333438;
+            box-shadow: 0px 2.7px 9px rgba(0, 0, 0, 0.3), 0px 9.4px 24px rgba(0, 0, 0, 0.2), 20px 21.8px 43px rgba(0, 0, 0, 0.1);
 
-    &_black {
-        background-color: #1F1F21;
-        color: #FFFFFF;
-
-        .header {
-            &__menu-items {
-                background: #333438;
-                border: 0.5px solid #333438;
-                box-shadow: 0px 2.7px 9px rgba(0, 0, 0, 0.3), 0px 9.4px 24px rgba(0, 0, 0, 0.2), 20px 21.8px 43px rgba(0, 0, 0, 0.1);
-
-                .header__active-section-item {
-                    background: #1F1F21;
-                    border: none;
-                }
-
-                .header__hover-item {
-                    background: #FFFFFF;
-                }
-
-                .header__menu-link {
-                    &:hover {
-                        color: black;
-                    }
-                }
+            .header__active-section-item {
+                background: #1F1F21;
+                border: none;
             }
-        }
 
-        .footer {
-            &__container-padding {
+            .header__hover-item {
                 background: #FFFFFF;
-                color: black;
+            }
 
-                .footer__contact {
-                    path:not(:hover) {
-                        fill: black;
-                    }
-
-                    &:hover {
-                        path {
-                            fill: #A7A9E3;
-                        }
-                    }
+            .header__menu-link {
+                &:hover {
+                    color: black;
                 }
             }
         }
     }
+
+    .greeting {
+        color: white;
+        background-color: #1F1F21;
+
+        .greeting__cat-svg {
+            path {
+                stroke: #A7A9E3;
+            }
+
+            .greeting-cat-blouse {
+                fill: #333438;
+                stroke: none;
+            }
+
+            .greeting-cat-hand {
+                fill: #333438;
+                stroke: none;
+            }
+
+            .catSvgRigthEye,
+            .catSvgLefthEye {
+                fill: #A7A9E3;
+            }
+        }
+
+    }
+
+    .about {}
+
+    .works {
+        &__item {
+            border: 1px solid #333438;
+        }
+
+        .tail {
+            fill: #A7A9E3;
+        }
+
+        .package-inside {
+            fill: #A7A9E3;
+        }
+
+        .package {
+            fill: #1F1F21;
+            stroke: #A7A9E3;
+        }
+
+        .package-corner {
+            stroke: #A7A9E3;
+        }
+    }
+
+    .footer {
+        .footer__container-background {
+            background-image: url('./images/footer/grid_black.svg');
+        }
+
+        &__container-padding {
+            background: #FFFFFF;
+            color: black;
+
+            .footer__title {
+                color: #98A2B3;
+            }
+
+            .footer__contact {
+                path:not(:hover) {
+                    fill: black;
+                }
+
+                &:hover {
+                    path {
+                        fill: #A7A9E3;
+                    }
+                }
+            }
+
+            .footer__copyright {
+                color: white;
+            }
+
+
+            #footerCatVector_1,
+            #footerCatVector_4 {
+                stroke: #595BA7;
+                fill: white;
+            }
+
+            #footerCatVector_5,
+            #footerCatVector_6 {
+                fill: #595BA7;
+            }
+
+            #footerCatVector_7,
+            #footerCatVector_8,
+            #footerCatVector_10,
+            #footerCatVector_11 {
+
+                stroke: #595BA7;
+            }
+
+            #footerCatVector_2,
+            #footerCatVector_3 {
+                stroke: white;
+                fill: white;
+            }
+
+            #footerCatVector_9 {
+                fill: white;
+            }
+        }
+    }
+
+
+
+
 }
+
+
+
+
+// .footer {
+//     &__image-container {
+//         background-color: white;
+//     }
+
+//     &__padding-container {
+//         background: #FFFFFF;
+//         color: black;
+
+//         .footer__contacts-container {
+
+
+//             path {
+//                 fill: black;
+//             }
+
+//             a:hover {
+//                 path {
+//                     fill: #A7A9E3;
+//                 }
+//             }
+//         }
+
+//         h5 {
+//             color: white;
+//         }
+
+//         #footerCatVector_1,
+//         #footerCatVector_4 {
+//             stroke: #595BA7;
+//             fill: white;
+//         }
+
+//         #footerCatVector_5,
+//         #footerCatVector_6 {
+//             fill: #595BA7;
+//         }
+
+//         #footerCatVector_7,
+//         #footerCatVector_8,
+//         #footerCatVector_10,
+//         #footerCatVector_11 {
+
+//             stroke: #595BA7;
+//         }
+
+//         #footerCatVector_2,
+//         #footerCatVector_3 {
+//             stroke: white;
+//             fill: white;
+//         }
+
+//         #footerCatVector_9 {
+//             fill: white;
+//         }
+//     }
+
+// }
+
+
+
+//     .modal__tech {
+//         p {
+//             color: #D3DAE6;
+//             border-bottom: 1px solid #D3DAE6;
+//         }
+//     }
+// }
+
+
+// 
+// 
+// 

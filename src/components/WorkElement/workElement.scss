@@ -46,6 +46,7 @@
 
         }
     }
+
     &__item-container {
         font-size: 0;
         border-radius: 24px;
@@ -167,9 +168,11 @@
         font-family: 'Inter-Medium';
     }
 
-    // &__project-name {
-
-    // }
+    &__project-name {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+    }
 
     &__project-link {
         align-self: flex-end;
