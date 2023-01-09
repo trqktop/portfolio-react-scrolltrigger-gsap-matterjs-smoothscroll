@@ -4,7 +4,7 @@ import './footer.css'
 
 export function Footer(props) {
     const { portfolio, forwardRef } = { ...props }
-    useEffect(() => console.log(forwardRef))
+
     return (
         <footer className='footer' ref={forwardRef}>
             <div className="footer__container">
@@ -151,7 +151,7 @@ export function Footer(props) {
                                 </li>
                             </ul>
                         </div>
-                        <span className="footer__copyright">&#169; 2022 Shirin Pavel</span>
+                        <span className="footer__copyright">&#169; 2023 Shirin Pavel</span>
                     </div>
                 </div>
             </div>

@@ -32,4 +32,28 @@
   bottom: 10vh;
   transform: rotate(-90deg);
   overflow: visible;
+}
+
+@media screen and (max-width: 900px) {
+  .greeting__container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 148px;
+    padding-bottom: 48px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .greeting__container .greeting__text {
+    display: block;
+  }
+  .greeting__cat-svg {
+    position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    transform: rotate(0deg);
+  }
 }/*# sourceMappingURL=greeting.css.map */

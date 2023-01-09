@@ -3,8 +3,17 @@ import React, { useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
 
 const modalRoot = document.getElementById('react-modals')
+
 export default function Modals(props) {
-    const { data, modalIsOpened, closeModalHandler, blackTheme } = { ...props }
+    const { data, modalIsOpened, blackTheme, modalState } = { ...props }
+
+    function closeModalHandler(e) {
+        const elClass = e.target.classList
+        const closeButton = 'modal-container__close-button'
+        const overlay = 'work-modal'
+        if (elClass.contains(closeButton) || elClass.contains(overlay))
+            modalState(false)
+    }
 
     return ReactDOM.createPortal(
         (
@@ -17,7 +26,7 @@ export default function Modals(props) {
                 }>
                 <div className={blackTheme ? "modal-container modal-container_black" : "modal-container"}>
                     <button
-                        onClick={closeModalHandler}
+                        onClick={() => modalState(false)}
                         className="modal-container__close-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path fillRule="evenodd" clipRule="evenodd" d="M4.70526 3.29619C4.31572 2.90469 3.68414 2.90469 3.2946 3.29619C2.90506 3.68769 2.90506 4.32245 3.2946 4.71395L10.5893 12.0453L3.3847 19.2861C2.99515 19.6776 2.99515 20.3124 3.3847 20.7039C3.77424 21.0954 4.40581 21.0954 4.79536 20.7039L11.9999 13.4631L19.2045 20.7039C19.594 21.0954 20.2256 21.0954 20.6152 20.7039C21.0047 20.3124 21.0047 19.6776 20.6152 19.2861L13.4106 12.0453L20.7053 4.71395C21.0948 4.32245 21.0948 3.68769 20.7053 3.29619C20.3157 2.90469 19.6841 2.90469 19.2946 3.29619L11.9999 10.6276L4.70526 3.29619Z" fill="#98A2B3" />

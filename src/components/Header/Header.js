@@ -20,7 +20,6 @@ export function Header(props) {
         if (windowWidth > 900) {
             const ctx = gsap.context(() => {
                 // setHoverElementPosition(hoverMenuItem.current, 0, -1)
-
                 window.onresize = () => {
                     setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
                     setHoverElementPosition(hoverMenuItem.current, 0, -1)
@@ -193,16 +192,16 @@ function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sect
         })
         gsap.to(window, {
             scrollTo: () => `.${elementId}`,
-            onComplete: (e) => {
+            duration: 1,
+            delay: -1,
+            ease: "power4",
+            onComplete: () => setTimeout(() => {
+
                 const STs = ScrollTrigger.getAll();
                 STs.forEach(ST => {
                     ST.enable()
                 })
-            },
-            duration: 1,
-            delay: -1,
-            ease: "power4",
+            }, 1)
         })
-        // setCurrentSectionSelector(elementId)
     }
 }

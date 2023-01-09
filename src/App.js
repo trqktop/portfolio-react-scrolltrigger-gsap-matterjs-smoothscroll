@@ -3,7 +3,7 @@ import Preloader from './components/Preloader/Preloader';
 import { Header } from './components/Header/Header'
 import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
-import { useEffect, useRef, useState, useLayoutEffect, forwardRef, createRef } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect, forwardRef, createRef, useReducer } from 'react';
 import { gsap, selector } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmoothScroll from 'smoothscroll-for-websites'
@@ -17,25 +17,21 @@ gsap.registerPlugin(ScrollToPlugin)
 // .then(res=>res.json())
 // .then(res=>console.log(res))
 
-
 function App() {
-    let [sectionSelector, setCurrentSectionSelector] = useState()
+    let [sectionSelector, setCurrentSectionSelector] = useState(null)
     let [blackTheme, setBlackTheme] = useState(false)
-
     //scrolltrigger var
     let pageContainer = useRef()
     let panelGreeting = useRef()
     let panelAbout = useRef()
-    let panelWorks = useRef()
     let footer = useRef()
 
-
+    useEffect(() => console.log('app'))
 
     useLayoutEffect(() => {
-        let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelWorks, panelAbout, footer)
+        let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer)
         return () => ctx.revert();
     }, [])
-
 
     useLayoutEffect(() => {
         // let ctx = gsap.context(() => {
@@ -73,7 +69,7 @@ function App() {
                 ScrollTrigger={ScrollTrigger}
                 panelGreeting={panelGreeting}
                 panelAbout={panelAbout}
-                panelWorks={panelWorks}
+
             />
             <Footer portfolio={portfolio} forwardRef={footer} />
             {/* <Preloader blackTheme={blackTheme} /> */}
@@ -83,8 +79,7 @@ function App() {
 
 
 
-function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelWorks, panelAbout, footer) {
-
+function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
     let ctx = gsap.context(() => {
         gsap.to(panelGreeting.current, {
             scrollTrigger: {
@@ -95,7 +90,6 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 pinSpacing: false,
                 scrub: true,
                 anticipatePin: 1,
-
                 pinType: 'fixed',
             }
         });
@@ -123,7 +117,6 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
             }
         })
 
-
         gsap.to(footer.current, {
             scrollTrigger: {
                 trigger: footer.current,
@@ -132,7 +125,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 start: "center bottom",
                 pinSpacing: false,
                 scrub: false,
-                markers: true,
+                // markers: true,
                 onEnter: e => {
                     setCurrentSectionSelector('footer')
                 },

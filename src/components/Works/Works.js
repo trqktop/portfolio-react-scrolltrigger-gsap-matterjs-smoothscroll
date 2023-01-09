@@ -1,24 +1,25 @@
 import './works.css'
+import { data } from '../../data/data';
 import { WorkElement } from '../WorkElement/WorkElement';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 
 export function Works(props) {
-    const { gsap, data, blackTheme, panelWorks } = { ...props }
+    const { gsap, blackTheme } = { ...props }
     const catTailSvg = useRef(null)
 
 
 
     return (
-        <section className='works' ref={panelWorks}>
+        <section className='works' >
             <div className='works__container'>
                 <h2 className='works__title'>Мои работы</h2>
                 <ul className='works__list'>
-                    {data.map((data, i) => (
+                    {data.map((project, i) => (
                         <WorkElement
-                            key={i+' work-element'}
+                            key={i + ' work-element'}
                             blackTheme={blackTheme}
-                            data={data}
+                            data={project}
                             gsap={gsap} />
                     ))}
                     <li className='works__item works__item_soon'>

@@ -8,7 +8,6 @@
     z-index: 2;
 
 
-
     &__container {
         padding: 16px;
         display: flex;
@@ -36,4 +35,37 @@
         overflow: visible;
     }
 
+}
+
+
+@media screen and(max-width:900px) {
+    .greeting {
+
+
+
+        &__container {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 148px;
+            padding-bottom: 48px;
+            padding-left: 16px;
+            padding-right: 16px;
+
+            .greeting__text {
+                display: block;
+            }
+        }
+
+        &__cat-svg {
+            position: relative;
+            margin: 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            transform: rotate(0deg);
+        }
+
+    }
 }

@@ -98,4 +98,13 @@
 }
 .about .about__element-resume-link:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 900px) {
+  .about__container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 }/*# sourceMappingURL=about.css.map */

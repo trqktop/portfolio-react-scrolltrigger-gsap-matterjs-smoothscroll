@@ -6,38 +6,18 @@ export function WorkElement(props) {
     const [isHover, setHoverState] = useState(false)
     const [modalIsOpened, modalState] = useState(false)
     const { projectName, title, projectTheme, description, gitHubPage, images, newKnowledge, tech } = { ...data }
-    const image = useRef(null)
 
-
-
-
-
-    function hoverElementHandler(state) {
-        setHoverState((prev) => !prev)
-    }
-
-    function openModalHandler() {
-        modalState(true)
-    }
-
-    function closeModalHandler(e) {
-        const elClass = e.target.classList
-        const closeButton = 'modal-container__close-button'
-        const overlay = 'work-modal'
-        if (elClass.contains(closeButton) || elClass.contains(overlay))
-            modalState(false)
-    }
 
     return (
         <>
             <li className={'works__item'}
-                onMouseEnter={hoverElementHandler}
-                onMouseLeave={hoverElementHandler}
-                onClick={openModalHandler}
+                onMouseEnter={() => setHoverState((prev) => !prev)}
+                onMouseLeave={() => setHoverState((prev) => !prev)}
+                onClick={() => modalState(true)}
                 id={projectName}>
                 <figure className="works__item-container">
                     <div className="works__image-container">
-                        < img ref={image}
+                        < img
                             className={isHover ? "works__screen works__screen_hover" : "works__screen"}
                             src={images}
                             alt={projectName} />
@@ -67,7 +47,7 @@ export function WorkElement(props) {
             <Modals
                 blackTheme={blackTheme}
                 modalIsOpened={modalIsOpened}
-                closeModalHandler={closeModalHandler}
+                modalState={modalState}
                 data={data} />
         </>
     )
