@@ -28,9 +28,26 @@
             list-style: none;
             grid-template-columns: repeat(2, 407px);
             gap: 32px;
-
         }
     }
+}
 
+@media screen and(max-width:900px) {
+    .works {
+        &__container {
+            .works__list {
+                grid-template-columns: repeat(1, 407px);
+            }
+        }
+    }
+}
 
+@media screen and(max-width:600px) {
+    .works {
+        &__container {
+            .works__list {
+                grid-template-columns: repeat(1, 338px);
+            }
+        }
+    }
 }

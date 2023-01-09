@@ -3,7 +3,7 @@ import Preloader from './components/Preloader/Preloader';
 import { Header } from './components/Header/Header'
 import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect, forwardRef, createRef } from 'react';
 import { gsap, selector } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmoothScroll from 'smoothscroll-for-websites'
@@ -20,41 +20,46 @@ gsap.registerPlugin(ScrollToPlugin)
 
 function App() {
     let [sectionSelector, setCurrentSectionSelector] = useState('about')
-    let pageContainer = useRef(null)
     let [blackTheme, setBlackTheme] = useState(false)
+
+    //scrolltrigger var
+    let pageContainer = useRef()
+    let panelGreeting = useRef()
+    let panelAbout = useRef()
+    let panelWorks = useRef()
+    let footer = useRef()
 
 
 
     useLayoutEffect(() => {
-
-
-        let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector)
+        let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelWorks, panelAbout, footer)
         return () => ctx.revert();
     }, [])
 
 
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            SmoothScroll({
-                animationTime: 1200,
-                stepSize: 75,
-                accelerationDelta: 30,
-                accelerationMax: 1,
-                keyboardSupport: true,
-                arrowScroll: 50,
-                pulseAlgorithm: true,
-                pulseScale: 4,
-                pulseNormalize: 1,
-                touchpadSupport: true,
-            })
-        }, pageContainer.current)
-        return () => ctx.revert();
+        // let ctx = gsap.context(() => {
+        SmoothScroll({
+            animationTime: 1200,
+            stepSize: 75,
+            accelerationDelta: 30,
+            accelerationMax: 1,
+            keyboardSupport: true,
+            arrowScroll: 50,
+            pulseAlgorithm: true,
+            pulseScale: 4,
+            pulseNormalize: 1,
+            touchpadSupport: true,
+        })
+        // }, pageContainer.current)
+        // return () => ctx.revert();
     }, [])
 
     // className={true ? 'page__container' : 'page__container page__container-true'}
     return (
         <div className={blackTheme ? 'page__container page__container_black' : 'page__container'}
-            ref={pageContainer}>
+            ref={pageContainer}
+        >
             <Header gsap={gsap}
                 ScrollTrigger={ScrollTrigger}
                 ScrollToPlugin={ScrollToPlugin}
@@ -63,8 +68,14 @@ function App() {
                 setBlackTheme={setBlackTheme}
                 blackTheme={blackTheme}
             />
-            <Content gsap={gsap} blackTheme={blackTheme} ScrollTrigger={ScrollTrigger} />
-            <Footer portfolio={portfolio} />
+            <Content gsap={gsap}
+                blackTheme={blackTheme}
+                ScrollTrigger={ScrollTrigger}
+                panelGreeting={panelGreeting}
+                panelAbout={panelAbout}
+                panelWorks={panelWorks}
+            />
+            <Footer portfolio={portfolio} forwardRef={footer} />
             {/* <Preloader blackTheme={blackTheme} /> */}
         </div>
     );
@@ -72,82 +83,63 @@ function App() {
 
 
 
+function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelWorks, panelAbout, footer) {
 
-function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
     let ctx = gsap.context(() => {
-        const panelGreeting = pageContainer.current.querySelector('.greeting')
-        gsap.to(panelGreeting, {
+        gsap.to(panelGreeting.current, {
             scrollTrigger: {
-                trigger: panelGreeting,
+                trigger: panelGreeting.current,
                 pin: true,
                 start: "+=100% bottom",
                 end: '+=100% top',
                 pinSpacing: false,
-                scrub: 1,
+                scrub: true,
+                anticipatePin: 1,
                 pinType: 'fixed',
             }
         });
-        const panelAbout = pageContainer.current.querySelector('.about')
-        const panelWorks = pageContainer.current.querySelector('.works')
-        gsap.to(panelAbout, {
+
+        gsap.to(panelAbout.current, {
             scrollTrigger: {
-                trigger: panelAbout,
+                trigger: panelAbout.current,
                 pin: true,
-                start: "+=100% bottom+=1px",
+                start: "+=100% bottom",
                 onEnter: e => {
-                    setCurrentSectionSelector(panelAbout.className)
+                    setCurrentSectionSelector('about')
                 },
                 onEnterBack: (e) => {
-                    setCurrentSectionSelector(panelAbout.className)
+                    setCurrentSectionSelector('about')
                 },
                 onLeave: (e) => {
-                    setCurrentSectionSelector(panelWorks.className)
+                    setCurrentSectionSelector('works')
                 },
                 end: '+=100% top+=1%',
                 pinSpacing: false,
-                scrub: 1,
-                anticipatePin: 1 / 10,
+                scrub: true,
+                // anticipatePin: 1 / 10,
                 // markers: true,
                 pinType: 'fixed',
             }
         })
 
 
-        // gsap.to(panelWorks, {
-        //   scrollTrigger: {
-        //     trigger: panelWorks,
-        //     pin: false,
-        //     start: "center center+=30%",
-        //     pinSpacing: false,
-        //     scrub: 1,
-        //     onEnter: e => {
-        //       setCurrentSectionSelector(panelWorks.className)
-        //     },
-        //     onEnterBack: e => {
-        //       setCurrentSectionSelector(panelWorks.className)
-        //     },
-        //     pinType: 'fixed',
-        //     markers: true,
-        //   }
-        // })
-        const footer = pageContainer.current.querySelector('.footer')
-        gsap.to(footer, {
+        gsap.to(footer.current, {
             scrollTrigger: {
-                trigger: footer,
+                trigger: footer.current,
                 pin: false,
                 pinSpacing: false,
                 start: "center bottom",
                 pinSpacing: false,
+                scrub: false,
+                markers: true,
                 onEnter: e => {
-                    setCurrentSectionSelector(footer.className)
+                    setCurrentSectionSelector('footer')
                 },
                 onLeaveBack: () => {
-                    setCurrentSectionSelector(panelWorks.className)
+                    setCurrentSectionSelector('works')
                 }
             }
         })
-
-
     }, pageContainer.current);
     return ctx
 }
@@ -162,6 +154,6 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector) {
 
 
 
-ScrollTrigger.refresh()
 
+ScrollTrigger.refresh()
 export default App;

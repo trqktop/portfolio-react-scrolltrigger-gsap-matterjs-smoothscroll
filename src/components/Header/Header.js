@@ -10,24 +10,31 @@ export function Header(props) {
     const activeSectionHeaderItem = useRef(null)
     const hoverMenuItem = useRef(null)
     const [isHover, setHoverState] = useState(false)
-    const [element, setElement] = useState(false)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const firstUpdate = useRef(true);
     const svgButtonTheme = useRef(null)
 
 
+
     useLayoutEffect(() => {
-        window.onload = () => {
-            setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
-            setHoverElementPosition(hoverMenuItem.current, 0, -1)
+        if (windowWidth > 900) {
+            const ctx = gsap.context(() => {
+                setHoverElementPosition(hoverMenuItem.current, 0, -1)
+
+                window.onload = () => {
+                    setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
+                    setHoverElementPosition(hoverMenuItem.current, 0, -1)
+                }
+                window.onresize = () => {
+                    setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
+                    setHoverElementPosition(hoverMenuItem.current, 0, -1)
+                    setWindowWidth(window.innerWidth)
+                }
+            }, menuRef.current)
+
+            return () => ctx.revert();
         }
-        window.onresize = () => {
-            setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
-            setHoverElementPosition(hoverMenuItem.current, 0, -1)
-        }
-    }, [])
-
-
-
+    }, [windowWidth])
 
 
     useEffect(() => {
@@ -71,19 +78,23 @@ export function Header(props) {
 
 
     useEffect(() => {
-
-        if (firstUpdate.current) {
-            setTimeout(() => {
-                firstUpdate.current = false;
-            }, 1)
-        } else {
-            setHoverElementPosition(activeSectionHeaderItem.current, 1, .3)
+        if (windowWidth > 900) {
+            if (firstUpdate.current) {
+                setCurrentSectionSelector('about')
+                setTimeout(() => {
+                    firstUpdate.current = false;
+                }, 1)
+            } else {
+                // const ctx = gsap.context(() => {
+                setHoverElementPosition(activeSectionHeaderItem.current, 1, .3)
+                // }, menuRef.current)
+                // return () => ctx.revert();
+            }
         }
-    })
+    }, [sectionSelector])
 
-    function setHoverElementPosition(element, dur, del) {
+    function setHoverElementPosition(element, dur, del, opac) {
         const rect = document.getElementById(sectionSelector).getBoundingClientRect()
-
         const elPos = {
             left: rect.x - 1,
             height: rect.height + 2,
@@ -96,16 +107,14 @@ export function Header(props) {
             y: elPos.y,
             width: elPos.width,
             duration: dur,
-            delay: del
+            delay: del,
+            opacity: opac ? opac : 1
         })
         return tl
     }
 
     function setHoverElementPositionHandler(e) {
-
-
         setHoverState(true)
-
         const rect = e.target.getBoundingClientRect()
         const elPos = {
             left: rect.x - 1,
@@ -138,6 +147,7 @@ export function Header(props) {
                 <span className='header__logo'>Pavel Shirin</span>
                 <nav className='header__menu'>
                     <ul className='header__menu-items'
+                        style={windowWidth > 900 ? { display: 'flex' } : { display: 'none' }}
                         ref={menuRef}
                         onClick={(e) => scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector)}
                         onMouseLeave={hideHoverElementHandler}>
@@ -160,7 +170,7 @@ export function Header(props) {
                     </svg>
                 </button>
             </div>
-        </header>
+        </header >
     );
 }
 
@@ -172,7 +182,6 @@ function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sect
     e.stopPropagation()
     const elementId = e.target.id
     if (elementId) {
-        // setCurrentSectionSelector(elementId)
         const STs = ScrollTrigger.getAll();
         STs.forEach(ST => {
             ST.disable()

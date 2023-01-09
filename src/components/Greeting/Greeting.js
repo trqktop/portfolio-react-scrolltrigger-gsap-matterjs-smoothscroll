@@ -1,7 +1,7 @@
 import './greeting.css'
 import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 export function Greeting(props) {
-    const { gsap } = { ...props }
+    const { gsap, panelGreeting } = { ...props }
     const catSvgHand = useRef(null)
     const catSvgSmile = useRef(null)
     const catSvgLefthEye = useRef(null)
@@ -38,7 +38,7 @@ export function Greeting(props) {
 
     }, [])
     return (
-        <section className='greeting'>
+        <section className='greeting' ref={panelGreeting}>
             <article className='greeting__container'>
                 <span className='greeting__text'>Привет! Меня зовут Павел Ширин.</span>
                 <span className='greeting__text'> Я начинающий Frontend-разработчик и это — мой сайт портфолио.</span>

@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import './footer.css'
 
 
 export function Footer(props) {
-    const { portfolio } = { ...props }
+    const { portfolio, forwardRef } = { ...props }
+    useEffect(() => console.log(forwardRef))
     return (
-        <footer className='footer'>
+        <footer className='footer' ref={forwardRef}>
             <div className="footer__container">
                 <div className="footer__container-background">
                     <div className="footer__container-padding">

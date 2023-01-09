@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import './about.css'
 
 export function About(props) {
-    const { gsap, ScrollTrigger } = { ...props }
+    const { gsap, ScrollTrigger, panelAbout } = { ...props }
     const catRigthEye = useRef(null)
     const catLeftEye = useRef(null)
     useLayoutEffect(() => {
@@ -25,7 +25,7 @@ export function About(props) {
     }
 
     return (
-        <section className='about'>
+        <section className='about' ref={panelAbout}>
             <div className='about__container'>
                 <div className='about__image-container'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="258" height="434" viewBox="0 0 258 434" fill="none">

@@ -4,21 +4,19 @@ import { useLayoutEffect, useRef, useState } from 'react';
 
 
 export function Works(props) {
-    const { gsap, data ,blackTheme} = { ...props }
+    const { gsap, data, blackTheme, panelWorks } = { ...props }
     const catTailSvg = useRef(null)
 
 
 
-
-
     return (
-        <section className='works'>
+        <section className='works' ref={panelWorks}>
             <div className='works__container'>
                 <h2 className='works__title'>Мои работы</h2>
                 <ul className='works__list'>
                     {data.map((data, i) => (
                         <WorkElement
-                            key={i}
+                            key={i+' work-element'}
                             blackTheme={blackTheme}
                             data={data}
                             gsap={gsap} />

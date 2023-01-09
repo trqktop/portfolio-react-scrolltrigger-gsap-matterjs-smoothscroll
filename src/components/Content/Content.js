@@ -233,19 +233,12 @@ const data = [
 
 
 export function Content(props) {
-    const { gsap, blackTheme, ScrollTrigger } = { ...props }
-
-
-
-
-
-
+    const { gsap, blackTheme, ScrollTrigger, panelGreeting, panelAbout, panelWorks } = { ...props }
     return (
         <main className='content'>
-            <Greeting gsap={gsap} />
-            <About gsap={gsap} ScrollTrigger={ScrollTrigger} />
-            <Works data={data} gsap={gsap} blackTheme={blackTheme} />
-
+            <Greeting gsap={gsap} panelGreeting={panelGreeting} />
+            <About gsap={gsap} ScrollTrigger={ScrollTrigger} panelAbout={panelAbout} />
+            <Works data={data} gsap={gsap} blackTheme={blackTheme} panelWorks={panelWorks} />
         </main>
     );
 }
