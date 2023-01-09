@@ -46,13 +46,16 @@
       -ms-user-select: none;
           user-select: none;
   cursor: none;
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
   overflow: hidden;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 .header__menu-item {
   z-index: 3;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 .header__menu-link {
   display: block;
@@ -75,6 +78,7 @@
 }
 .header__interactive-elements {
   position: fixed;
+  top: 16px;
   pointer-events: none;
   visibility: hidden;
 }
@@ -85,6 +89,7 @@
   border-radius: 20px;
   position: fixed;
   top: 0;
+  left: 50vw;
   opacity: 1;
   background: #1F1F21;
   border-radius: 24px;
@@ -97,6 +102,7 @@
 .header__interactive-elements .header__active-section-item {
   position: fixed;
   top: 0;
+  left: 50vw;
   opacity: 1;
   background: #FFFFFF;
   border: 1px solid #D3DAE6;

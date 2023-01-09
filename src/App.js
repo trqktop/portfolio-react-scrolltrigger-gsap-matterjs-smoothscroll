@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollToPlugin)
 
 
 function App() {
-    let [sectionSelector, setCurrentSectionSelector] = useState('about')
+    let [sectionSelector, setCurrentSectionSelector] = useState()
     let [blackTheme, setBlackTheme] = useState(false)
 
     //scrolltrigger var
@@ -95,6 +95,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 pinSpacing: false,
                 scrub: true,
                 anticipatePin: 1,
+
                 pinType: 'fixed',
             }
         });

@@ -19,19 +19,14 @@ export function Header(props) {
     useLayoutEffect(() => {
         if (windowWidth > 900) {
             const ctx = gsap.context(() => {
-                setHoverElementPosition(hoverMenuItem.current, 0, -1)
+                // setHoverElementPosition(hoverMenuItem.current, 0, -1)
 
-                window.onload = () => {
-                    setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
-                    setHoverElementPosition(hoverMenuItem.current, 0, -1)
-                }
                 window.onresize = () => {
                     setHoverElementPosition(activeSectionHeaderItem.current, 0, -1)
                     setHoverElementPosition(hoverMenuItem.current, 0, -1)
                     setWindowWidth(window.innerWidth)
                 }
             }, menuRef.current)
-
             return () => ctx.revert();
         }
     }, [windowWidth])
@@ -77,40 +72,50 @@ export function Header(props) {
     // }
 
 
+
     useEffect(() => {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
                 setCurrentSectionSelector('about')
+                setHoverElementPosition(activeSectionHeaderItem.current, .1, .1)
+                setHoverElementPosition(hoverMenuItem.current, .1, .1)
                 setTimeout(() => {
                     firstUpdate.current = false;
-                }, 1)
-            } else {
-                // const ctx = gsap.context(() => {
-                setHoverElementPosition(activeSectionHeaderItem.current, 1, .3)
-                // }, menuRef.current)
-                // return () => ctx.revert();
+                }, 500)
+            }
+            else {
+                setHoverElementPosition(activeSectionHeaderItem.current, .8, .3)
             }
         }
+
     }, [sectionSelector])
 
+    // setHoverElementPosition(activeSectionHeaderItem.current, .8, .3)
+
+
+
     function setHoverElementPosition(element, dur, del, opac) {
-        const rect = document.getElementById(sectionSelector).getBoundingClientRect()
-        const elPos = {
-            left: rect.x - 1,
-            height: rect.height + 2,
-            y: rect.top - 1,
-            width: rect.width + 2
+
+        if (sectionSelector) {
+            const rect = document.getElementById(sectionSelector).getBoundingClientRect()
+            const elPos = {
+                left: rect.x - 1,
+                height: rect.height + 2,
+                y: rect.top - 1,
+                width: rect.width + 2
+            }
+            const tl = gsap.to(element, {
+                left: elPos.left,
+                height: elPos.height,
+                y: elPos.y,
+                width: elPos.width,
+                duration: dur,
+                delay: del,
+                opacity: opac ? opac : 1
+            })
+            return tl
         }
-        const tl = gsap.to(element, {
-            left: elPos.left,
-            height: elPos.height,
-            y: elPos.y,
-            width: elPos.width,
-            duration: dur,
-            delay: del,
-            opacity: opac ? opac : 1
-        })
-        return tl
+
     }
 
     function setHoverElementPositionHandler(e) {
