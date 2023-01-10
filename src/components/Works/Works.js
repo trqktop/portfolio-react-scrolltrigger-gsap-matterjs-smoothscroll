@@ -7,16 +7,56 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 export function Works(props) {
     const { gsap, blackTheme } = { ...props }
     const catTailSvg = useRef(null)
+    const elementsContainer = useRef(null)
+    const elements = useRef(null)
+    useLayoutEffect(() => {
+        elements.current = Array.from(elementsContainer.current.childNodes)
+    }, [])
 
+    function hoverListener(e) {
+        const currentElements = elements.current.filter(item => {
+            if (item.id) {
+                if (e.currentTarget.id !== item.id)
+                    return item
+            }
+        })
+        const ctx = gsap.context(() => {
+            gsap.to(currentElements, {
+                '-webkit-filter': 'grayscale(100%)',
+                filter: 'grayscale(100%)',
+                scale: .96
+            })
+            gsap.to(e.currentTarget, {
+                boxShadow: "0px 5px 10px 2px rgba(89, 91, 167, .6)",
+                opacity: 1,
+                delay: .1,
+                ease: 'none',
+            })
+        }, elementsContainer.current)
+        return () => ctx.revert()
+    }
 
-
+    function hoverLeaveListener(e) {
+        const ctx = gsap.context(() => {
+            gsap.to(elements.current, {
+                opacity: 1,
+                scale: 1,
+                '-webkit-filter': 'grayscale(0%)',
+                filter: 'grayscale(0%)',
+                boxShadow: 'none',
+            })
+        }, elementsContainer.current)
+        return () => ctx.revert()
+    }
     return (
         <section className='works' >
             <div className='works__container'>
                 <h2 className='works__title'>Мои работы</h2>
-                <ul className='works__list'>
+                <ul className='works__list' ref={elementsContainer}>
                     {data.map((project, i) => (
                         <WorkElement
+                            hoverListener={hoverListener}
+                            hoverLeaveListener={hoverLeaveListener}
                             key={i + ' work-element'}
                             blackTheme={blackTheme}
                             data={project}

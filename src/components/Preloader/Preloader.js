@@ -6,23 +6,26 @@ const modalRoot = document.getElementById('react-modals')
 export default function Preloader(props) {
     const { blackTheme } = { ...props }
     const preloader = useRef(null)
-    useLayoutEffect(() => {
-        if (blackTheme) {
-            preloader.current.classList.add('preloader_black')
-        } else {
-            preloader.current.classList.remove('preloader_black')
-        }
-    }, [])
+    const firstUpdate = useRef(true);
+
     useEffect(() => {
-        setTimeout(() => {
+        if (firstUpdate.current) {
+
+            setTimeout(() => {
+                preloader.current.classList.add('preloader_hidden')
+                firstUpdate.current = false;
+            }, 2000)
+        }
+        else {
             preloader.current.classList.add('preloader_hidden')
-        }, 2000)
-    }, [])
+        }
+
+    }, [blackTheme])
 
 
     return ReactDOM.createPortal(
         (
-            <div ref={preloader} className={'preloader'}>
+            <div ref={preloader} className={blackTheme ? 'preloader preloader_black' : 'preloader'}>
                 <svg className="tea" viewBox="0 0 37 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M27.0819 17H3.02508C1.91076 17 1.01376 17.9059 1.0485 19.0197C1.15761 22.5177 1.49703 29.7374 2.5 34C4.07125 40.6778 7.18553 44.8868 8.44856 46.3845C8.79051 46.79 9.29799 47 9.82843 47H20.0218C20.639 47 21.2193 46.7159 21.5659 46.2052C22.6765 44.5687 25.2312 40.4282 27.5 34C28.9757 29.8188 29.084 22.4043 29.0441 18.9156C29.0319 17.8436 28.1539 17 27.0819 17Z"

@@ -1,12 +1,12 @@
 import './modals.css'
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as ReactDOM from 'react-dom';
 
 const modalRoot = document.getElementById('react-modals')
 
 export default function Modals(props) {
-    const { data, modalIsOpened, blackTheme, modalState } = { ...props }
-
+    const { data, modalIsOpened, blackTheme, modalState, windowWidth, gsap } = { ...props }
+    const modalContainer = useRef(null)
     function closeModalHandler(e) {
         const elClass = e.target.classList
         const closeButton = 'modal-container__close-button'
@@ -14,7 +14,19 @@ export default function Modals(props) {
         if (elClass.contains(closeButton) || elClass.contains(overlay))
             modalState(false)
     }
+    useEffect(() => {
+        if (windowWidth < 900) {
+            const ctx = gsap.context(() => {
+                gsap.fromTo(modalContainer.current, {
+                    yPercent: +100
+                }, {
+                    yPercent: 0
+                })
+            }, modalContainer.current)
+            return () => ctx.revert();
+        }
 
+    }, [modalIsOpened])
     return ReactDOM.createPortal(
         (
             <div
@@ -24,7 +36,7 @@ export default function Modals(props) {
                         `work-modal ${data.projectName + '-modal work-modal_opened'}` :
                         `work-modal ${data.projectName + '-modal'}`
                 }>
-                <div className={blackTheme ? "modal-container modal-container_black" : "modal-container"}>
+                <div ref={modalContainer} className={blackTheme ? "modal-container modal-container_black" : "modal-container"}>
                     <button
                         onClick={() => modalState(false)}
                         className="modal-container__close-button">

@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Inter-SemiBold';
+    src: url('./fonts/inter/Inter-SemiBold.ttf') format('truetype'),
+        url('./fonts/inter/Inter-SemiBold.woff') format('woff'),
+        url('./fonts/inter/Inter-SemiBold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Inter-Medium';
+    src: url('./fonts/inter/Inter-Medium.ttf') format('truetype'),
+        url('./fonts/inter/Inter-Medium.woff') format('woff'),
+        url('./fonts/inter/Inter-Medium.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url('./fonts/inter/Inter-Regular.ttf') format('truetype'),
+        url('./fonts/inter/Inter-Regular.woff') format('woff'),
+        url('./fonts/inter/Inter-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Inter-Bold';
+    src: url('./fonts/inter/Inter-Bold.ttf') format('truetype'),
+        url('./fonts/inter/Inter-Bold.woff') format('woff'),
+        url('./fonts//inter/Inter-Bold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+@font-face {
+    font-family: 'BellotaText-Bold';
+    src: url('./fonts/bellota/BellotaText-Bold.ttf') format('truetype'),
+        url('./fonts/bellota/BellotaText-Bold.woff')format('woff'),
+        url('./fonts/bellota/BellotaText-Bold.woff2')format('woff2');
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+
+@font-face {
+    font-family: 'RobotoSlab-Medium';
+    src: url('./fonts/roboto/RobotoSlab-Medium.ttf') format('truetype'),
+        url('./fonts/roboto/RobotoSlab-Medium.woff')format('woff'),
+        url('./fonts/roboto/RobotoSlab-Medium.woff2')format('woff2');
+    font-style: normal;
+    font-weight: 500;
+}

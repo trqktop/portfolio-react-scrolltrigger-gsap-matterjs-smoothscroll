@@ -40,19 +40,18 @@
 
 @media screen and(max-width:900px) {
     .greeting {
-
-
-
         &__container {
             display: flex;
             justify-content: space-between;
             padding-top: 148px;
             padding-bottom: 48px;
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left: 116px;
+            padding-right: 116px;
 
             .greeting__text {
                 display: block;
+                font-size: 40px;
+                line-height: 40px;
             }
         }
 
@@ -65,7 +64,24 @@
             right: 0;
             margin: auto;
             transform: rotate(0deg);
+            margin-top: 80px;
+        }
+    }
+}
+
+
+@media screen and(max-width:600px) {
+    .greeting {
+        &__container {
+            padding-left: 16px;
+            padding-right: 16px;
+
+            .greeting__text {
+                font-size: 32px;
+                line-height: 40px;
+            }
         }
 
+        &__cat-svg {}
     }
 }

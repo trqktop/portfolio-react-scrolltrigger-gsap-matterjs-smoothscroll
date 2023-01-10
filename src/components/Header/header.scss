@@ -62,6 +62,7 @@
             font-weight: 500;
             font-size: 16px;
             line-height: 19px;
+            font-display: none;
 
             &_hover {
                 color: white;
@@ -70,21 +71,21 @@
     }
 
 
-
-
-
     &__theme-button {
         background-color: inherit;
         border: none;
         cursor: pointer;
         margin-left: auto;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 
 
 
     &__interactive-elements {
         position: fixed;
-
         top: 16px;
         pointer-events: none;
         visibility: hidden;
@@ -118,6 +119,31 @@
             border: 1px solid #D3DAE6;
             border-radius: 24px;
             z-index: 1;
+
+        }
+    }
+}
+
+
+
+@media screen and(max-width:900px) {
+    .header {
+        padding: 8px 16px;
+
+        &__logo {
+            font-size: 20px;
+            line-height: 24px;
+            white-space: nowrap;
+        }
+    }
+
+}
+
+@media screen and(max-width:400px) {
+    .header {
+        .header__theme-button-svg-bg {
+            width: 26px;
+            height: 26px;
         }
     }
 }

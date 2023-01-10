@@ -178,10 +178,23 @@
         align-self: flex-end;
         mix-blend-mode: difference;
         z-index: 3;
+
     }
 }
 
+@media screen and(max-width:600px) {
+    .tech {
+    .tech__container{
+        max-width: 264px;
+    }
 
+        &__project-link {
+            max-width: 100%;
+            align-self: flex-end;
+
+        }
+    }
+}
 
 @keyframes tailAnim {
 

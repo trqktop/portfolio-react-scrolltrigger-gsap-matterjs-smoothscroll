@@ -32,11 +32,21 @@
 }
 
 @media screen and (max-width: 900px) {
+  .works {
+    padding: 40px 6px;
+  }
   .works__container .works__list {
     grid-template-columns: repeat(1, 407px);
   }
 }
 @media screen and (max-width: 600px) {
+  .works {
+    border-radius: 32px 32px 0px 0px;
+  }
+  .works .works__title {
+    font-size: 32px;
+    line-height: 39px;
+  }
   .works__container .works__list {
     grid-template-columns: repeat(1, 338px);
   }

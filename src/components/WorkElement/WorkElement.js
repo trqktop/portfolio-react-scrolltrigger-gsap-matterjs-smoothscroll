@@ -1,18 +1,54 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import Modals from "../Modals/Modals"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './WorkElement.css'
 export function WorkElement(props) {
-    const { data, gsap, blackTheme } = { ...props }
+    const { data, gsap, blackTheme, hoverListener, hoverLeaveListener } = { ...props }
     const [isHover, setHoverState] = useState(false)
     const [modalIsOpened, modalState] = useState(false)
     const { projectName, title, projectTheme, description, gitHubPage, images, newKnowledge, tech } = { ...data }
-
+    const [windowWidth, setWindowWidth] = useState(null)
+    const el = useRef(null)
+    useLayoutEffect(() => {
+        if (windowWidth < 900) {
+            const ctx = gsap.context(() => {
+                gsap.to(el.current, {
+                    scrollTrigger: {
+                        trigger: el.current,
+                        pinSpacing: false,
+                        pin: false,
+                        start: "top center",
+                        end: "bottom center",
+                        onEnter: () => setHoverState(true),
+                        onEnterBack: () => setHoverState(true),
+                        onLeave: () => setHoverState(false),
+                        onLeaveBack: () => setHoverState(false),
+                    }
+                })
+            }, el.current)
+            return () => ctx.revert();
+        }
+        setHoverState(false)
+    }, [windowWidth])
+    useEffect(() => {
+        setWindowWidth(window.innerWidth)
+    })
 
     return (
         <>
-            <li className={'works__item'}
-                onMouseEnter={() => setHoverState((prev) => !prev)}
-                onMouseLeave={() => setHoverState((prev) => !prev)}
+            <li className={'works__item'} ref={el}
+                onMouseEnter={(e) => {
+                    setHoverState(true)
+                    if (windowWidth > 900) {
+                        hoverListener(e)
+                    }
+                }}
+                onMouseLeave={(e) => {
+                    setHoverState(false)
+                    if (windowWidth > 900) {
+                        hoverLeaveListener(e)
+                    }
+                }}
                 onClick={() => modalState(true)}
                 id={projectName}>
                 <figure className="works__item-container">
@@ -48,6 +84,8 @@ export function WorkElement(props) {
                 blackTheme={blackTheme}
                 modalIsOpened={modalIsOpened}
                 modalState={modalState}
+                windowWidth={windowWidth}
+                gsap={gsap}
                 data={data} />
         </>
     )

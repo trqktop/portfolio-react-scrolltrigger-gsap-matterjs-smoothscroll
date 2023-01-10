@@ -1,7 +1,7 @@
 
 import howToLearnLink from '../images/works/how-to-learn-plus.png'
 import mestoLink from '../images/works/mesto-project.png'
-import russiaTravelLink from '../images/works/mesto-project.png'
+import russiaTravelLink from '../images/works/russian-travel.png'
 import portfolioLink from '../images/works/portfolio.png'
 
 export const data = [

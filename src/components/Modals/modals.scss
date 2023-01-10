@@ -213,10 +213,10 @@ $tablet: 900px;
 
 @media screen and (max-width: $tablet) {
     .modal__tech-flex {
-
         grid-template-columns: 1fr;
         row-gap: 16px;
         padding-bottom: 32px;
+
     }
 
     .modal__header {
@@ -267,7 +267,8 @@ $tablet: 900px;
         margin: 0;
         width: 100%;
         margin-top: 100px;
-        padding-bottom: 60px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
 

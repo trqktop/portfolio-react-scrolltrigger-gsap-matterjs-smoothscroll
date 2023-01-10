@@ -66,6 +66,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
+  font-display: none;
 }
 .header__menu-link_hover {
   color: white;
@@ -75,6 +76,9 @@
   border: none;
   cursor: pointer;
   margin-left: auto;
+}
+.header__theme-button:hover {
+  transform: scale(1.1);
 }
 .header__interactive-elements {
   position: fixed;
@@ -108,4 +112,21 @@
   border: 1px solid #D3DAE6;
   border-radius: 24px;
   z-index: 1;
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    padding: 8px 16px;
+  }
+  .header__logo {
+    font-size: 20px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+}
+@media screen and (max-width: 400px) {
+  .header .header__theme-button-svg-bg {
+    width: 26px;
+    height: 26px;
+  }
 }/*# sourceMappingURL=header.css.map */
