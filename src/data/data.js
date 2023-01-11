@@ -9,7 +9,7 @@ export const data = [
         projectName: 'portfolio',
         title: 'portfolio',
         projectTheme: 'Тема проекта «Мое портфолио»',
-        description: 'Работа выполненна с целью собрать все мои проекты в едином пространстве, данные хранятся в форме обьекта, модальные онка , и карточки отрисовываются спомощью js. Изначально проект выполнялся на чистом js, репозиторий проекта есть на Git. Был профеден рефакторинг и эта страница выполнена с использованием фреймворка React.',
+        description: 'Работа выполнена с целью собрать все мои проекты в едином пространстве, данные хранятся в форме объекта, модальные окна и карточки отрисовываются с помощью js. Первая работа написанная на React. Изначально проект выполнялся на чистом js, репозиторий проекта есть на Git. Был проведён рефакторинг и теперь проект написан на React.',
         tech: [
             'react',
             'smoothscroll',
@@ -24,8 +24,8 @@ export const data = [
             "Flexbox",
             "GRID",
         ],
-        gitHubPage: '/',
-        repository: '/',
+        gitHubPage: 'https://trqktop.github.io/portfolioGhPages/',
+        repository: 'https://github.com/trqktop/reactPortfolio',
         newKnowledge: [
             "gsap",
             'react',
@@ -101,7 +101,7 @@ export const data = [
         projectName: 'howToLearn',
         title: 'How to learn',
         projectTheme: 'Тема проекта «How to learn»',
-        description: 'Одностраничный веб-сайт об эффективных подходах к обучению.Создан по методологии BEM с файловой структурой Nested BEM.',
+        description: 'Одностраничный веб-сайт об эффективных подходах к обучению. Создан по методологии BEM с файловой структурой Nested BEM.',
         tech: [
             "HTML5",
             " CSS3",

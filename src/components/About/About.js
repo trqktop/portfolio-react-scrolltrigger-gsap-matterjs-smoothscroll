@@ -158,7 +158,7 @@ export function About(props) {
                             </svg>
                             <div className='about__item-text-container'>
                                 <h4 className='about__item-header'><span>Потом </span>Работа</h4>
-                                <p className='about__item-description'>Устроился менеджером по продаже недвижимости в крупнейшую компанию-застройщик Юга России.Благодаря работе смог развить софт-скилы: умение организовать своё рабочее время, соблюдать сроки, принимать решения и нести ответственность.</p>
+                                <p className='about__item-description'>Устроился менеджером по продаже недвижимости в крупнейшую компанию-застройщик Юга России. Благодаря работе смог развить софт-скилы: умение организовать своё рабочее время, соблюдать сроки, принимать решения и нести ответственность.</p>
                             </div>
                         </li>
                         <li className='about__item about__item_vertical'>
@@ -176,7 +176,7 @@ export function About(props) {
                             </svg>
                             <div className='about__item-text-container'>
                                 <h4 className='about__item-header'><span>За ней </span>Хобби</h4>
-                                <p className='about__item-description'>В пандемию проходил бесплатные курсы по программированию, которые меня зацепили. Я понял, что в жизни и работе не хватает сложных интересных задач и возможности постоянного роста.</p>
+                                <p className='about__item-description'>В пандемию проходил курсы по программированию, которые меня зацепили. Я понял, что в жизни и работе не хватает сложных интересных задач и возможности постоянного роста.</p>
                             </div>
                         </li>
                         <li className='about__item about__item_vertical'>

@@ -51,22 +51,29 @@ function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sect
     const ctx = gsap.context(() => {
         const elementId = e.target.id
         if (elementId) {
+            const menu = e.currentTarget
+            menu.style.pointerEvents = "none"
             const STs = ScrollTrigger.getAll();
             STs.forEach(ST => {
                 ST.disable()
             })
+
             gsap.to(window, {
                 scrollTo: () => `.${elementId}`,
-                duration: 1,
-                delay: -1,
+                duration: .3,
+                delay: .001,
                 ease: "power4",
-                onComplete: () => setTimeout(() => {
-                    const STs = ScrollTrigger.getAll();
-                    STs.forEach(ST => {
-                        ST.enable()
-                    })
-                }, 1)
+                onComplete: () => {
+                    setTimeout(() => {
+                        STs.forEach(ST => {
+                            ST.enable()
+                        })
+                    }, 10)
+                }
             })
+            setTimeout(() => {
+                menu.style.pointerEvents = 'auto'
+            }, 1000)
         }
     }, context)
     return () => ctx.revert()

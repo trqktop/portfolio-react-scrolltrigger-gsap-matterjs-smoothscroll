@@ -25,7 +25,12 @@ export default function Modals(props) {
             }, modalContainer.current)
             return () => ctx.revert();
         }
-
+        if (modalIsOpened) {
+            document.body.style.overflow = 'hidden'
+        }
+        else {
+            document.body.style.overflow = 'auto'
+        }
     }, [modalIsOpened])
     return ReactDOM.createPortal(
         (

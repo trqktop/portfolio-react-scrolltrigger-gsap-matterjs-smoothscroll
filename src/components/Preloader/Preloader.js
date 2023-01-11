@@ -10,11 +10,12 @@ export default function Preloader(props) {
 
     useEffect(() => {
         if (firstUpdate.current) {
-
-            setTimeout(() => {
-                preloader.current.classList.add('preloader_hidden')
-                firstUpdate.current = false;
-            }, 2000)
+            window.onload = () => {
+                setTimeout(() => {
+                    preloader.current.classList.add('preloader_hidden')
+                    firstUpdate.current = false;
+                }, 2000)
+            }
         }
         else {
             preloader.current.classList.add('preloader_hidden')

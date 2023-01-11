@@ -61,12 +61,8 @@
   border: none;
   top: 16px;
   right: 16px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-color: inherit;
   cursor: pointer;
-  padding: 10px;
 }
 .modal-container__close-button:hover {
   transform: scale(1.1);
@@ -169,48 +165,6 @@
 }
 
 @media screen and (max-width: 900px) {
-  .modal__tech-flex {
-    grid-template-columns: 1fr;
-    row-gap: 16px;
-    padding-bottom: 32px;
-  }
-  .modal__header {
-    margin-top: 32px;
-    margin-left: 16px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 16px;
-  }
-  .modal__header-title {
-    order: -1;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-  }
-  .modal__desctiption-title {
-    font-family: "Inter-Regular";
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-  }
-  .modal__description-text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-  }
-  .modal__description {
-    margin-left: 16px;
-    margin-right: 16px;
-    padding: 16px;
-    font-size: 14px;
-  }
-  .modal__tech {
-    margin-left: 16px;
-    margin-right: 16px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 152.02%;
-  }
   .modal-container {
     padding: 0;
     margin: 0;
@@ -218,5 +172,47 @@
     margin-top: 100px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+  .modal-container .modal__tech-flex {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    padding-bottom: 32px;
+  }
+  .modal-container .modal__header {
+    margin-top: 32px;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+  .modal-container .modal__header-title {
+    order: -1;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .modal-container .modal__description .modal__desctiption-title {
+    font-family: "Inter-Regular";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .modal-container .modal__description-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .modal-container .modal__description {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 16px;
+    font-size: 14px;
+  }
+  .modal-container .modal__tech {
+    margin-left: 16px;
+    margin-right: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 152.02%;
   }
 }/*# sourceMappingURL=modals.css.map */
