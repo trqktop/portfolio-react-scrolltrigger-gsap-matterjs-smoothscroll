@@ -38,8 +38,11 @@
         padding: 40px 6px;
 
         &__container {
+            max-width: 100%;
+
             .works__list {
                 grid-template-columns: repeat(1, 407px);
+                max-width: 100%;
             }
         }
     }
@@ -80,7 +83,18 @@
             font-size: 32px;
             line-height: 39px;
         }
+
+        &__container {
+            max-width: 100%;
+
+            .works__list {
+                grid-template-columns: repeat(1, 95vw);
+                max-width: 100%;
+            }
+        }
+
     }
+
 
 }
 

@@ -171,8 +171,15 @@
     max-width: 100%;
     align-self: flex-end;
   }
+  .tech__elements {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
 }
 @media screen and (max-width: 412px) {
+  .tech {
+    padding: 24px;
+  }
   .tech .tech__container {
     max-width: 264px;
   }

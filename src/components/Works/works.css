@@ -37,8 +37,12 @@
   .works {
     padding: 40px 6px;
   }
+  .works__container {
+    max-width: 100%;
+  }
   .works__container .works__list {
     grid-template-columns: repeat(1, 407px);
+    max-width: 100%;
   }
 }
 @media screen and (max-width: 600px) {
@@ -62,6 +66,13 @@
     padding-bottom: 32px;
     font-size: 32px;
     line-height: 39px;
+  }
+  .works__container {
+    max-width: 100%;
+  }
+  .works__container .works__list {
+    grid-template-columns: repeat(1, 95vw);
+    max-width: 100%;
   }
 }
 @-webkit-keyframes infinitiTransform {

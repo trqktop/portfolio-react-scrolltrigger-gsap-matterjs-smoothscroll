@@ -186,18 +186,28 @@
     .tech {
         .tech__container {
             max-width: 264px;
+
         }
 
         &__project-link {
             max-width: 100%;
             align-self: flex-end;
-
         }
     }
+
+    .tech__elements {
+        flex-wrap: wrap;
+        row-gap: 8px;
+
+    }
+
+
 }
 
 @media screen and(max-width:412px) {
     .tech {
+        padding: 24px;
+
         .tech__container {
             max-width: 264px;
         }
@@ -211,6 +221,7 @@
         .tech__element {
             font-size: 12px;
             line-height: 15px;
+
         }
     }
 }
