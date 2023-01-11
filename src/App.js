@@ -13,21 +13,18 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin)
 
 
-// fetch('https://kinobd.ru/api/films?page=2')
-// .then(res=>res.json())
-// .then(res=>console.log(res))
-
 function App() {
     let [sectionSelector, setCurrentSectionSelector] = useState(null)
     let [blackTheme, setBlackTheme] = useState(JSON.parse(localStorage.getItem('themeIsBlack')) || false)
-    //scrolltrigger var
     let pageContainer = useRef()
     let panelGreeting = useRef()
     let panelAbout = useRef()
     let footer = useRef()
+
+
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
-    })
+    }, [blackTheme])
 
     useLayoutEffect(() => {
         let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer)
@@ -35,7 +32,7 @@ function App() {
     }, [])
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         // let ctx = gsap.context(() => {
         setTimeout(() => {
             SmoothScroll({
@@ -55,7 +52,7 @@ function App() {
         // return () => ctx.revert();
     }, [])
 
-    // className={true ? 'page__container' : 'page__container page__container-true'}
+
     return (
         <div className={blackTheme ? 'page__container page__container_black' : 'page__container'}
             ref={pageContainer}
@@ -91,7 +88,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 trigger: panelGreeting.current,
                 pin: true,
                 start: "+=100% bottom",
-                end: '+=150% top',
+                end: '+=110% top',
                 pinSpacing: false,
                 scrub: true,
                 anticipatePin: 1 / 10,
@@ -113,10 +110,10 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 onLeave: (e) => {
                     setCurrentSectionSelector('works')
                 },
-                end: '+=100% top-=20%',
+                end: '+=100% top-=15%',
                 pinSpacing: false,
-                scrub: .3,
-                // anticipatePin: 1,
+                scrub: .1,
+                anticipatePin: 1 / 10,
                 // markers: true,
                 pinType: 'fixed',
             }
@@ -149,10 +146,5 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
 
 
 
-
-
-
-
-
-ScrollTrigger.refresh()
+// ScrollTrigger.refresh()
 export default App;

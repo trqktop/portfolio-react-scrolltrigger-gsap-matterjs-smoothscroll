@@ -139,4 +139,24 @@
   .about {
     border-radius: 32px 32px 0px 0px;
   }
+}
+@media screen and (max-width: 412px) {
+  .about .about__element-resume-link {
+    gap: 0;
+  }
+  .about .about__element-description {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .about .about__item-text-container {
+    row-gap: 8px;
+  }
+  .about .about__item-text-container .about__item-header {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .about .about__item-text-container .about__item-description {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }/*# sourceMappingURL=about.css.map */

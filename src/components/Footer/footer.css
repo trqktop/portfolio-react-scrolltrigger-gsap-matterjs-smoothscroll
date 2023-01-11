@@ -99,6 +99,7 @@
   margin-left: 42px;
   color: #D3DAE6;
   font-family: "Inter-Medium";
+  font-weight: 500;
 }
 .footer__contacts-container .footer__contacts-list {
   font-size: 24px;
@@ -186,6 +187,8 @@
   .footer__download-button {
     display: flex;
     justify-content: flex-start;
+    -moz-column-gap: 20%;
+         column-gap: 20%;
   }
   .footer__download-text-container {
     order: -1;
@@ -212,9 +215,13 @@
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
   }
+  .footer .footer__download-button {
+    -moz-column-gap: 0;
+         column-gap: 0;
+  }
 }
-@media screen and (max-width: 370px) {
-  .footer__title {
+@media screen and (max-width: 412px) {
+  .footer .footer__title {
     font-size: 16px;
     line-height: 19px;
   }
@@ -225,18 +232,28 @@
     padding: 0;
     margin-bottom: 35px;
   }
-  .footer__download-text-container {
-    font-size: 24px;
-    line-height: 29px;
-    height: 58px;
-    width: 181px;
-    margin-right: -20px;
-  }
   .footer__cat-svg {
     width: 128px;
     height: 164px;
   }
   .footer__copyright {
     bottom: 32px;
+  }
+  .footer__contacts-list .footer__contact {
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+  }
+  .footer__contacts-list .footer__contact svg {
+    width: 28px;
+    height: 28px;
+  }
+  .footer__download-text-container {
+    font-size: 24px;
+    line-height: 29px;
+    height: 58px;
+    width: 181px;
+    margin-right: -20px;
   }
 }/*# sourceMappingURL=footer.css.map */

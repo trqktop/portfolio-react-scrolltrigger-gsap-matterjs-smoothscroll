@@ -11,6 +11,7 @@ export function Works(props) {
     const elements = useRef(null)
     useLayoutEffect(() => {
         elements.current = Array.from(elementsContainer.current.childNodes)
+
     }, [])
 
     function hoverListener(e) {
@@ -27,7 +28,7 @@ export function Works(props) {
                 scale: .96
             })
             gsap.to(e.currentTarget, {
-                boxShadow: "0px 5px 10px 2px rgba(89, 91, 167, .6)",
+                boxShadow: "0px 0px 50px rgba(89, 91, 167, .1)",
                 opacity: 1,
                 delay: .1,
                 ease: 'none',
@@ -48,6 +49,8 @@ export function Works(props) {
         }, elementsContainer.current)
         return () => ctx.revert()
     }
+
+
     return (
         <section className='works' >
             <div className='works__container'>

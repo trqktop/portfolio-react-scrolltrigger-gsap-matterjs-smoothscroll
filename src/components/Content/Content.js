@@ -7,7 +7,6 @@ import Modals from '../Modals/Modals';
 import { createRef, useEffect, useRef, useState } from 'react';
 
 
-
 export function Content(props) {
     const { gsap, blackTheme, ScrollTrigger, panelGreeting, panelAbout } = { ...props }
 

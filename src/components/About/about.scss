@@ -113,7 +113,7 @@
 
 @media screen and(max-width:900px) {
     .about {
-        
+
 
         &__container {
             display: flex;
@@ -159,5 +159,35 @@
 @media screen and(max-width:600px) {
     .about {
         border-radius: 32px 32px 0px 0px;
+    }
+}
+
+
+@media screen and(max-width:412px) {
+    .about {
+        .about__element-resume-link {
+            gap: 0;
+        }
+
+        .about__element-description {
+            font-size: 18px;
+            line-height: 22px;
+
+        }
+
+        .about__item-text-container {
+            row-gap: 8px;
+
+            .about__item-header {
+                font-size: 20px;
+                line-height: 24px;
+            }
+
+            .about__item-description {
+                font-size: 18px;
+                line-height: 22px;
+            }
+        }
+
     }
 }

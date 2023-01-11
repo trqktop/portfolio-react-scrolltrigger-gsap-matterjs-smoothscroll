@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
+    animation: infinitiTransform 99999s infinite forwards;
 
     &__title {
         display: block;
@@ -35,6 +36,7 @@
 @media screen and(max-width:900px) {
     .works {
         padding: 40px 6px;
+
         &__container {
             .works__list {
                 grid-template-columns: repeat(1, 407px);
@@ -46,6 +48,7 @@
 @media screen and(max-width:600px) {
     .works {
         border-radius: 32px 32px 0px 0px;
+
         .works__title {
             font-size: 32px;
             line-height: 39px;
@@ -56,5 +59,41 @@
                 grid-template-columns: repeat(1, 338px);
             }
         }
+
+        .works__item_soon {
+
+
+            .works__item-comming-soon {
+                font-size: 18px;
+                line-height: 22px;
+            }
+        }
+
+    }
+}
+
+@media screen and(max-width:412px) {
+    .works {
+        .works__title {
+
+            padding-bottom: 32px;
+            font-size: 32px;
+            line-height: 39px;
+        }
+    }
+
+}
+
+@keyframes infinitiTransform {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(1px);
+    }
+
+    100% {
+        transform: translateY(-1px);
     }
 }

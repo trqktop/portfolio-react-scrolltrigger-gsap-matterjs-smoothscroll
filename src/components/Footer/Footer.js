@@ -96,7 +96,7 @@ export function Footer(props) {
                             </a>
                         </div>
                         <div className="footer__contacts-container">
-                            <span className="footer__title">Контакты</span>
+                            <h6 className="footer__title">Контакты</h6>
                             <ul className="footer__contacts-list">
                                 <li>
                                     <a className='footer__contact' href="https://t.me/trqktor" target="_blank">

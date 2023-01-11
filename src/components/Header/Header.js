@@ -1,7 +1,104 @@
 import './header.css'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { selector } from 'gsap';
-import { Greeting } from '../Greeting/Greeting';
+import { createRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+
+
+
+
+
+function setactiveSectionHeaderItemPosition(dur, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap) {
+    if (sectionSelector || activeSectionHeaderItem.current) {
+        const currentElementRect = headerMenuRect[sectionSelector]
+        gsap.to(activeSectionHeaderItem.current,
+            {
+                ...currentElementRect,
+                duration: dur
+            })
+    }
+}
+
+
+function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
+
+    if (menuRef) {
+        const elements = Array.from(menuRef.childNodes).filter(item => item.classList.contains('header__menu-item'))
+        let data = {}
+        elements.forEach(element => {
+            const elementId = element.children[0].id
+            const rect = element.children[0].getBoundingClientRect()
+            const elPos = {
+                [elementId]: {
+                    left: rect.x - 1,
+                    height: rect.height + 2,
+                    y: rect.top - 1,
+                    width: rect.width + 2
+                }
+            }
+            data = {
+                ...data,
+                [elementId]: elPos[elementId]
+            }
+        })
+        setHeaderMenuRect({ ...data })
+    }
+
+}
+
+
+
+function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector, context) {
+    e.stopPropagation()
+    const ctx = gsap.context(() => {
+        const elementId = e.target.id
+        if (elementId) {
+            const STs = ScrollTrigger.getAll();
+            STs.forEach(ST => {
+                ST.disable()
+            })
+            gsap.to(window, {
+                scrollTo: () => `.${elementId}`,
+                duration: 1,
+                delay: -1,
+                ease: "power4",
+                onComplete: () => setTimeout(() => {
+                    const STs = ScrollTrigger.getAll();
+                    STs.forEach(ST => {
+                        ST.enable()
+                    })
+                }, 1)
+            })
+        }
+    }, context)
+    return () => ctx.revert()
+}
+
+function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
+    if (windowWidth > 900) {
+        if (firstUpdateToHoverElement.current) {
+            setHoverElementPosition(0, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
+            setTimeout(() => firstUpdateToHoverElement.current = false, 1)
+        }
+        else {
+            setHoverElementPosition(.3, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
+        }
+    }
+}
+
+function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
+
+    if (hoverMenuItem.current) {
+        const currentElementRect = headerMenuRect[e.target.id]
+        gsap.to(hoverMenuItem.current,
+            {
+                ...currentElementRect,
+                duration: dur
+            })
+        e.target.classList.add('header__menu-link_hover')
+        setHoverState(true)
+    }
+
+}
+
 
 
 export function Header(props) {
@@ -14,48 +111,31 @@ export function Header(props) {
     const svgButtonTheme = useRef(null)
     const firstUpdate = useRef(true);
     const firstUpdateToHoverElement = useRef(true)
-    const headerMenuRect = useRef(null)
-    useEffect(() => {
-        window.onload = () => {
-            setTimeout(() => {
-                getheaderMenuRectData()
-            }, 2000)
-        }
-    }, [])
+    const [headerMenuRect, setHeaderMenuRect] = useState({})
 
     useEffect(() => {
+        getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         setWindowWidth(window.innerWidth)
+        setTimeout(() => {
+            getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+        }, 1000)
+    }, [])
+
+
+
+    useEffect(() => {
+        setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
+        getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         window.onresize = () => {
             setWindowWidth(window.innerWidth)
-            getheaderMenuRectData()
         }
     }, [windowWidth])
 
-    function getheaderMenuRectData() {
-        if (menuRef.current) {
-            const elements = Array.from(menuRef.current.childNodes).filter(item => item.classList.contains('header__menu-item'))
-            elements.forEach(element => {
-                const elementId = element.children[0].id
-                const rect = element.children[0].getBoundingClientRect()
-                const elPos = {
-                    [elementId]: {
-                        left: rect.x - 1,
-                        height: rect.height + 2,
-                        y: rect.top - 1,
-                        width: rect.width + 2
-                    }
-                }
-                headerMenuRect.current = {
-                    ...headerMenuRect.current,
-                    [elementId]: elPos[elementId]
-                }
-            })
-        }
-    }
+
 
     useEffect(() => {
         if (blackTheme) {
-            let ctx = gsap.context(() => {
+            const ctx = gsap.context(() => {
                 const tl = gsap.timeline()
                     .to(svgButtonTheme.current, {
                         duration: .3,
@@ -70,7 +150,7 @@ export function Header(props) {
             return () => ctx.revert();
         }
         else {
-            let ctx = gsap.context(() => {
+            const ctx2 = gsap.context(() => {
                 const tl2 = gsap.timeline({})
                     .to(svgButtonTheme.current,
                         {
@@ -82,7 +162,7 @@ export function Header(props) {
                             fill: "#1F1F21"
                         })
             }, svgButtonTheme.current)
-            return () => ctx.revert();
+            return () => ctx2.revert();
         }
     }, [blackTheme])
 
@@ -90,77 +170,45 @@ export function Header(props) {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
                 setTimeout(() => {
-                    setactiveSectionHeaderItemPosition(0)
+                    setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
                     firstUpdate.current = false;
                 }, 1)
             }
             else {
-                setactiveSectionHeaderItemPosition(1)
+                setactiveSectionHeaderItemPosition(1, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
             }
         }
     }, [sectionSelector])
 
-    function setactiveSectionHeaderItemPosition(dur) {
-        if (sectionSelector || activeSectionHeaderItem.current) {
-            const currentElementRect = headerMenuRect.current[sectionSelector]
-            gsap.to(activeSectionHeaderItem.current,
-                {
-                    ...currentElementRect,
-                    duration: dur
-                })
-        }
-    }
 
-    function setHoverElementPositionHandler(e) {
-        if (windowWidth > 900) {
-            if (firstUpdateToHoverElement.current) {
-                setHoverElementPosition(0, e)
-                setTimeout(() => firstUpdateToHoverElement.current = false, 1)
-            }
-            else {
-                setHoverElementPosition(.3, e)
-            }
-        }
-    }
 
-    function setHoverElementPosition(dur, e) {
-        if (hoverMenuItem.current !== null) {
-            const currentElementRect = headerMenuRect.current[e.target.id]
-            gsap.to(hoverMenuItem.current,
-                {
-                    ...currentElementRect,
-                    duration: dur
-                })
-            e.target.classList.add('header__menu-link_hover')
-            setHoverState(true)
-        }
 
-    }
     function leaveHoverElementHandler(e) {
         e.target.classList.remove('header__menu-link_hover')
     }
     return (
-        <header className='header' style={windowWidth < 900 ? { backgroundColor: 'inherit' } : { backgroundColor: 'transparent' }}>
+        <header className='header' style={windowWidth > 900 ? { backgroundColor: 'transparent' } : { backgroundColor: 'inherit' }}>
             <div className='header__container'>
                 <span className='header__logo'>Pavel Shirin</span>
                 <nav className='header__menu'>
-                    {windowWidth > 900 ?
-                        <ul className='header__menu-items'
-                            ref={menuRef}
-                            onClick={(e) => scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector)}
-                            onMouseLeave={() => setHoverState(false)}>
-                            <li className='header__menu-item'><a className='header__menu-link' id='about'
-                                onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>О себе</a></li>
-                            <li className='header__menu-item' ><a className='header__menu-link' id='works'
-                                onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>Мои работы</a></li>
-                            <li className='header__menu-item' ><a className='header__menu-link' id='footer'
-                                onMouseLeave={leaveHoverElementHandler} onMouseEnter={setHoverElementPositionHandler}>Контакты</a></li>
-                            <li className='header__interactive-elements'>
-                                <div className={isHover ? 'header__hover-item header__hover-item_active' : 'header__hover-item'} ref={hoverMenuItem}></div>
-                                <div className='header__active-section-item' ref={activeSectionHeaderItem}></div>
-                            </li>
-                        </ul> : <></>
-                    }
+                    {/* {windowWidth > 900 ? */}
+                    <ul className='header__menu-items'
+                        style={windowWidth > 900 ? { display: 'flex' } : { display: 'none' }}
+                        ref={menuRef}
+                        onClick={(e) => scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector, menuRef.current)}
+                        onMouseLeave={() => setHoverState(false)}>
+                        <li className='header__menu-item'><a className='header__menu-link' id='about'
+                            onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>О себе</a></li>
+                        <li className='header__menu-item' ><a className='header__menu-link' id='works'
+                            onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>Мои работы</a></li>
+                        <li className='header__menu-item' ><a className='header__menu-link' id='footer'
+                            onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>Контакты</a></li>
+                        <li className='header__interactive-elements'>
+                            <div className={isHover ? 'header__hover-item header__hover-item_active' : 'header__hover-item'} ref={hoverMenuItem}></div>
+                            <div className='header__active-section-item' ref={activeSectionHeaderItem}></div>
+                        </li>
+                    </ul>
+                    {/* } */}
                 </nav>
 
                 <button onClick={() => setBlackTheme((prev) => !prev)} className='header__theme-button'>
@@ -173,30 +221,3 @@ export function Header(props) {
     );
 }
 
-
-
-
-
-function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector) {
-    e.stopPropagation()
-    const elementId = e.target.id
-    if (elementId) {
-        const STs = ScrollTrigger.getAll();
-        STs.forEach(ST => {
-            ST.disable()
-        })
-        gsap.to(window, {
-            scrollTo: () => `.${elementId}`,
-            duration: 1,
-            delay: -1,
-            ease: "power4",
-            onComplete: () => setTimeout(() => {
-
-                const STs = ScrollTrigger.getAll();
-                STs.forEach(ST => {
-                    ST.enable()
-                })
-            }, 1)
-        })
-    }
-}
