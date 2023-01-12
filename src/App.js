@@ -23,7 +23,7 @@ function App() {
     let panelAbout = useRef()
     let footer = useRef()
     const DanImg = useRef(null)
-    const [windowHeight, setWindowWidth] = useState()
+    // const [windowHeight, setWindowWidth] = useState()
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
@@ -33,11 +33,11 @@ function App() {
         return () => ctx.revert();
     }, [])
 
-    useEffect(() => {
-        console.log('da')
-        setWindowWidth(window.offsetHeight)
-        ScrollTrigger.refresh()
-    }, [windowHeight])
+    // useEffect(() => {
+    //     console.log('da')
+    //     setWindowWidth(window.offsetHeight)
+    //     ScrollTrigger.refresh()
+    // }, [windowHeight])
 
 
     useLayoutEffect(() => {
