@@ -2,6 +2,7 @@ import './App.css';
 
 import Preloader from './components/Preloader/Preloader';
 import MKDan from './images/mortal-kombat-3.png'
+import portfolio from './pdf-portfolio/portfolio.pdf'
 import { Header } from './components/Header/Header'
 import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
@@ -10,10 +11,14 @@ import { gsap, selector } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmoothScroll from 'smoothscroll-for-websites'
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
-import portfolio from './pdf-portfolio/portfolio.pdf'
+
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin)
+
+
+gsap.registerPlugin(SmoothScroll)
+
 
 
 function App() {
@@ -36,39 +41,39 @@ function App() {
     }, [])
 
 
-    useEffect(() => {
-        // let ctx = gsap.context(() => {
-
-        setTimeout(() => {
-            SmoothScroll({
-                frameRate: 144,
-                animationTime: 1000,
-                stepSize: 100,
-                pulseAlgorithm: 1,
-                pulseScale: 4,
-                pulseNormalize: 1,
-                accelerationDelta: 50,
-                accelerationMax: 3,
-                keyboardSupport: 1,
-                arrowScroll: 50,
-                fixedBackground: 0,
-                touchpadSupport: true,
-            });
-            // SmoothScroll({
-            //     animationTime: 1200,
-            //     stepSize: 75,
-            //     accelerationDelta: 30,
-            //     accelerationMax: 1,
-            //     keyboardSupport: true,
-            //     arrowScroll: 50,
-            //     pulseAlgorithm: true,
-            //     pulseScale: 4,
-            //     pulseNormalize: 1,
-            //     touchpadSupport: true,
-            // })
-        }, 2001)
-        // }, pageContainer.current)
-        // return () => ctx.revert();
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            return setTimeout(() => {
+                const ctx = gsap.context(() => SmoothScroll({
+                    frameRate: 144,
+                    animationTime: 1000,
+                    stepSize: 100,
+                    pulseAlgorithm: 1,
+                    pulseScale: 4,
+                    pulseNormalize: 1,
+                    accelerationDelta: 50,
+                    accelerationMax: 1,
+                    keyboardSupport: 1,
+                    arrowScroll: 50,
+                    fixedBackground: 0,
+                    touchpadSupport: true,
+                }), pageContainer.current)
+                return ctx
+                // SmoothScroll({
+                //     animationTime: 1200,
+                //     stepSize: 75,
+                //     accelerationDelta: 30,
+                //     accelerationMax: 1,
+                //     keyboardSupport: true,
+                //     arrowScroll: 50,
+                //     pulseAlgorithm: true,
+                //     pulseScale: 4,
+                //     pulseNormalize: 1,
+                //     touchpadSupport: true,
+                // })
+            }, 2001)
+        }, pageContainer.current)
+        return () => ctx.revert();
     }, [])
 
     useLayoutEffect(() => {
@@ -95,6 +100,7 @@ function App() {
     return (
         <div className={blackTheme ? 'page__container page__container_black' : 'page__container'}
             ref={pageContainer}
+
         >
             <Header gsap={gsap}
                 ScrollTrigger={ScrollTrigger}
@@ -125,7 +131,8 @@ function App() {
 
 function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
     let ctx = gsap.context(() => {
-        gsap.to(panelGreeting.current, {
+        const tl = gsap.timeline()
+        tl.to(panelGreeting.current, {
             y: -1,
             scrollTrigger: {
                 trigger: panelGreeting.current,
@@ -138,7 +145,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 pinType: 'fixed',
             }
         });
-        gsap.to(panelAbout.current, {
+        tl.to(panelAbout.current, {
             y: -1,
             scrollTrigger: {
                 trigger: panelAbout.current,
@@ -156,13 +163,13 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 end: '+=100% top-=15%',
                 pinSpacing: false,
                 scrub: .1,
-                anticipatePin: true,
+                anticipatePin: .5,
                 // markers: true,
                 pinType: 'fixed',
             }
         })
 
-        gsap.to(footer.current, {
+        tl.to(footer.current, {
             scrollTrigger: {
                 trigger: footer.current,
                 pin: false,
@@ -179,6 +186,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 }
             }
         })
+        return tl
     }, pageContainer.current);
     return ctx
 }

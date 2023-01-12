@@ -81,7 +81,7 @@ function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElemen
 function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
     if (hoverMenuItem.current) {
         const currentElementRect = headerMenuRect[e.target.id]
-        const ctx = gsap.context(() => {
+        gsap.context(() => {
             gsap.to(hoverMenuItem.current,
                 {
                     ...currentElementRect,
@@ -120,12 +120,12 @@ export function Header(props) {
 
 
     useEffect(() => {
-        const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
+        setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         window.onresize = () => {
             setWindowWidth(window.innerWidth)
         }
-        return () => ctx.revert()
+        // return () => ctx.revert()
     }, [windowWidth])
 
 
@@ -169,9 +169,9 @@ export function Header(props) {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
                 setTimeout(() => {
-                    const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
+                    setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
                     firstUpdate.current = false;
-                    return () => ctx.revert()
+                    // return () => ctx.revert()
                 }, 1)
             }
             else {
