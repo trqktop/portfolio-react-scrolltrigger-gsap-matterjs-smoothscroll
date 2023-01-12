@@ -52,6 +52,7 @@ function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
 function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector, context) {
     e.stopPropagation()
     const ctx = gsap.context(() => {
+
         const elementId = e.target.id
         if (elementId) {
             gsap.to(window, {
@@ -124,6 +125,7 @@ export function Header(props) {
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         window.onresize = () => {
             setWindowWidth(window.innerWidth)
+            ScrollTrigger.refresh()
         }
         // return () => ctx.revert()
     }, [windowWidth])

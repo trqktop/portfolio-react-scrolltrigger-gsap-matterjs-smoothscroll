@@ -10,7 +10,6 @@
   padding: 32px 16px;
   display: flex;
   box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20vh;
 }
 .about__container {
   display: grid;
@@ -138,6 +137,7 @@
 @media screen and (max-width: 600px) {
   .about {
     border-radius: 32px 32px 0px 0px;
+    margin-bottom: 30vh;
   }
 }
 @media screen and (max-width: 412px) {

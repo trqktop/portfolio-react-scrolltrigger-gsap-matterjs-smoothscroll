@@ -23,7 +23,7 @@ function App() {
     let panelAbout = useRef()
     let footer = useRef()
     const DanImg = useRef(null)
-
+    const [windowHeight, setWindowWidth] = useState()
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
@@ -32,6 +32,12 @@ function App() {
         let ctx = panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer)
         return () => ctx.revert();
     }, [])
+
+    useEffect(() => {
+        console.log('da')
+        setWindowWidth(window.offsetHeight)
+        ScrollTrigger.refresh()
+    }, [windowHeight])
 
 
     useLayoutEffect(() => {
@@ -112,6 +118,7 @@ function App() {
 
 function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
     let ctx = gsap.context(() => {
+
         const tl = gsap.timeline()
         tl.to(panelGreeting.current, {
             y: -1,
@@ -119,13 +126,15 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 trigger: panelGreeting.current,
                 pin: true,
                 start: "+=100% bottom",
-                end: () => '+=' + '+=110%',
+                end: () => '+=' + '+=120%',
                 pinSpacing: false,
                 scrub: true,
                 // anticipatePin: 1 / 10,
                 pinType: 'fixed',
             }
         });
+
+
         tl.to(panelAbout.current, {
             y: -1,
             scrollTrigger: {
@@ -141,10 +150,10 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 onLeave: (e) => {
                     setCurrentSectionSelector('works')
                 },
-                end: '+=100% top-=15%',
+                end: '+=' + '100%',
                 pinSpacing: false,
-                scrub: 2,
-                anticipatePin: .1,
+                scrub: .1,
+                anticipatePin: true,
                 // markers: true,
                 pinType: 'fixed',
             }

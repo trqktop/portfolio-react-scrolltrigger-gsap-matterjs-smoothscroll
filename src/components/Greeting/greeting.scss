@@ -45,7 +45,7 @@
             display: flex;
             justify-content: space-between;
             padding-top: 62px;
-          
+
             // padding-bottom: 48px;
             padding-left: 116px;
             padding-right: 116px;
@@ -74,6 +74,8 @@
 
 @media screen and(max-width:600px) {
     .greeting {
+        margin-bottom: 20vh;
+
         &__container {
             padding-left: 16px;
             padding-right: 16px;

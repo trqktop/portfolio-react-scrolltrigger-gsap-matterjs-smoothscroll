@@ -21,16 +21,14 @@ export function About(props) {
                 }, {
                     ease: "none",
                     opacity: 1,
-                    delay: i / 6,
+                    delay: i / 10,
                     yPercent: 0,
                     scrollTrigger: {
-                        trigger: element,
+                        trigger: itemsContainer.current,
                         pinSpacing: false,
                         pin: false,
-                        start: "top bottom",
-                        end: "top top",
+                        start: "-40%",
                         scurb: true,
-                        // markers: true
                     }
                 })
             })
