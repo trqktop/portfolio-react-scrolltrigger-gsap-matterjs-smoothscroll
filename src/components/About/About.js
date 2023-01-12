@@ -13,9 +13,8 @@ export function About(props) {
     }, [])
 
     useLayoutEffect(() => {
-
         const ctx = gsap.context(() => {
-            itemsContainer.current.childNodes.forEach((element, i, arr) => {
+            const res = itemsContainer.current.childNodes.forEach((element, i, arr) => {
                 gsap.fromTo(element, {
                     opacity: 0,
                     yPercent: 100,
@@ -29,10 +28,11 @@ export function About(props) {
                         pin: false,
                         start: "top bottom",
                         end: "top top",
-                        scurb: true
+                        scurb: true,
                     }
                 })
             })
+            return res
         }, itemsContainer.current)
         return () => ctx.revert();
     }, [])
@@ -41,13 +41,6 @@ export function About(props) {
         const ctx = gsap.context(() => {
             gsap.to(window, {
                 scrollTo: () => `.footer`,
-                onComplete: (e) => {
-                    console.log(e)
-                    const STs = ScrollTrigger.getAll();
-                    STs.forEach(ST => {
-                        ST.enable()
-                    })
-                },
                 duration: 1,
                 delay: -1,
                 ease: "power4",

@@ -16,6 +16,27 @@
   color: #1F1F21;
   overflow: hidden;
 }
+.page__container .easter_egg-container .easter_egg-button {
+  width: 10px;
+  height: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 22;
+  opacity: 0;
+}
+.page__container .easter_egg-container .easter_egg-dan {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  bottom: -200px;
+  right: 0;
+  z-index: 22;
+}
 
 .page__container_black {
   background-color: #1F1F21;

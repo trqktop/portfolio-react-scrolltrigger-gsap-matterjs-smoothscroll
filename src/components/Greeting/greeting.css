@@ -38,8 +38,7 @@
   .greeting__container {
     display: flex;
     justify-content: space-between;
-    padding-top: 148px;
-    padding-bottom: 48px;
+    padding-top: 62px;
     padding-left: 116px;
     padding-right: 116px;
   }

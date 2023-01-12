@@ -12,7 +12,7 @@ export function WorkElement(props) {
     useLayoutEffect(() => {
         if (windowWidth < 900) {
             const ctx = gsap.context(() => {
-                gsap.to(el.current, {
+                return gsap.to(el.current, {
                     scrollTrigger: {
                         trigger: el.current,
                         pinSpacing: false,

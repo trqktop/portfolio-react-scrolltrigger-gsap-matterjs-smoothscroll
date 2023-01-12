@@ -1,7 +1,7 @@
 import './works.css'
 import { data } from '../../data/data';
 import { WorkElement } from '../WorkElement/WorkElement';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 
 export function Works(props) {
@@ -9,9 +9,29 @@ export function Works(props) {
     const catTailSvg = useRef(null)
     const elementsContainer = useRef(null)
     const elements = useRef(null)
+
     useLayoutEffect(() => {
         elements.current = Array.from(elementsContainer.current.childNodes)
-
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ repeatDelay: 0, repeat: -1, yoyo: true, delay: -1 })
+            tl.to(catTailSvg.current, {
+                x: 0, duration: .5, ease: "none", transformOrigin: 'center bottom', attr: {
+                    d: ('M42.3535 81.499C42.0432 74.5876 47.5683 67.2723 50.3697 64.4785L57.2884 57.522L83.2499 62.7394L84.1153 70.5655V94.1354C83.2102 94.6511 74.4353 94.5593 70.2691 96.6524C66.8076 98.3915 57.3084 96.7142 53.0849 96.1985C48.6027 98.7773 39.4999 104 36.5191 105.783C33.0684 107.847 31.2359 108.528 28.9999 113C27.5 116 25.5 124.5 22.4999 124.5C15.3689 124.5 19.9999 118.614 19.9999 116C19.9999 112 23.8445 105.959 29.6827 101.872C34.4999 98.5 40.8615 93.2882 44.7403 91.8698C43.8352 91.311 42.6638 88.4103 42.3535 81.499Z')
+                }
+            })
+                .to(catTailSvg.current, {
+                    x: 0, duration: .2, ease: "power1.inOut", transformOrigin: 'center bottom', attr: {
+                        d: ('M42.3536 81.499C42.0432 74.5876 47.5684 67.2723 50.3697 64.4785L57.2884 57.522L83.25 62.7394L84.1153 70.5655V94.1354C83.2103 94.6511 74.4353 94.5593 70.2692 96.6524C66.8077 98.3915 57.3085 96.7142 53.0849 96.1985C48.6028 98.7773 39.5 104 36.5192 105.783C33.0685 107.847 29.6828 111 25.5 116C22.5 119.586 20 123.5 17 122.5C10.235 120.245 15.0659 114.758 17.0001 113C22.5001 108 23.8446 105.959 29.6828 101.872C34.5 98.5 40.8616 93.2882 44.7404 91.8698C43.8353 91.311 42.6639 88.4103 42.3536 81.499Z')
+                    }
+                })
+                .to(catTailSvg.current, {
+                    x: 0, duration: .5, ease: "none", transformOrigin: 'center bottom', attr: {
+                        d: ('M42.3536 81.499C42.0433 74.5876 47.5684 67.2723 50.3698 64.4785L57.2885 57.522L83.25 62.7394L84.1154 70.5655V94.1354C83.2103 94.6511 74.4354 94.5593 70.2692 96.6524C66.8077 98.3915 57.3086 96.7142 53.085 96.1985C48.6028 98.7773 39.5 104 36.5192 105.783C33.0685 107.847 29.6829 111 25.5 116C22.5 119.586 10.0001 119 10 116C9.99991 111.257 14.3861 112 17 112C23.5 112 23.8446 105.959 29.6829 101.872C34.5 98.5 40.8616 93.2882 44.7404 91.8698C43.8353 91.311 42.6639 88.4103 42.3536 81.499Z')
+                    }
+                })
+            return tl
+        }, catTailSvg.current)
+        return () => ctx.revert()
     }, [])
 
     function hoverListener(e) {
@@ -22,17 +42,19 @@ export function Works(props) {
             }
         })
         const ctx = gsap.context(() => {
-            gsap.to(currentElements, {
+            const tl = gsap.timeline()
+            tl.to(currentElements, {
                 '-webkit-filter': 'grayscale(100%)',
                 filter: 'grayscale(100%)',
                 scale: .96
             })
-            gsap.to(e.currentTarget, {
+            tl.to(e.currentTarget, {
                 boxShadow: "0px 0px 50px rgba(89, 91, 167, .1)",
                 opacity: 1,
                 delay: .1,
                 ease: 'none',
             })
+            return tl
         }, elementsContainer.current)
         return () => ctx.revert()
     }

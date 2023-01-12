@@ -75,8 +75,6 @@
   overflow: visible;
 }
 .works svg .tail {
-  -webkit-animation: tailAnim 1s ease-in infinite alternate;
-          animation: tailAnim 1s ease-in infinite alternate;
   overflow: visible;
 }
 

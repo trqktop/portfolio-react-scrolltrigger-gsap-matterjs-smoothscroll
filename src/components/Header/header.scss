@@ -9,6 +9,11 @@
     right: 0;
     z-index: 10;
 
+    &_mobile {
+        background-color: inherit;
+        color: inherit;
+    }
+
     &__logo {
         font-family: 'Inter-SemiBold';
         user-select: none;
@@ -147,8 +152,8 @@
 @media screen and(max-width:400px) {
     .header {
         .header__theme-button-svg-bg {
-            width: 26px;
-            height: 26px;
+            width: 42px;
+            height: 42px;
         }
     }
 }

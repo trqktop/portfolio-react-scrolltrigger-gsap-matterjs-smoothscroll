@@ -9,12 +9,16 @@ import { createRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 function setactiveSectionHeaderItemPosition(dur, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap) {
     if (sectionSelector || activeSectionHeaderItem.current) {
         const currentElementRect = headerMenuRect[sectionSelector]
-        gsap.to(activeSectionHeaderItem.current,
+        const ctx = gsap.context(() => gsap.to(activeSectionHeaderItem.current,
             {
                 ...currentElementRect,
                 duration: dur
             })
+            , activeSectionHeaderItem.current
+        )
+        return ctx
     }
+
 }
 
 
@@ -51,29 +55,12 @@ function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sect
     const ctx = gsap.context(() => {
         const elementId = e.target.id
         if (elementId) {
-            const menu = e.currentTarget
-            menu.style.pointerEvents = "none"
-            const STs = ScrollTrigger.getAll();
-            STs.forEach(ST => {
-                ST.disable()
-            })
-
             gsap.to(window, {
                 scrollTo: () => `.${elementId}`,
                 duration: .3,
                 delay: .001,
                 ease: "power4",
-                onComplete: () => {
-                    setTimeout(() => {
-                        STs.forEach(ST => {
-                            ST.enable()
-                        })
-                    }, 10)
-                }
             })
-            setTimeout(() => {
-                menu.style.pointerEvents = 'auto'
-            }, 1000)
         }
     }, context)
     return () => ctx.revert()
@@ -92,14 +79,16 @@ function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElemen
 }
 
 function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
-
     if (hoverMenuItem.current) {
         const currentElementRect = headerMenuRect[e.target.id]
-        gsap.to(hoverMenuItem.current,
-            {
-                ...currentElementRect,
-                duration: dur
-            })
+        const ctx = gsap.context(() => {
+            gsap.to(hoverMenuItem.current,
+                {
+                    ...currentElementRect,
+                    duration: dur
+                })
+        })
+
         e.target.classList.add('header__menu-link_hover')
         setHoverState(true)
     }
@@ -131,11 +120,12 @@ export function Header(props) {
 
 
     useEffect(() => {
-        setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
+        const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         window.onresize = () => {
             setWindowWidth(window.innerWidth)
         }
+        return () => ctx.revert()
     }, [windowWidth])
 
 
@@ -153,6 +143,7 @@ export function Header(props) {
                         },
                         fill: 'white'
                     })
+                return tl
             }, svgButtonTheme.current)
             return () => ctx.revert();
         }
@@ -168,6 +159,7 @@ export function Header(props) {
                             },
                             fill: "#1F1F21"
                         })
+                return tl2
             }, svgButtonTheme.current)
             return () => ctx2.revert();
         }
@@ -177,8 +169,9 @@ export function Header(props) {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
                 setTimeout(() => {
-                    setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
+                    const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
                     firstUpdate.current = false;
+                    return () => ctx.revert()
                 }, 1)
             }
             else {
@@ -194,7 +187,7 @@ export function Header(props) {
         e.target.classList.remove('header__menu-link_hover')
     }
     return (
-        <header className='header' style={windowWidth > 900 ? { backgroundColor: 'transparent' } : { backgroundColor: 'inherit' }}>
+        <header className={windowWidth > 900 ? 'header' : 'header header_mobile'}>
             <div className='header__container'>
                 <span className='header__logo'>Pavel Shirin</span>
                 <nav className='header__menu'>

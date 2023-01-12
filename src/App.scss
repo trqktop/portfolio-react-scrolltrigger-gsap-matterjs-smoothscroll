@@ -1,4 +1,3 @@
-
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -7,6 +6,7 @@
     background: #A7A9E3;
     width: 6px;
     border-radius: 32px;
+
 }
 
 .page__container {
@@ -16,6 +16,30 @@
     background-color: white;
     color: #1F1F21;
     overflow: hidden;
+
+    .easter_egg-container {
+        .easter_egg-button {
+            width: 10px;
+            height: 10px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 22;
+            opacity: 0;
+        }
+
+        .easter_egg-dan {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            object-fit: cover;
+            object-position: center;
+            bottom: -200px;
+            right: 0;
+            z-index: 22;
+        }
+    }
+
 }
 
 .page__container_black {
