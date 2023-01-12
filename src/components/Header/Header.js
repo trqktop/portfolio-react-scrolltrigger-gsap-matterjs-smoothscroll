@@ -1,5 +1,5 @@
 import './header.css'
-import { createRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 
 
@@ -23,7 +23,6 @@ function setactiveSectionHeaderItemPosition(dur, sectionSelector, activeSectionH
 
 
 function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
-
     if (menuRef) {
         const elements = Array.from(menuRef.childNodes).filter(item => item.classList.contains('header__menu-item'))
         let data = {}
@@ -73,7 +72,8 @@ function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElemen
             setTimeout(() => firstUpdateToHoverElement.current = false, 1)
         }
         else {
-            setHoverElementPosition(.3, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
+            const ctx = setHoverElementPosition(.3, e, headerMenuRect, hoverMenuItem, setHoverState, gsap,)
+            return () => ctx.revert()
         }
     }
 }
@@ -98,7 +98,7 @@ function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHover
 
 
 export function Header(props) {
-    const { gsap, ScrollTrigger, ScrollToPlugin, sectionSelector, setCurrentSectionSelector, setBlackTheme, blackTheme } = { ...props }
+    const { gsap, ScrollTrigger, sectionSelector, setCurrentSectionSelector, setBlackTheme, blackTheme } = { ...props }
     const menuRef = useRef(null)
     const activeSectionHeaderItem = useRef(null)
     const hoverMenuItem = useRef(null)
@@ -119,7 +119,7 @@ export function Header(props) {
 
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         window.onresize = () => {
@@ -130,7 +130,7 @@ export function Header(props) {
 
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (blackTheme) {
             const ctx = gsap.context(() => {
                 const tl = gsap.timeline()
@@ -165,7 +165,7 @@ export function Header(props) {
         }
     }, [blackTheme])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
                 setTimeout(() => {
@@ -176,6 +176,7 @@ export function Header(props) {
             }
             else {
                 setactiveSectionHeaderItemPosition(1, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap)
+
             }
         }
     }, [sectionSelector])

@@ -21,6 +21,7 @@ export function About(props) {
                 }, {
                     ease: "none",
                     opacity: 1,
+                    delay: i / 6,
                     yPercent: 0,
                     scrollTrigger: {
                         trigger: element,
@@ -29,6 +30,7 @@ export function About(props) {
                         start: "top bottom",
                         end: "top top",
                         scurb: true,
+                        // markers: true
                     }
                 })
             })

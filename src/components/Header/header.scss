@@ -23,6 +23,8 @@
         font-size: 24px;
         line-height: 29px;
         margin-right: auto;
+
+
     }
 
 
@@ -82,6 +84,8 @@
         cursor: pointer;
         margin-left: auto;
 
+
+
         &:hover {
             transform: scale(1.1);
         }
@@ -118,6 +122,8 @@
             &_active {
                 visibility: visible;
             }
+
+        
         }
 
         .header__active-section-item {

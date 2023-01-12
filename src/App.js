@@ -6,20 +6,13 @@ import portfolio from './pdf-portfolio/portfolio.pdf'
 import { Header } from './components/Header/Header'
 import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
-import { useEffect, useRef, useState, useLayoutEffect, forwardRef, createRef, useReducer, useMemo } from 'react';
-import { gsap, selector } from "gsap";
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmoothScroll from 'smoothscroll-for-websites'
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(ScrollToPlugin)
-
-
-gsap.registerPlugin(SmoothScroll)
-
-
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SmoothScroll);
 
 function App() {
     let [sectionSelector, setCurrentSectionSelector] = useState(null)
@@ -43,35 +36,23 @@ function App() {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            return setTimeout(() => {
-                const ctx = gsap.context(() => SmoothScroll({
-                    frameRate: 144,
-                    animationTime: 1000,
-                    stepSize: 100,
-                    pulseAlgorithm: 1,
-                    pulseScale: 4,
-                    pulseNormalize: 1,
-                    accelerationDelta: 50,
-                    accelerationMax: 1,
-                    keyboardSupport: 1,
-                    arrowScroll: 50,
-                    fixedBackground: 0,
-                    touchpadSupport: true,
-                }), pageContainer.current)
-                return ctx
-                // SmoothScroll({
-                //     animationTime: 1200,
-                //     stepSize: 75,
-                //     accelerationDelta: 30,
-                //     accelerationMax: 1,
-                //     keyboardSupport: true,
-                //     arrowScroll: 50,
-                //     pulseAlgorithm: true,
-                //     pulseScale: 4,
-                //     pulseNormalize: 1,
-                //     touchpadSupport: true,
-                // })
-            }, 2001)
+            // return setTimeout(() => {
+            const ctx = gsap.context(() => SmoothScroll({
+                frameRate: 144,
+                animationTime: 1000,
+                stepSize: 100,
+                pulseAlgorithm: 1,
+                pulseScale: 4,
+                pulseNormalize: 1,
+                accelerationDelta: 50,
+                accelerationMax: 1,
+                keyboardSupport: 1,
+                arrowScroll: 50,
+                fixedBackground: 0,
+                touchpadSupport: true,
+            }), pageContainer.current)
+            return ctx
+            // }, 1)//!
         }, pageContainer.current)
         return () => ctx.revert();
     }, [])
@@ -162,8 +143,8 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 },
                 end: '+=100% top-=15%',
                 pinSpacing: false,
-                scrub: .1,
-                anticipatePin: .5,
+                scrub: 2,
+                anticipatePin: .1,
                 // markers: true,
                 pinType: 'fixed',
             }
@@ -175,7 +156,6 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                 pin: false,
                 pinSpacing: false,
                 start: "center bottom",
-                pinSpacing: false,
                 scrub: false,
                 // markers: true,
                 onEnter: e => {

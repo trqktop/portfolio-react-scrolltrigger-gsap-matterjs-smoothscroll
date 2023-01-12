@@ -34,6 +34,9 @@ export function WorkElement(props) {
         setWindowWidth(window.innerWidth)
     })
 
+
+
+
     return (
         <>
             <li className={'works__item'} ref={el}
