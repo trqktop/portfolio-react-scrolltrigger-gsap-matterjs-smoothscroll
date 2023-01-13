@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import './footer.css'
 
+import './footer.css'
+import portfolio from '../../pdf-portfolio/portfolio.pdf'
 
 export function Footer(props) {
-    const { portfolio, forwardRef } = { ...props }
+    const { forwardRef } = { ...props }
 
     return (
         <footer className='footer' ref={forwardRef}>
@@ -99,7 +99,7 @@ export function Footer(props) {
                             <h6 className="footer__title">Контакты</h6>
                             <ul className="footer__contacts-list">
                                 <li>
-                                    <a className='footer__contact' href="https://t.me/trqktor" target="_blank">
+                                    <a className='footer__contact' href="https://t.me/trqktor" rel="noreferrer" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                             viewBox="0 0 32 32" fill="none">
                                             <path fillRule="evenodd" clipRule="evenodd"
@@ -110,7 +110,7 @@ export function Footer(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a className='footer__contact' href="https://github.com/trqktop" target="_blank">
+                                    <a className='footer__contact' href="https://github.com/trqktop" rel="noreferrer" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                             viewBox="0 0 32 32" fill="none">
                                             <path fillRule="evenodd" clipRule="evenodd"
@@ -121,7 +121,7 @@ export function Footer(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href='https://rostov.hh.ru/resume/9e03ee7eff0b4557340039ed1f6e734b777871' className='footer__contact' target="_blank">
+                                    <a href='https://rostov.hh.ru/resume/9e03ee7eff0b4557340039ed1f6e734b777871' className='footer__contact' rel="noreferrer" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none" >
                                             <path fillRule="evenodd" clipRule="evenodd" d="M29.67 16.335C29.67 23.6998 23.6998 29.67 16.335 29.67C8.97019 29.67 3 23.6998 3 16.335C3 8.97019 8.97019 3 16.335 3C23.6998 3 29.67 8.97019 29.67 16.335ZM10.5843 14.8531V10.317H8.43901V22.0702H10.5821L10.5843 17.9285C10.5821 17.2334 10.6476 16.7084 10.7788 16.3528C10.9077 15.9977 11.111 15.7321 11.3944 15.5543C11.6716 15.3777 11.9906 15.2888 12.3462 15.2888C12.6568 15.2888 12.914 15.3577 13.1207 15.4971C13.323 15.6283 13.4748 15.8241 13.5513 16.0527C13.633 16.2861 13.6719 16.8351 13.6719 17.7018V22.0702H15.8177V17.2201C15.8177 16.4778 15.781 15.9305 15.7077 15.5788C15.6338 15.2254 15.4971 14.9048 15.2949 14.612C15.0937 14.322 14.7959 14.0831 14.3975 13.8969C14.0003 13.7097 13.5574 13.6152 13.0629 13.6152C12.1028 13.6152 11.2749 14.0297 10.5843 14.8531ZM19.0337 14.8531V10.317H16.8906V22.0702H19.0337V17.9285C19.0337 17.2334 19.0992 16.7084 19.2281 16.3528C19.3587 15.9977 19.5632 15.7321 19.8427 15.5543C20.1205 15.3777 20.4394 15.2888 20.7944 15.2888C21.105 15.2888 21.3645 15.3577 21.569 15.4971C21.7719 15.6278 21.9242 15.8238 22.0007 16.0527C22.0824 16.2861 22.1229 16.8351 22.1229 17.7018V22.0702H24.2665V17.2201C24.2665 16.4778 24.2299 15.9305 24.156 15.5788C24.0855 15.2318 23.945 14.9029 23.7431 14.612C23.5431 14.322 23.2453 14.0831 22.8486 13.8969C22.4508 13.7097 22.0046 13.6152 21.5118 13.6152C20.5522 13.6152 19.7249 14.0297 19.0337 14.8531Z" fill="white" />
                                         </svg>
@@ -129,7 +129,7 @@ export function Footer(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a className='footer__contact' href="mailto:trqktop@gmail.com" target="_blank">
+                                    <a className='footer__contact' href="mailto:trqktop@gmail.com" rel="noreferrer" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                             viewBox="0 0 32 32" fill="none">
                                             <path

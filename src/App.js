@@ -2,7 +2,7 @@ import './App.css';
 
 import Preloader from './components/Preloader/Preloader';
 import MKDan from './images/mortal-kombat-3.png'
-import portfolio from './pdf-portfolio/portfolio.pdf'
+
 import { Header } from './components/Header/Header'
 import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
@@ -24,7 +24,6 @@ function App() {
     let footer = useRef()
     const DanImg = useRef(null)
 
-
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
@@ -34,31 +33,31 @@ function App() {
         return () => ctx.revert();
     }, [])
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            let mm = gsap.matchMedia();
-            mm.add("(min-width: 900px)", () => SmoothScroll({
-                frameRate: 144,
-                animationTime: 900,
-                stepSize: 90,
-                pulseAlgorithm: 1,
-                pulseScale: 5,
-                pulseNormalize: 1,
-                accelerationDelta: 10,
-                accelerationMax: 1,
-                keyboardSupport: 1,
-                arrowScroll: 20,
-                fixedBackground: 0,
-                touchpadSupport: true,
-            }))
-        }, pageContainer.current);
 
-        return () => ctx.revert();
+    useLayoutEffect(() => {
+        // const ctx = gsap.context(() => {
+        let mm = gsap.matchMedia();
+        mm.add("(min-width: 900px)", () => SmoothScroll({
+            frameRate: 144,
+            animationTime: 900,
+            stepSize: 90,
+            pulseAlgorithm: 1,
+            pulseScale: 5,
+            pulseNormalize: 1,
+            accelerationDelta: 10,
+            accelerationMax: 1,
+            keyboardSupport: 1,
+            arrowScroll: 20,
+            fixedBackground: 0,
+            touchpadSupport: true,
+        }))
+        // }, pageContainer.current);
+
+        return () => mm.revert();
     }, [])
 
     useLayoutEffect(() => {
         if (eggVisible) {
-            console.log('da')
             const ctx = gsap.context(() => {
                 const tl = gsap.timeline()
                 tl.to(DanImg.current, {
@@ -72,8 +71,7 @@ function App() {
                         onComplete: () => setEggVisible(false)
                     })
                 return tl
-            }
-            )
+            })
             return () => ctx.revert()
         }
     }, [eggVisible])
@@ -82,7 +80,6 @@ function App() {
     return (
         <div className={blackTheme ? 'page__container page__container_black' : 'page__container'}
             ref={pageContainer}
-
         >
             <Header gsap={gsap}
                 ScrollTrigger={ScrollTrigger}
@@ -97,9 +94,10 @@ function App() {
                 ScrollTrigger={ScrollTrigger}
                 panelGreeting={panelGreeting}
                 panelAbout={panelAbout}
-
             />
-            <Footer portfolio={portfolio} forwardRef={footer} />
+            <Footer
+                forwardRef={footer}
+            />
             <Preloader blackTheme={blackTheme} />
             <div className='easter_egg-container'>
                 <button className='easter_egg-button' onClick={() => setEggVisible(true)}></button>
@@ -115,10 +113,9 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
     let ctx = gsap.context(() => {
         mm.add({
             isDesktop: `(min-width: ${breakPoint}px)`,
-            isMobile: `(max-width: ${breakPoint - 1}px)`,
-            reduceMotion: "(prefers-reduced-motion: reduce)"
+
         }, (context) => {
-            let { isDesktop, isMobile, reduceMotion } = context.conditions;
+            let { isDesktop } = context.conditions;
             if (isDesktop) {
                 gsap.to(panelGreeting.current, {
                     y: -100,
@@ -128,9 +125,9 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                         start: "+=100% bottom",
                         end: () => '+=' + '+=110%',
                         pinSpacing: false,
-                        scrub: true,
-                        // anticipatePin: 1 / 10,
+
                         pinType: 'fixed',
+                        scrub: true,
                     }
                 });
                 gsap.to(panelAbout.current, {
@@ -159,7 +156,7 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                     scrollTrigger: {
                         trigger: footer.current,
                         pin: false,
-                        pinSpacing: false,
+
                         start: "center bottom",
                         pinSpacing: false,
                         scrub: false,
