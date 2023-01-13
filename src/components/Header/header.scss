@@ -83,7 +83,7 @@
         border: none;
         cursor: pointer;
         margin-left: auto;
-
+        cursor: url('../../images/arrow2662.png') 4 1, pointer;
 
 
         &:hover {
@@ -123,7 +123,7 @@
                 visibility: visible;
             }
 
-        
+
         }
 
         .header__active-section-item {

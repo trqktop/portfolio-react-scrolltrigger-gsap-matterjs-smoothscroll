@@ -70,6 +70,7 @@ $tablet: 900px;
         text-decoration-line: underline;
         background-color: inherit;
         color: inherit;
+        cursor: url('../../images/arrow2662.png') 4 1, pointer;
 
         .footer__download-text-container {
             max-width: 287px;
@@ -133,7 +134,7 @@ $tablet: 900px;
         display: block;
         display: flex;
         column-gap: 10px;
-        cursor: pointer;
+        cursor: url('../../images/arrow2662.png') 4 1, pointer;
         width: fit-content;
         text-decoration: none;
         color: inherit;

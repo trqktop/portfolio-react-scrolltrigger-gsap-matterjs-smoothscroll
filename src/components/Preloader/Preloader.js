@@ -9,7 +9,6 @@ export default function Preloader(props) {
     const firstUpdate = useRef(true);
 
     useEffect(() => {
-        console.log('vse')
         if (firstUpdate.current) {
             document.fonts.ready
                 .then(res => {

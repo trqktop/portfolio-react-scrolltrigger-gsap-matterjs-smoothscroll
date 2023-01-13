@@ -216,7 +216,7 @@ export function Header(props) {
                     {/* } */}
                 </nav>
 
-                <button onClick={() => setBlackTheme((prev) => !prev)} className='header__theme-button'>
+                <button onMouseUp={() => setBlackTheme((prev) => !prev)} className='header__theme-button'>
                     <svg className='header__theme-button-svg-bg' xmlns="http://www.w3.org/2000/svg" width="42" height="43" viewBox="0 0 42 43" fill="none">
                         <path ref={svgButtonTheme} fillRule="evenodd" clipRule="evenodd" d="M13.5665 22.6829C19.7208 22.6829 24.7099 17.6161 24.7099 11.3658C24.7099 10.1937 24.5345 9.06326 24.2088 8C29.8348 9.45264 33.9961 14.6312 33.9961 20.7969C33.9961 28.0889 28.1756 34.0002 20.9955 34.0002C13.939 34.0002 8.19551 28.2905 8 21.172C9.63787 22.133 11.539 22.6829 13.5665 22.6829Z" fill="#1F1F21" />
                     </svg>

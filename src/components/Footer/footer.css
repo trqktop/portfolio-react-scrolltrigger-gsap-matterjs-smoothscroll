@@ -67,6 +67,7 @@
           text-decoration-line: underline;
   background-color: inherit;
   color: inherit;
+  cursor: url("../../images/arrow2662.png") 4 1, pointer;
 }
 .footer__download-button .footer__download-text-container {
   max-width: 287px;
@@ -120,7 +121,7 @@
   display: flex;
   -moz-column-gap: 10px;
        column-gap: 10px;
-  cursor: pointer;
+  cursor: url("../../images/arrow2662.png") 4 1, pointer;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;

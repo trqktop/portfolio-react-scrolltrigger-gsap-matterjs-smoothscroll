@@ -24,6 +24,7 @@ function App() {
     let footer = useRef()
     const DanImg = useRef(null)
 
+
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
@@ -34,24 +35,26 @@ function App() {
     }, [])
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => SmoothScroll({
-            frameRate: 144,
-            animationTime: 1000,
-            stepSize: 100,
-            pulseAlgorithm: 1,
-            pulseScale: 4,
-            pulseNormalize: 1,
-            accelerationDelta: 50,
-            accelerationMax: 1,
-            keyboardSupport: 1,
-            arrowScroll: 50,
-            fixedBackground: 0,
-            touchpadSupport: true,
-        }), pageContainer.current)
+        const ctx = gsap.context(() => {
+            let mm = gsap.matchMedia();
+            mm.add("(min-width: 900px)", () => SmoothScroll({
+                frameRate: 144,
+                animationTime: 900,
+                stepSize: 90,
+                pulseAlgorithm: 1,
+                pulseScale: 5,
+                pulseNormalize: 1,
+                accelerationDelta: 10,
+                accelerationMax: 1,
+                keyboardSupport: 1,
+                arrowScroll: 20,
+                fixedBackground: 0,
+                touchpadSupport: true,
+            }))
+        }, pageContainer.current);
+
         return () => ctx.revert();
     }, [])
-
-
 
     useLayoutEffect(() => {
         if (eggVisible) {
@@ -74,6 +77,8 @@ function App() {
             return () => ctx.revert()
         }
     }, [eggVisible])
+
+
     return (
         <div className={blackTheme ? 'page__container page__container_black' : 'page__container'}
             ref={pageContainer}
@@ -103,69 +108,6 @@ function App() {
         </div>
     );
 }
-
-
-
-// function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
-//     let ctx = gsap.context(() => {
-//         const tl = gsap.timeline()
-//         tl.to(panelGreeting.current, {
-//             y: '-10%',
-//             scrollTrigger: {
-//                 trigger: panelGreeting.current,
-//                 pin: true,
-//                 start: "top top",
-//                 end: () => '+=' + '+=120%',
-//                 pinSpacing: false,
-//                 scrub: true,
-//                 markers: true,
-//                 anticipatePin: .1,
-//                 pinType: 'fixed',
-//             }
-//         })
-//         tl.to(panelAbout.current, {
-//             y: '+1px',
-//             scrollTrigger: {
-//                 trigger: panelAbout.current,
-//                 pin: true,
-//                 start: "top top",
-//                 onEnter: e => {
-//                     setCurrentSectionSelector('about')
-//                 },
-//                 onEnterBack: (e) => {
-//                     setCurrentSectionSelector('about')
-//                 },
-//                 onLeave: (e) => {
-//                     setCurrentSectionSelector('works')
-//                 },
-//                 end: () => '+=' + '100%',
-//                 pinSpacing: false,
-//                 scrub: true,
-//                 anticipatePin: .1,
-//                 // markers: true,
-//                 pinType: 'fixed',
-//             }
-//         })
-//         tl.to(footer.current, {
-//             scrollTrigger: {
-//                 trigger: footer.current,
-//                 pin: false,
-//                 pinSpacing: false,
-//                 start: "center bottom",
-//                 scrub: false,
-//                 // markers: true,
-//                 onEnter: e => {
-//                     setCurrentSectionSelector('footer')
-//                 },
-//                 onLeaveBack: () => {
-//                     setCurrentSectionSelector('works')
-//                 }
-//             }
-//         })
-//         return tl
-//     }, pageContainer.current);
-//     return ctx
-// }
 
 function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
     let mm = gsap.matchMedia(),
@@ -206,11 +148,10 @@ function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreetin
                         onLeave: (e) => {
                             setCurrentSectionSelector('works')
                         },
-                        end: '+=100% top-=15%',
+                        end: '+=100% top+=10%',
                         pinSpacing: false,
                         scrub: .1,
                         anticipatePin: .5,
-                        // markers: true,
                         pinType: 'fixed',
                     }
                 })
