@@ -84,7 +84,7 @@
         right: 16px;
         // background-image: url('../../../images/work-modal/close_32.svg');
         background-color: inherit;
-        cursor: pointer;
+        cursor: url('../../images/arrow2662.png') 4 1, pointer;
 
 
 
@@ -120,7 +120,7 @@
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
-
+        cursor: url('../../images/arrow2662.png') 4 1, pointer;
     }
 
     &-title {
