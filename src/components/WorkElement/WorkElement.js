@@ -10,31 +10,41 @@ export function WorkElement(props) {
     const [windowWidth, setWindowWidth] = useState(null)
     const el = useRef(null)
     useLayoutEffect(() => {
-        if (windowWidth < 900) {
-            const ctx = gsap.context(() => {
-                return gsap.to(el.current, {
-                    scrollTrigger: {
-                        trigger: el.current,
-                        pinSpacing: false,
-                        pin: false,
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => setHoverState(true),
-                        onEnterBack: () => setHoverState(true),
-                        onLeave: () => setHoverState(false),
-                        onLeaveBack: () => setHoverState(false),
-                    }
-                })
-            }, el.current)
-            return () => ctx.revert();
-        }
+
+        let mm = gsap.matchMedia(),
+            breakPoint = 900;
+        let ctx = gsap.context(() => {
+            mm.add({
+                isDesktop: `(min-width: ${breakPoint}px)`,
+                isMobile: `(max-width: ${breakPoint - 1}px)`,
+                reduceMotion: "(prefers-reduced-motion: reduce)"
+            }, (context) => {
+                let { isDesktop, isMobile, reduceMotion } = context.conditions;
+                if (isMobile) {
+                    return gsap.to(el.current, {
+                        scrollTrigger: {
+                            trigger: el.current,
+                            pinSpacing: false,
+                            pin: false,
+                            start: "top center",
+                            end: "bottom center",
+                            onEnter: () => setHoverState(true),
+                            onEnterBack: () => setHoverState(true),
+                            onLeave: () => setHoverState(false),
+                            onLeaveBack: () => setHoverState(false),
+                        }
+                    })
+                }
+            })
+            return () => mm.revert()
+        }, el.current)
         setHoverState(false)
-    }, [windowWidth])
+        return () => ctx.revert()
+    }, [])
+
     useEffect(() => {
         setWindowWidth(window.innerWidth)
     })
-
-
 
 
     return (

@@ -52,7 +52,8 @@ function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
 function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector, context) {
     e.stopPropagation()
     const ctx = gsap.context(() => {
-
+        const STS = ScrollTrigger.getAll()
+        STS.forEach(st => st.disable())
         const elementId = e.target.id
         if (elementId) {
             gsap.to(window, {
@@ -60,6 +61,7 @@ function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sect
                 duration: .3,
                 delay: .001,
                 ease: "power4",
+                onComplete: () => STS.forEach(st => st.enable())
             })
         }
     }, context)

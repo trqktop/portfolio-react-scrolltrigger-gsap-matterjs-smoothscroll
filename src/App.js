@@ -23,7 +23,7 @@ function App() {
     let panelAbout = useRef()
     let footer = useRef()
     const DanImg = useRef(null)
-    // const [windowHeight, setWindowWidth] = useState()
+
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
@@ -33,35 +33,25 @@ function App() {
         return () => ctx.revert();
     }, [])
 
-    // useEffect(() => {
-    //     console.log('da')
-    //     setWindowWidth(window.offsetHeight)
-    //     ScrollTrigger.refresh()
-    // }, [windowHeight])
-
-
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            // return setTimeout(() => {
-            const ctx = gsap.context(() => SmoothScroll({
-                frameRate: 144,
-                animationTime: 1000,
-                stepSize: 100,
-                pulseAlgorithm: 1,
-                pulseScale: 4,
-                pulseNormalize: 1,
-                accelerationDelta: 50,
-                accelerationMax: 1,
-                keyboardSupport: 1,
-                arrowScroll: 50,
-                fixedBackground: 0,
-                touchpadSupport: true,
-            }), pageContainer.current)
-            return ctx
-            // }, 1)//!
-        }, pageContainer.current)
+        const ctx = gsap.context(() => SmoothScroll({
+            frameRate: 144,
+            animationTime: 1000,
+            stepSize: 100,
+            pulseAlgorithm: 1,
+            pulseScale: 4,
+            pulseNormalize: 1,
+            accelerationDelta: 50,
+            accelerationMax: 1,
+            keyboardSupport: 1,
+            arrowScroll: 50,
+            fixedBackground: 0,
+            touchpadSupport: true,
+        }), pageContainer.current)
         return () => ctx.revert();
     }, [])
+
+
 
     useLayoutEffect(() => {
         if (eggVisible) {
@@ -116,71 +106,137 @@ function App() {
 
 
 
-function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
-    let ctx = gsap.context(() => {
+// function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
+//     let ctx = gsap.context(() => {
+//         const tl = gsap.timeline()
+//         tl.to(panelGreeting.current, {
+//             y: '-10%',
+//             scrollTrigger: {
+//                 trigger: panelGreeting.current,
+//                 pin: true,
+//                 start: "top top",
+//                 end: () => '+=' + '+=120%',
+//                 pinSpacing: false,
+//                 scrub: true,
+//                 markers: true,
+//                 anticipatePin: .1,
+//                 pinType: 'fixed',
+//             }
+//         })
+//         tl.to(panelAbout.current, {
+//             y: '+1px',
+//             scrollTrigger: {
+//                 trigger: panelAbout.current,
+//                 pin: true,
+//                 start: "top top",
+//                 onEnter: e => {
+//                     setCurrentSectionSelector('about')
+//                 },
+//                 onEnterBack: (e) => {
+//                     setCurrentSectionSelector('about')
+//                 },
+//                 onLeave: (e) => {
+//                     setCurrentSectionSelector('works')
+//                 },
+//                 end: () => '+=' + '100%',
+//                 pinSpacing: false,
+//                 scrub: true,
+//                 anticipatePin: .1,
+//                 // markers: true,
+//                 pinType: 'fixed',
+//             }
+//         })
+//         tl.to(footer.current, {
+//             scrollTrigger: {
+//                 trigger: footer.current,
+//                 pin: false,
+//                 pinSpacing: false,
+//                 start: "center bottom",
+//                 scrub: false,
+//                 // markers: true,
+//                 onEnter: e => {
+//                     setCurrentSectionSelector('footer')
+//                 },
+//                 onLeaveBack: () => {
+//                     setCurrentSectionSelector('works')
+//                 }
+//             }
+//         })
+//         return tl
+//     }, pageContainer.current);
+//     return ctx
+// }
 
-        const tl = gsap.timeline()
-        tl.to(panelGreeting.current, {
-            y: -1,
-            scrollTrigger: {
-                trigger: panelGreeting.current,
-                pin: true,
-                start: "+=100% bottom",
-                end: () => '+=' + '+=120%',
-                pinSpacing: false,
-                scrub: true,
-                // anticipatePin: 1 / 10,
-                pinType: 'fixed',
+function panelSlide(gsap, pageContainer, setCurrentSectionSelector, panelGreeting, panelAbout, footer) {
+    let mm = gsap.matchMedia(),
+        breakPoint = 900;
+    let ctx = gsap.context(() => {
+        mm.add({
+            isDesktop: `(min-width: ${breakPoint}px)`,
+            isMobile: `(max-width: ${breakPoint - 1}px)`,
+            reduceMotion: "(prefers-reduced-motion: reduce)"
+        }, (context) => {
+            let { isDesktop, isMobile, reduceMotion } = context.conditions;
+            if (isDesktop) {
+                gsap.to(panelGreeting.current, {
+                    y: -100,
+                    scrollTrigger: {
+                        trigger: panelGreeting.current,
+                        pin: true,
+                        start: "+=100% bottom",
+                        end: () => '+=' + '+=110%',
+                        pinSpacing: false,
+                        scrub: true,
+                        // anticipatePin: 1 / 10,
+                        pinType: 'fixed',
+                    }
+                });
+                gsap.to(panelAbout.current, {
+                    y: -1,
+                    scrollTrigger: {
+                        trigger: panelAbout.current,
+                        pin: true,
+                        start: "+=100% bottom+=1px",
+                        onEnter: e => {
+                            setCurrentSectionSelector('about')
+                        },
+                        onEnterBack: (e) => {
+                            setCurrentSectionSelector('about')
+                        },
+                        onLeave: (e) => {
+                            setCurrentSectionSelector('works')
+                        },
+                        end: '+=100% top-=15%',
+                        pinSpacing: false,
+                        scrub: .1,
+                        anticipatePin: .5,
+                        // markers: true,
+                        pinType: 'fixed',
+                    }
+                })
+                gsap.to(footer.current, {
+                    scrollTrigger: {
+                        trigger: footer.current,
+                        pin: false,
+                        pinSpacing: false,
+                        start: "center bottom",
+                        pinSpacing: false,
+                        scrub: false,
+                        // markers: true,
+                        onEnter: e => {
+                            setCurrentSectionSelector('footer')
+                        },
+                        onLeaveBack: () => {
+                            setCurrentSectionSelector('works')
+                        }
+                    }
+                })
             }
         });
-
-
-        tl.to(panelAbout.current, {
-            y: -1,
-            scrollTrigger: {
-                trigger: panelAbout.current,
-                pin: true,
-                start: "+=100% bottom+=1px",
-                onEnter: e => {
-                    setCurrentSectionSelector('about')
-                },
-                onEnterBack: (e) => {
-                    setCurrentSectionSelector('about')
-                },
-                onLeave: (e) => {
-                    setCurrentSectionSelector('works')
-                },
-                end: '+=' + '100%',
-                pinSpacing: false,
-                scrub: .1,
-                anticipatePin: true,
-                // markers: true,
-                pinType: 'fixed',
-            }
-        })
-
-        tl.to(footer.current, {
-            scrollTrigger: {
-                trigger: footer.current,
-                pin: false,
-                pinSpacing: false,
-                start: "center bottom",
-                scrub: false,
-                // markers: true,
-                onEnter: e => {
-                    setCurrentSectionSelector('footer')
-                },
-                onLeaveBack: () => {
-                    setCurrentSectionSelector('works')
-                }
-            }
-        })
-        return tl
+        return () => mm.revert()
     }, pageContainer.current);
     return ctx
 }
-
-
 
 
 

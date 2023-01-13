@@ -41,6 +41,8 @@
 
 @media screen and(max-width:900px) {
     .greeting {
+        height: fit-content;
+
         &__container {
             display: flex;
             justify-content: space-between;
@@ -74,7 +76,7 @@
 
 @media screen and(max-width:600px) {
     .greeting {
-        margin-bottom: 20vh;
+
 
         &__container {
             padding-left: 16px;

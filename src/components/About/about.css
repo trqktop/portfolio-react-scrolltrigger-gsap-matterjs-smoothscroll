@@ -137,7 +137,7 @@
 @media screen and (max-width: 600px) {
   .about {
     border-radius: 32px 32px 0px 0px;
-    margin-bottom: 30vh;
+    transform: translateY(24px);
   }
 }
 @media screen and (max-width: 412px) {

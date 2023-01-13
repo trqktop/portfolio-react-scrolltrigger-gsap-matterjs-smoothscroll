@@ -9,6 +9,7 @@ export default function Preloader(props) {
     const firstUpdate = useRef(true);
 
     useEffect(() => {
+        console.log('vse')
         if (firstUpdate.current) {
             document.fonts.ready
                 .then(res => {
@@ -21,7 +22,6 @@ export default function Preloader(props) {
         else {
             preloader.current.classList.add('preloader_hidden')
         }
-
     }, [blackTheme])
 
 
