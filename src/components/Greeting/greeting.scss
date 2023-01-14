@@ -6,8 +6,11 @@
     background-color: inherit;
     color: inherit;
     z-index: 2;
+    width: 100%;
 
-
+    &__ST {
+        all: inherit;
+    }
 
     &__container {
         padding: 16px;

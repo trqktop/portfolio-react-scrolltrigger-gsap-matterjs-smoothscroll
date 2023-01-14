@@ -8,6 +8,10 @@
   background-color: inherit;
   color: inherit;
   z-index: 2;
+  width: 100%;
+}
+.greeting__ST {
+  all: inherit;
 }
 .greeting__container {
   padding: 16px;

@@ -1,7 +1,7 @@
 import './works.css'
 import { data } from '../../data/data';
 import { WorkElement } from '../WorkElement/WorkElement';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, } from 'react';
 
 
 export function Works(props) {
@@ -30,7 +30,7 @@ export function Works(props) {
                     }
                 })
             return tl
-        }, catTailSvg.current)
+        }, elementsContainer)
         return () => ctx.revert()
     }, [])
 
@@ -55,8 +55,9 @@ export function Works(props) {
                 ease: 'none',
             })
             return tl
-        }, elementsContainer.current)
+        }, elementsContainer)
         return () => ctx.revert()
+
     }
 
     function hoverLeaveListener(e) {
@@ -68,7 +69,7 @@ export function Works(props) {
                 filter: 'grayscale(0%)',
                 boxShadow: 'none',
             })
-        }, elementsContainer.current)
+        }, elementsContainer)
         return () => ctx.revert()
     }
 
@@ -85,6 +86,7 @@ export function Works(props) {
                             key={i + ' work-element'}
                             blackTheme={blackTheme}
                             data={project}
+                            elementsContainer={elementsContainer}
                             gsap={gsap} />
                     ))}
                     <li className='works__item works__item_soon'>

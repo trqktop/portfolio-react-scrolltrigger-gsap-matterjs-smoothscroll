@@ -22,7 +22,7 @@ export default function Modals(props) {
                 }, {
                     yPercent: 0
                 })
-            }, modalContainer.current)
+            }, modalContainer)
             return () => ctx.revert();
         }
         if (modalIsOpened) {

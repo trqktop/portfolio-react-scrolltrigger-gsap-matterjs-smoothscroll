@@ -6,7 +6,7 @@ export function Footer(props) {
     const { forwardRef } = { ...props }
 
     return (
-        <footer className='footer' ref={forwardRef}>
+        <footer className='footer'>
             <div className="footer__container">
                 <div className="footer__container-background">
                     <div className="footer__container-padding">

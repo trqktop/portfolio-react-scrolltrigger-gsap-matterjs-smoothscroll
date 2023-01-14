@@ -1,19 +1,18 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import Modals from "../Modals/Modals"
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import './WorkElement.css'
 export function WorkElement(props) {
-    const { data, gsap, blackTheme, hoverListener, hoverLeaveListener } = { ...props }
+    const { data, gsap, blackTheme, hoverListener, hoverLeaveListener, elementsContainer } = { ...props }
     const [isHover, setHoverState] = useState(false)
     const [modalIsOpened, modalState] = useState(false)
     const { projectName, title, projectTheme, description, gitHubPage, images, newKnowledge, tech } = { ...data }
     const [windowWidth, setWindowWidth] = useState(null)
     const el = useRef(null)
     useLayoutEffect(() => {
-
-        let mm = gsap.matchMedia(),
-            breakPoint = 900;
-        let ctx = gsap.context(() => {
+        const ctx = gsap.context(() => {
+            let mm = gsap.matchMedia(),
+                breakPoint = 900;
             mm.add({
                 isDesktop: `(min-width: ${breakPoint}px)`,
                 isMobile: `(max-width: ${breakPoint - 1}px)`,
@@ -36,15 +35,14 @@ export function WorkElement(props) {
                     })
                 }
             })
-            return () => mm.revert()
-        }, el.current)
+        }, elementsContainer)
         setHoverState(false)
         return () => ctx.revert()
     }, [])
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
-    })
+    }, [window.innerWidth])
 
 
     return (

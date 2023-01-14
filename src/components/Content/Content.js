@@ -2,18 +2,17 @@ import './content.css'
 import { Greeting } from '../Greeting/Greeting';
 import { About } from '../About/About';
 import { Works } from '../Works/Works';
-import Modals from '../Modals/Modals';
+import { useRef } from 'react';
 
-import { createRef, useEffect, useRef, useState } from 'react';
 
 
 export function Content(props) {
-    const { gsap, blackTheme, ScrollTrigger, panelGreeting, panelAbout } = { ...props }
+    const { gsap, blackTheme, ScrollTrigger, pageContainer } = { ...props }
 
     return (
         <main className='content'>
-            <Greeting gsap={gsap} panelGreeting={panelGreeting} />
-            <About gsap={gsap} ScrollTrigger={ScrollTrigger} panelAbout={panelAbout} />
+            <Greeting gsap={gsap} pageContainer={pageContainer} />
+            <About gsap={gsap} ScrollTrigger={ScrollTrigger} pageContainer={pageContainer} />
             <Works gsap={gsap} blackTheme={blackTheme} />
         </main>
     );
