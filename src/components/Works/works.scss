@@ -33,6 +33,23 @@
     }
 }
 
+
+@media screen and(min-width:1400px) {
+    .works {
+
+
+        &__container {
+
+
+            .works__list {
+                grid-template-columns: repeat(3, 387px);
+                gap: 16px;
+            }
+        }
+    }
+}
+
+
 @media screen and(max-width:900px) {
     .works {
         padding: 40px 6px;
