@@ -27,28 +27,34 @@ function App() {
 
 
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            let mm = gsap.matchMedia();
-            mm.add("(min-width: 900px)", () => {
-                SmoothScroll({
-                    frameRate: 144,
-                    animationTime: 1100,
-                    stepSize: 75,
-                    pulseAlgorithm: 1,
-                    pulseScale: 4,
-                    pulseNormalize: 1,
-                    accelerationDelta: 50,
-                    accelerationMax: 1,
-                    keyboardSupport: 1,
-                    arrowScroll: 20,
-                    fixedBackground: 0,
-                    touchpadSupport: true,
-                })
-            }
-            )
-        }, pageContainer);
-        return () => ctx.revert();
+    useEffect(() => {
+        // let mm = gsap.matchMedia();
+        // mm.add("(min-width: 900px)", () => {
+        //     let mm = gsap.matchMedia(),
+        //         breakPoint = 900;
+        //     mm.add({
+        //         isDesktop: `(min-width: ${breakPoint}px)`,
+        //     }, (context) => {
+        //         let { isDesktop } = context.conditions;
+                // if (isDesktop) {
+                    SmoothScroll({
+                        frameRate: 60,
+                        animationTime: 1100,
+                        stepSize: 75,
+                        pulseAlgorithm: 1,
+                        pulseScale: 4,
+                        pulseNormalize: 1,
+                        accelerationDelta: 50,
+                        accelerationMax: 1,
+                        keyboardSupport: 1,
+                        arrowScroll: 20,
+                        fixedBackground: 0,
+                        touchpadSupport: true,
+                    })
+                // }
+        //     });
+        //     return () => mm.revert();
+        // });
     }, [])
 
     useLayoutEffect(() => {
@@ -83,9 +89,8 @@ function App() {
                 blackTheme={blackTheme}
                 pageContainer={pageContainer}
             />
-            <Content gsap={gsap}
+            <Content
                 blackTheme={blackTheme}
-                ScrollTrigger={ScrollTrigger}
                 pageContainer={pageContainer}
             />
             <Footer

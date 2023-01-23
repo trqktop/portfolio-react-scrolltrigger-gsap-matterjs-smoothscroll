@@ -4,10 +4,10 @@ import { About } from '../About/About';
 import { Works } from '../Works/Works';
 import { useRef } from 'react';
 
-
+import gsap from 'gsap';
 
 export function Content(props) {
-    const { gsap, blackTheme, ScrollTrigger, pageContainer } = { ...props }
+    const { blackTheme, ScrollTrigger, pageContainer } = { ...props }
 
     return (
         <main className='content'>

@@ -1,10 +1,10 @@
 import './greeting.css'
 import { useEffect, useRef, useState, useLayoutEffect } from 'react';
-
+import gsap from 'gsap';
 
 const data = [{ "color": "#f1e05a", "name": "JavaScript", "percent": 55.74 }, { "color": "#c6538c", "name": "SCSS", "percent": 24.51 }, { "color": "#e44b23", "name": "HTML", "percent": 9.57 }, { "color": "#563d7c", "name": "CSS", "percent": 7.78 }, { "color": "#31859c", "name": "TypeScript", "percent": 1.25 }, { "color": "#16ce40", "name": "JSON", "percent": 0.62 }, { "color": "#083fa1", "name": "Markdown", "percent": 0.33 }, { "color": "#dc9658", "name": "Git Config", "percent": 0.1 }, { "color": "#d62728", "name": "XML", "percent": 0.06 }, { "color": "#1f9aef", "name": "Other", "percent": 0.04 }, { "color": "#9467bd", "name": "Git", "percent": 0.0 }, { "color": "#8c564b", "name": "Text", "percent": 0.0 }]
 export function Greeting(props) {
-    const { gsap, pageContainer } = { ...props }
+    const { pageContainer } = { ...props }
     const catSvgHand = useRef(null)
     const catSvgSmile = useRef(null)
     const catSvgLefthEye = useRef(null)
@@ -13,47 +13,43 @@ export function Greeting(props) {
 
 
     useLayoutEffect(() => {
+        let mm = gsap.matchMedia(),
+            breakPoint = 900;
+        mm.add({
+            isDesktop: `(min-width: ${breakPoint}px)`,
+        }, (context) => {
+            let { isDesktop } = context.conditions;
+            const catHand = catSvgHand.current
+            const tl = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
+            tl.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
+                .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
+            const catSmile = catSvgSmile.current
+            const tl2 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+            tl2.to(catSmile, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
+                .to(catSmile, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
+            const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
+            catEyes.forEach(eye => {
+                const tl3 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+                tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
+                tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
+            })
 
-        const ctx = gsap.context(() => {
-            let mm = gsap.matchMedia(),
-                breakPoint = 900;
-            mm.add({
-                isDesktop: `(min-width: ${breakPoint}px)`,
-            }, (context) => {
-                let { isDesktop } = context.conditions;
-                const catHand = catSvgHand.current
-                const tl = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
-                tl.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
-                    .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
-                const catSmile = catSvgSmile.current
-                const tl2 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-                tl2.to(catSmile, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
-                    .to(catSmile, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
-                const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
-                catEyes.forEach(eye => {
-                    const tl3 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-                    tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
-                    tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
-                })
-
-                if (isDesktop) {
-                    gsap.to('.greeting', {
-                        y: -100,
-                        scrollTrigger: {
-                            trigger: '.greeting',
-                            pin: true,
-                            start: "+=100% bottom",
-                            end: () => '+=' + '+=110%',
-                            pinSpacing: false,
-                            pinType: 'fixed',
-                            scrub: true,
-                        }
-                    });
-                }
-            });
-        }, panelGreeting);
-
-        return () => ctx.revert();
+            if (isDesktop) {
+                gsap.to('.greeting', {
+                    y: -100,
+                    scrollTrigger: {
+                        trigger: '.greeting',
+                        pin: true,
+                        start: "+=100% bottom",
+                        end: () => '+=' + '+=110%',
+                        pinSpacing: false,
+                        pinType: 'fixed',
+                        scrub: true,
+                    }
+                });
+            }
+        });
+        return () => mm.revert();
     }, [])
     return (
         <section className='greeting__ST' ref={panelGreeting}>

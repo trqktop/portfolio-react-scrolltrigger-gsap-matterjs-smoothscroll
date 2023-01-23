@@ -46,9 +46,8 @@ export function About(props) {
     }, [])
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            let mm = gsap.matchMedia(),
-                breakPoint = 900;
+        let mm = gsap.matchMedia(),
+            breakPoint = 900;
             mm.add({
                 isDesktop: `(min-width: ${breakPoint}px)`,
             }, (context) => {
@@ -85,9 +84,8 @@ export function About(props) {
                     })
                 }
             });
-        }, panelAbout);
 
-        return () => ctx.revert();
+        return () => mm.revert();
     }, [])
 
 
