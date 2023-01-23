@@ -17,23 +17,9 @@ export function Greeting(props) {
             breakPoint = 900;
         mm.add({
             isDesktop: `(min-width: ${breakPoint}px)`,
+            all: `(min-width: ${222}px)`,
         }, (context) => {
             let { isDesktop } = context.conditions;
-            const catHand = catSvgHand.current
-            const tl = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
-            tl.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
-                .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
-            const catSmile = catSvgSmile.current
-            const tl2 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-            tl2.to(catSmile, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
-                .to(catSmile, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
-            const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
-            catEyes.forEach(eye => {
-                const tl3 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-                tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
-                tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
-            })
-
             if (isDesktop) {
                 gsap.to('.greeting', {
                     y: -100,
@@ -51,6 +37,29 @@ export function Greeting(props) {
         });
         return () => mm.revert();
     }, [])
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const catHand = catSvgHand.current
+            const tl = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
+            tl.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
+                .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
+            const catSmile = catSvgSmile.current
+            const tl2 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+            tl2.to(catSmile, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
+                .to(catSmile, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
+            const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
+            catEyes.forEach(eye => {
+                const tl3 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+                tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
+                tl3.to(eye, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
+            })
+
+        }, panelGreeting)
+        return () => ctx.revert()
+    })
+
+
     return (
         <section className='greeting__ST' ref={panelGreeting}>
             <div className='greeting' >
