@@ -48,45 +48,52 @@ export function About(props) {
     useLayoutEffect(() => {
         let mm = gsap.matchMedia(),
             breakPoint = 900;
-            mm.add({
-                isDesktop: `(min-width: ${breakPoint}px)`,
-            }, (context) => {
-                let { isDesktop } = context.conditions;
-                gsap.fromTo('.about__item', {
-                    opacity: 0,
-                    yPercent: 100,
-                }, {
-                    ease: "none",
-                    opacity: 1,
-                    delay: '+=' + .3,
-                    yPercent: 0,
+        mm.add({
+            isDesktop: `(min-width: ${breakPoint}px)`,
+        }, (context) => {
+            let { isDesktop } = context.conditions;
+
+            if (isDesktop) {
+                gsap.to('.about', {
+                    y: -1,
                     scrollTrigger: {
-                        trigger: itemsContainer.current,
+                        trigger: '.about',
+                        pin: true,
+                        start: "bottom bottom",
+                        end: 'bottom top',
                         pinSpacing: false,
-                        pin: false,
-                        start: 'top+=10% bottom',
-                        scurb: true,
+                        scrub: true,
+                        anticipatePin: true,
+                        pinType: 'fixed',
                     }
                 })
-                if (isDesktop) {
-                    gsap.to('.about', {
-                        y: -1,
-                        scrollTrigger: {
-                            trigger: '.about',
-                            pin: true,
-                            start: "+=100% bottom+=1px",
-                            end: '+=100% top+=10%',
-                            pinSpacing: false,
-                            scrub: true,
-                            anticipatePin: true,
-                            pinType: 'fixed',
-                        }
-                    })
-                }
-            });
+            }
+        });
 
         return () => mm.revert();
     }, [])
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo('.about__item', {
+                opacity: .2,
+            }, {
+                ease: "none",
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: itemsContainer.current,
+                    pinSpacing: false,
+                    pin: false,
+                    start: 'top bottom',
+                    end: ' top top',
+                    scrub: true,
+                }
+            })
+        }, panelAbout)
+        return () => ctx.revert()
+    }, [])
+
+
 
 
     return (

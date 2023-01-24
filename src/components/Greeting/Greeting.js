@@ -26,8 +26,9 @@ export function Greeting(props) {
                     scrollTrigger: {
                         trigger: '.greeting',
                         pin: true,
-                        start: "+=100% bottom",
-                        end: () => '+=' + '+=110%',
+                        start: "top top",
+                        end: 'bottom top',
+                        anticipatePin: true,
                         pinSpacing: false,
                         pinType: 'fixed',
                         scrub: true,

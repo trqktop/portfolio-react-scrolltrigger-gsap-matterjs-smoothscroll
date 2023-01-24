@@ -10,39 +10,39 @@ export function WorkElement(props) {
     const [windowWidth, setWindowWidth] = useState(null)
     const el = useRef(null)
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            let mm = gsap.matchMedia(),
-                breakPoint = 900;
-            mm.add({
-                isDesktop: `(min-width: ${breakPoint}px)`,
-                isMobile: `(max-width: ${breakPoint - 1}px)`,
-                reduceMotion: "(prefers-reduced-motion: reduce)"
-            }, (context) => {
-                let { isDesktop, isMobile, reduceMotion } = context.conditions;
-                if (isMobile) {
-                    return gsap.to(el.current, {
-                        scrollTrigger: {
-                            trigger: el.current,
-                            pinSpacing: false,
-                            pin: false,
-                            start: "top center",
-                            end: "bottom center",
-                            onEnter: () => setHoverState(true),
-                            onEnterBack: () => setHoverState(true),
-                            onLeave: () => setHoverState(false),
-                            onLeaveBack: () => setHoverState(false),
-                        }
-                    })
-                }
-            })
-        }, elementsContainer)
+        // const ctx = gsap.context(() => {
+        let mm = gsap.matchMedia(),
+            breakPoint = 900;
+        mm.add({
+            isDesktop: `(min-width: ${breakPoint}px)`,
+            isMobile: `(max-width: ${breakPoint - 1}px)`,
+            reduceMotion: "(prefers-reduced-motion: reduce)"
+        }, (context) => {
+            let { isDesktop, isMobile, reduceMotion } = context.conditions;
+            if (isMobile) {
+                return gsap.to(el.current, {
+                    scrollTrigger: {
+                        trigger: el.current,
+                        pinSpacing: false,
+                        pin: false,
+                        start: "top center",
+                        end: "bottom center",
+                        onEnter: () => setHoverState(true),
+                        onEnterBack: () => setHoverState(true),
+                        onLeave: () => setHoverState(false),
+                        onLeaveBack: () => setHoverState(false),
+                    }
+                })
+            }
+        })
+        // }, elementsContainer)
         setHoverState(false)
-        return () => ctx.revert()
+        return () => mm.revert()
     }, [])
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
-    }, [window.innerWidth])
+    }, [windowWidth])
 
 
     return (
