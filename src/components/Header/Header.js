@@ -197,7 +197,7 @@ export function Header(props) {
                         trigger: '.about',
                         pin: false,
                         start: "+=100% bottom+=1px",
-                        end:'center top',
+                        end: 'center top',
                         onEnter: e => {
                             setCurrentSectionSelector('about')
                         },
@@ -208,16 +208,16 @@ export function Header(props) {
                             setCurrentSectionSelector('works')
                         },
                         pin: false,
-                
+
                     }
                 })
                 gsap.to('footer', {
                     scrollTrigger: {
                         trigger: 'footer',
                         pin: false,
-                        
+
                         start: "center bottom",
-                        end:'bottom bottom',
+                        end: 'bottom bottom',
                         onEnter: e => {
                             setCurrentSectionSelector('footer')
                         },

@@ -11,8 +11,8 @@ export function Content(props) {
 
     return (
         <main className='content'>
-            <Greeting gsap={gsap} pageContainer={pageContainer} />
-            <About gsap={gsap} ScrollTrigger={ScrollTrigger} pageContainer={pageContainer} />
+            <Greeting pageContainer={pageContainer} />
+            <About pageContainer={pageContainer} />
             <Works gsap={gsap} blackTheme={blackTheme} />
         </main>
     );

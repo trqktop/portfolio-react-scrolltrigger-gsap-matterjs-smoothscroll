@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
 import './about.css'
-
-
-
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger)
 function enableCatAnimations(catRigthEye, catLeftEye, gsap, context) {
     const ctx = gsap.context(() => {
         const rigthElement = catRigthEye.current
@@ -35,7 +35,7 @@ function clickHandler(gsap, ScrollTrigger, context) {
 }
 
 export function About(props) {
-    const { gsap, ScrollTrigger, pageContainer } = { ...props }
+    const {pageContainer } = { ...props }
     const catRigthEye = useRef(null)
     const catLeftEye = useRef(null)
     const itemsContainer = useRef(null)
