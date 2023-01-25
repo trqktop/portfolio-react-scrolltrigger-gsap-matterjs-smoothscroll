@@ -105,6 +105,8 @@ export function Header(props) {
     const timeline_1 = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
+    const timeline_4 = useRef(null)
+
     useEffect(() => {
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         setWindowWidth(window.innerWidth)
@@ -178,10 +180,14 @@ export function Header(props) {
     useLayoutEffect(() => {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
-                setTimeout(() => {
+                const timiout = setTimeout(() => {
                     const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
                     firstUpdate.current = false;
-                    return () => ctx.revert()
+
+                    return () => {
+                        clearTimeout(timiout)
+                        ctx.revert()
+                    }
                 }, 1)
             }
             else {
@@ -194,8 +200,8 @@ export function Header(props) {
     useLayoutEffect(() => {
         if (windowWidth > 900) {
             const ctx = gsap.context(() => {
-
-                gsap.to('.about', {
+                timeline_3.current = gsap.timeline()
+                timeline_3.current.to('.about', {
                     scrollTrigger: {
                         trigger: '.about',
                         pin: false,
@@ -211,10 +217,11 @@ export function Header(props) {
                             setCurrentSectionSelector('works')
                         },
                         pin: false,
-
                     }
                 })
-                gsap.to('footer', {
+
+                timeline_4.current = gsap.timeline()
+                timeline_4.current.to('footer', {
                     scrollTrigger: {
                         trigger: 'footer',
                         pin: false,

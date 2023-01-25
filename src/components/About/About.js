@@ -27,6 +27,7 @@ export function About(props) {
     const timeline_1 = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
+    const timeline_4 = useRef(null)
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             const rigthElement = catRigthEye.current
@@ -66,7 +67,8 @@ export function About(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-                gsap.to('.about', {
+                timeline_4.current = gsap.timeline()
+                timeline_4.current.to('.about', {
                     y: -1,
                     scrollTrigger: {
                         trigger: '.about',
