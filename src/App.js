@@ -20,35 +20,37 @@ function App() {
     let [blackTheme, setBlackTheme] = useState(JSON.parse(localStorage.getItem('themeIsBlack')) || false)
     let pageContainer = useRef()
     const DanImg = useRef(null)
+    const timeline = useRef(null)
+
 
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
 
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => SmoothScroll({
-            frameRate: 60,
-            animationTime: 1100,
-            stepSize: 75,
-            pulseAlgorithm: 1,
-            pulseScale: 3,
-            pulseNormalize: 1,
-            accelerationDelta: 50,
-            accelerationMax: 2,
-            keyboardSupport: 1,
-            arrowScroll: 20,
-            fixedBackground: 0,
-            touchpadSupport: true,
-        }), pageContainer)
-        return () => ctx.revert()
-    }, [])
+    // useLayoutEffect(() => {
+    //     SmoothScroll({
+    //         frameRate: 60,
+    //         animationTime: 1100,
+    //         stepSize: 75,
+    //         pulseAlgorithm: 1,
+    //         pulseScale: 3,
+    //         pulseNormalize: 1,
+    //         accelerationDelta: 50,
+    //         accelerationMax: 3,
+    //         keyboardSupport: 1,
+    //         arrowScroll: 20,
+    //         fixedBackground: 0,
+    //         touchpadSupport: true,
+    //     })
+
+    // }, [])
 
     useLayoutEffect(() => {
         if (eggVisible) {
             const ctx = gsap.context(() => {
-                const tl = gsap.timeline()
-                tl.to('.easter_egg-dan', {
+                timeline.current = gsap.timeline()
+                timeline.to('.easter_egg-dan', {
                     yPercent: -200,
                     duration: .5
                 })
@@ -58,7 +60,7 @@ function App() {
                         yPercent: 200,
                         onComplete: () => setEggVisible(false)
                     })
-                return tl
+                return timeline
             }, pageContainer)
             return () => ctx.revert()
         }
@@ -80,8 +82,7 @@ function App() {
                 blackTheme={blackTheme}
                 pageContainer={pageContainer}
             />
-            <Footer
-            />
+            <Footer/>
             <Preloader blackTheme={blackTheme} />
             <div className='easter_egg-container'>
                 <button className='easter_egg-button' onClick={() => setEggVisible(true)}></button>
@@ -91,9 +92,6 @@ function App() {
     );
 }
 
-function panelSlide(gsap, pageContainer,) {
-
-}
 
 
 

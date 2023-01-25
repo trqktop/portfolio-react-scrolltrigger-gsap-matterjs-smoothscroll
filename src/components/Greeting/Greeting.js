@@ -9,12 +9,12 @@ export function Greeting(props) {
     const catSvgLefthEye = useRef(null)
     const catSvgRigthEye = useRef(null)
     const panelGreeting = useRef(null)
-
-
+    const timeline = useRef(null)
+    const timeline_2 = useRef(null)
     useLayoutEffect(() => {
-        let mm = gsap.matchMedia(),
-            breakPoint = 900;
-        mm.add({
+        timeline_2.current = gsap.matchMedia();
+        const breakPoint = 900;
+        timeline_2.current.add({
             isDesktop: `(min-width: ${breakPoint}px)`,
             all: `(min-width: ${222}px)`,
         }, (context) => {
@@ -35,14 +35,14 @@ export function Greeting(props) {
                 });
             }
         });
-        return () => mm.revert();
+        return () => timeline_2.current.revert();
     }, [])
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             const catHand = catSvgHand.current
-            const tl = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
-            tl.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
+            timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
+            timeline.current.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
                 .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
         }, panelGreeting)
         return () => ctx.revert()
@@ -51,8 +51,8 @@ export function Greeting(props) {
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            const tl2 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-            tl2.to(catSvgSmile.current, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
+            timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+            timeline.current.to(catSvgSmile.current, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
                 .to(catSvgSmile.current, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
         }, panelGreeting)
         return () => ctx.revert()
@@ -61,8 +61,8 @@ export function Greeting(props) {
     useLayoutEffect(() => {
         const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
         const ctx = gsap.context(() => {
-            const tl3 = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-            tl3.to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
+            timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+            timeline.current.to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
                 .to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
         }, panelGreeting)
         return () => ctx.revert()

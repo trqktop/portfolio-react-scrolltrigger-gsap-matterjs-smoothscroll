@@ -1,14 +1,16 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import Modals from "../Modals/Modals"
+import gsap from 'gsap';
 
 import './WorkElement.css'
 export function WorkElement(props) {
-    const { data, gsap, blackTheme, hoverListener, hoverLeaveListener, elementsContainer } = { ...props }
+    const { data, blackTheme, hoverListener, hoverLeaveListener, elementsContainer } = { ...props }
     const [isHover, setHoverState] = useState(false)
     const [modalIsOpened, modalState] = useState(false)
     const { projectName, title, projectTheme, description, gitHubPage, images, newKnowledge, tech } = { ...data }
     const [windowWidth, setWindowWidth] = useState(null)
     const el = useRef(null)
+    const timeline = useRef(null)
     useLayoutEffect(() => {
         // const ctx = gsap.context(() => {
         let mm = gsap.matchMedia(),
@@ -20,7 +22,8 @@ export function WorkElement(props) {
         }, (context) => {
             let { isDesktop, isMobile, reduceMotion } = context.conditions;
             if (isMobile) {
-                return gsap.to(el.current, {
+                timeline.current = gsap.timeline()
+                timeline.current.to(el.current, {
                     scrollTrigger: {
                         trigger: el.current,
                         pinSpacing: false,

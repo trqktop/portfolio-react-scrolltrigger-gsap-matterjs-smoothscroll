@@ -6,21 +6,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 
 
-function setactiveSectionHeaderItemPosition(dur, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef) {
-    if (sectionSelector || activeSectionHeaderItem.current) {
-        const currentElementRect = headerMenuRect[sectionSelector]
-        const ctx = gsap.context(() => gsap.to(activeSectionHeaderItem.current,
-            {
-                ...currentElementRect,
-                duration: dur
-            })
-            , menuRef
-        )
-        return ctx
-    }
-
-}
-
 
 function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
     if (menuRef) {
@@ -65,7 +50,7 @@ function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sect
             })
         }
     }, context)
-    return () => ctx.revert()
+    // return () => ctx.revert()
 }
 
 function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
@@ -73,12 +58,12 @@ function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElemen
         if (firstUpdateToHoverElement.current) {
             const ctx = setHoverElementPosition(0, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
             setTimeout(() => firstUpdateToHoverElement.current = false, 1)
-            return () => ctx.revert()
+            // return () => ctx.revert()
 
         }
         else {
             const ctx = setHoverElementPosition(.3, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
-            return () => ctx.revert()
+            // return () => ctx.revert()
         }
     }
 }
@@ -96,7 +81,7 @@ function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHover
 
         e.target.classList.add('header__menu-link_hover')
         setHoverState(true)
-        return ctx
+        // return ctx
     }
 
 }
@@ -116,6 +101,10 @@ export function Header(props) {
     const [headerMenuRect, setHeaderMenuRect] = useState({})
     const headerMainRef = useRef(null)
     let [sectionSelector, setCurrentSectionSelector] = useState(null)
+
+    const timeline_1 = useRef(null)
+    const timeline_2 = useRef(null)
+    const timeline_3 = useRef(null)
     useEffect(() => {
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
         setWindowWidth(window.innerWidth)
@@ -125,6 +114,20 @@ export function Header(props) {
     }, [])
 
 
+    function setactiveSectionHeaderItemPosition(dur, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef) {
+        if (sectionSelector || activeSectionHeaderItem.current) {
+            const currentElementRect = headerMenuRect[sectionSelector]
+            const ctx = gsap.context(() => gsap.to(activeSectionHeaderItem.current,
+                {
+                    ...currentElementRect,
+                    duration: dur
+                })
+                , menuRef
+            )
+            return ctx
+        }
+
+    }
 
     useLayoutEffect(() => {
         const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
@@ -141,7 +144,7 @@ export function Header(props) {
     useLayoutEffect(() => {
         if (blackTheme) {
             const ctx = gsap.context(() => {
-                const tl = gsap.timeline()
+                timeline_1.current = gsap.timeline()
                     .to(svgButtonTheme.current, {
                         duration: .3,
                         rotate: 360,
@@ -156,7 +159,7 @@ export function Header(props) {
         }
         else {
             const ctx2 = gsap.context(() => {
-                const tl2 = gsap.timeline({})
+                timeline_2.current = gsap.timeline({})
                     .to(svgButtonTheme.current,
                         {
                             duration: .3,
@@ -166,7 +169,7 @@ export function Header(props) {
                             },
                             fill: "#1F1F21"
                         })
-                return tl2
+
             }, headerMainRef)
             return () => ctx2.revert();
         }

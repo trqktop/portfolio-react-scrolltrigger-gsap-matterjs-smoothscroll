@@ -13,7 +13,7 @@ export function Content(props) {
         <main className='content'>
             <Greeting pageContainer={pageContainer} />
             <About pageContainer={pageContainer} />
-            <Works gsap={gsap} blackTheme={blackTheme} />
+            <Works blackTheme={blackTheme} />
         </main>
     );
 }
