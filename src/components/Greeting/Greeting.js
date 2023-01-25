@@ -20,7 +20,7 @@ export function Greeting(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-                gsap.to('.greeting', {
+                const g = gsap.to('.greeting', {
                     y: -100,
                     scrollTrigger: {
                         trigger: '.greeting',

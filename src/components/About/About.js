@@ -67,8 +67,7 @@ export function About(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-                timeline_4.current = gsap.timeline()
-                timeline_4.current.to('.about', {
+                const a = gsap.to('.about:before', {
                     y: -1,
                     scrollTrigger: {
                         trigger: '.about',
@@ -85,7 +84,14 @@ export function About(props) {
         });
         return () => timeline_3.current.revert();
     }, [])
-
+    // useLayoutEffect(() => {
+    //     const ctx = gsap.context(() => {
+    //         const a = gsap.to('.about', {
+    //             boxShadow: '0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08)'
+    //         })
+    //     }, panelAbout)
+    //     return () => ctx.revert()
+    // }, [])
     // useLayoutEffect(() => {
     //     const ctx = gsap.context(() => {
     //         gsap.fromTo('.about__item', {

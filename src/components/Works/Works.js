@@ -62,7 +62,7 @@ export function Works(props) {
 
     function hoverLeaveListener(e) {
         const ctx = gsap.context(() => {
-            gsap.to(elements.current, {
+            const c = gsap.to(elements.current, {
                 opacity: 1,
                 scale: 1,
                 '-webkit-filter': 'grayscale(0%)',
@@ -87,7 +87,7 @@ export function Works(props) {
                             blackTheme={blackTheme}
                             data={project}
                             elementsContainer={elementsContainer}
-                    
+
                         />
                     ))}
                     <li className='works__item works__item_soon'>

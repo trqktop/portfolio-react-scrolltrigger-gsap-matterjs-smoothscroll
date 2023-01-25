@@ -200,8 +200,7 @@ export function Header(props) {
     useLayoutEffect(() => {
         if (windowWidth > 900) {
             const ctx = gsap.context(() => {
-                timeline_3.current = gsap.timeline()
-                timeline_3.current.to('.about', {
+                const d = gsap.to('.about', {
                     scrollTrigger: {
                         trigger: '.about',
                         pin: false,
@@ -219,13 +218,10 @@ export function Header(props) {
                         pin: false,
                     }
                 })
-
-                timeline_4.current = gsap.timeline()
-                timeline_4.current.to('footer', {
+                const q = gsap.to('footer', {
                     scrollTrigger: {
                         trigger: 'footer',
                         pin: false,
-
                         start: "center bottom",
                         end: 'bottom bottom',
                         onEnter: e => {

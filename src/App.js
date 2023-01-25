@@ -31,7 +31,7 @@ function App() {
     // useLayoutEffect(() => {
     //     SmoothScroll({
     //         frameRate: 60,
-    //         animationTime: 1100,
+    //         animationTime: 700,
     //         stepSize: 75,
     //         pulseAlgorithm: 1,
     //         pulseScale: 3,
@@ -43,7 +43,6 @@ function App() {
     //         fixedBackground: 0,
     //         touchpadSupport: true,
     //     })
-
     // }, [])
 
     useLayoutEffect(() => {
@@ -82,7 +81,7 @@ function App() {
                 blackTheme={blackTheme}
                 pageContainer={pageContainer}
             />
-            <Footer/>
+            <Footer />
             <Preloader blackTheme={blackTheme} />
             <div className='easter_egg-container'>
                 <button className='easter_egg-button' onClick={() => setEggVisible(true)}></button>
@@ -91,9 +90,6 @@ function App() {
         </div>
     );
 }
-
-
-
 
 
 
