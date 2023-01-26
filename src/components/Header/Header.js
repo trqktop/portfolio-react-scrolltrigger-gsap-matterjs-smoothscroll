@@ -34,24 +34,7 @@ function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
 
 
 
-function scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector, context) {
-    e.stopPropagation()
-    const ctx = gsap.context(() => {
-        const STS = ScrollTrigger.getAll()
-        STS.forEach(st => st.disable())
-        const elementId = e.target.id
-        if (elementId) {
-            gsap.to(window, {
-                scrollTo: () => `.${elementId}`,
-                duration: .3,
-                delay: .001,
-                ease: "power4",
-                onComplete: () => STS.forEach(st => st.enable())
-            })
-        }
-    }, context)
-    // return () => ctx.revert()
-}
+
 
 function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
     if (windowWidth > 900) {
@@ -106,6 +89,30 @@ export function Header(props) {
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
     const timeline_4 = useRef(null)
+    const [scrollto, scrolltoState] = useState(null)
+    const context_2 = useRef(null)
+    const timeline_5 = useRef(null)
+    useEffect(() => {
+        if (scrollto) {
+            console.log(scrollto)
+            context_2.current = gsap.context(() => {
+                const elementId = scrollto.target.id
+                if (elementId) {
+                    const STS = ScrollTrigger.getAll()
+                    STS.forEach(st => st.disable())
+                    timeline_5.current = gsap.timeline()
+                    timeline_5.current.to(window, {
+                        scrollTo: () => `.${elementId}`,
+                        duration: .001,
+                        delay: .001,
+                        ease: "power4",
+                        onComplete: () => STS.forEach(st => st.enable())
+                    })
+                }
+            }, headerMainRef)
+            return () => context_2.current.revert()
+        }
+    }, [scrollto])
 
     useEffect(() => {
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
@@ -254,7 +261,7 @@ export function Header(props) {
                     <ul className='header__menu-items'
                         style={windowWidth > 900 ? { display: 'flex' } : { display: 'none' }}
                         ref={menuRef}
-                        onClick={(e) => scrollToHandler(e, ScrollTrigger, gsap, setCurrentSectionSelector, sectionSelector, menuRef.current)}
+                        onClick={(e) => scrolltoState(e)}
                         onMouseLeave={() => setHoverState(false)}>
                         <li className='header__menu-item'><a className='header__menu-link' id='about'
                             onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>О себе</a></li>
