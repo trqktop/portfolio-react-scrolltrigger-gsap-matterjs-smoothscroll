@@ -14,9 +14,10 @@ export function Works(props) {
     const timeline_3 = useRef(null)
     const timeline_4 = useRef(null)
     const timeline_5 = useRef(null)
+    const context = useRef(null)
     useLayoutEffect(() => {
         elements.current = Array.from(elementsContainer.current.childNodes)
-        const ctx = gsap.context(() => {
+        context.current = gsap.context(() => {
             timeline_1.current = gsap.timeline({ repeatDelay: 0, repeat: -1, yoyo: true, delay: -1 })
             timeline_1.current.to(catTailSvg.current, {
                 x: 0, duration: .5, ease: "none", transformOrigin: 'center bottom', attr: {
@@ -34,7 +35,7 @@ export function Works(props) {
                     }
                 })
         }, elementsContainer)
-        return () => ctx.revert()
+        return () => context.current.revert()
     }, [])
 
     function hoverListener(e) {

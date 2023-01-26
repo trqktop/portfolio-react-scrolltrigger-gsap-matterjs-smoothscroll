@@ -30,8 +30,10 @@ export function About(props) {
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
     const timeline_4 = useRef(null)
+    const context = useRef(null)
+    const context_2 = useRef(null)
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
+        context_2.current = gsap.context(() => {
             const rigthElement = catRigthEye.current
             timeline_1.current = gsap.timeline({ repeatDelay: 0, repeat: -1, yoyo: true, delay: -1 })
             timeline_1.current.to(rigthElement, { x: 0, duration: .8, scaleY: 1, scaleX: .8, ease: "none", transformOrigin: 'center bottom', attr: { d: 'M155.516 314.187C159.98 314.52 163.339 313.216 164.873 307.677C165.299 306.139 165.344 303.856 164.873 301.831C164.402 299.806 163.569 297 164 295.614C163.414 297.5 160.673 299.703 160.271 299.985C159.964 299.678 159.751 297.855 158.54 295.614C157.351 293.415 157.5 291.5 157.5 290C156.484 291.312 156 293.5 153.056 296.556C152.286 297.849 152.157 297.889 151.245 298.825C150.334 299.762 149.927 300.042 149.136 301.203C148.347 302.364 148.099 303.97 148.011 305.157C147.651 309.995 151.052 313.853 155.516 314.187Z' } })
@@ -46,11 +48,11 @@ export function About(props) {
             //     .to(leftElement, { x: 0, duration: .8, ease: "none", scaleY: 1.07, scaleX: .8, transformOrigin: 'center bottom', attr: { d: 'M120.125 315.062C124.045 315.062 128.5 311 128.364 307.677C128.246 304.816 127.5 306 127.748 302.754C128.5 300 128.5 300 129 298C127 299.5 127 299.5 124.068 301.524C123.582 301.86 122.768 300.284 122.5 299C121.9 296.122 122.5 294.5 123.5 291C119 296 117.423 297.687 116.834 298.936C116.246 300.184 116.235 300.071 115.5 301C114.765 301.929 113.601 303.198 112.986 304.325C112.372 305.453 111.796 307.011 111.796 308.115C111.796 312.611 116.206 315.062 120.125 315.062Z' } })
             //     .to(leftElement, { x: 0, duration: .8, ease: "none", scaleY: 1.04, scaleX: .9, transformOrigin: 'center bottom', attr: { d: 'M119.262 315.384C123.181 315.384 127.048 313.846 127.048 308.308C127.048 307.204 128.043 304.839 127.5 303C126.957 301.161 127.073 299.136 126.5 298C125 301 124.605 301.172 124.272 301.461C124.272 301.161 124.039 299.792 123.304 297.316C122.462 294.481 116.941 293.368 116 292.5C119 295 118 299 118 299C118 300 118 300 116.962 301.627C116.227 302.556 114.235 303.53 113.62 304.658C113.006 305.785 112 306.896 112 308C112 312.496 115.342 315.384 119.262 315.384Z' } })
         }, panelAbout)
-        return () => ctx.revert()
+        return () => context_2.current.revert()
     }, [])
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
+        context.current = gsap.context(() => {
             const leftElement = catLeftEye.current
             timeline_2.current = gsap.timeline({ repeatDelay: 0, repeat: -1, yoyo: true })
             timeline_2.current.to(leftElement, { x: 0, duration: .8, ease: "none", scaleY: 1, scaleX: 1, transformOrigin: 'center bottom', attr: { d: 'M120.125 315.062C124.045 315.062 127.748 313.216 127.748 307.677C127.748 306.574 127.675 304.594 127.133 302.754C126.59 300.915 126.959 299.193 127.133 297.551C126.888 299.869 124.269 301.184 123.936 301.473C123.936 301.172 123.965 299.983 123.093 297.551C122 294.5 121.797 292.254 122 291C122 292.648 118.074 297.576 117.485 298.825C116.897 300.073 119.127 296.301 116.056 301.057C115.321 301.985 114.235 303.198 113.62 304.325C113.006 305.453 111.796 307.011 111.796 308.115C111.796 312.611 116.206 315.062 120.125 315.062Z' } })
@@ -58,7 +60,7 @@ export function About(props) {
                 .to(leftElement, { x: 0, duration: .8, ease: "none", scaleY: 1.07, scaleX: .8, transformOrigin: 'center bottom', attr: { d: 'M120.125 315.062C124.045 315.062 128.5 311 128.364 307.677C128.246 304.816 127.5 306 127.748 302.754C128.5 300 128.5 300 129 298C127 299.5 127 299.5 124.068 301.524C123.582 301.86 122.768 300.284 122.5 299C121.9 296.122 122.5 294.5 123.5 291C119 296 117.423 297.687 116.834 298.936C116.246 300.184 116.235 300.071 115.5 301C114.765 301.929 113.601 303.198 112.986 304.325C112.372 305.453 111.796 307.011 111.796 308.115C111.796 312.611 116.206 315.062 120.125 315.062Z' } })
                 .to(leftElement, { x: 0, duration: .8, ease: "none", scaleY: 1.04, scaleX: .9, transformOrigin: 'center bottom', attr: { d: 'M119.262 315.384C123.181 315.384 127.048 313.846 127.048 308.308C127.048 307.204 128.043 304.839 127.5 303C126.957 301.161 127.073 299.136 126.5 298C125 301 124.605 301.172 124.272 301.461C124.272 301.161 124.039 299.792 123.304 297.316C122.462 294.481 116.941 293.368 116 292.5C119 295 118 299 118 299C118 300 118 300 116.962 301.627C116.227 302.556 114.235 303.53 113.62 304.658C113.006 305.785 112 306.896 112 308C112 312.496 115.342 315.384 119.262 315.384Z' } })
         }, panelAbout)
-        return () => ctx.revert()
+        return () => context.current.revert()
     }, [])
 
     useLayoutEffect(() => {
@@ -80,7 +82,7 @@ export function About(props) {
                         end: 'bottom+=300px top',
                         pinSpacing: false,
                         scrub: 2,
-                        anticipatePin: true,
+                        anticipatePin: .1,
                         pinType: 'fixed',
                     }
                 })
@@ -115,9 +117,6 @@ export function About(props) {
     //     }, panelAbout)
     //     // return () => ctx.revert()
     // }, [])
-
-
-
 
     return (
         <section className='about__ST' ref={panelAbout}>

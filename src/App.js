@@ -29,25 +29,20 @@ function App() {
 
 
     useLayoutEffect(() => {
-     
-
-        // context.current = gsap.context(() => {
-        //     SmoothScroll({
-        //         frameRate: 60,
-        //         animationTime: 700,
-        //         stepSize: 75,
-        //         pulseAlgorithm: 1,
-        //         pulseScale: 3,
-        //         pulseNormalize: 1,
-        //         accelerationDelta: 50,
-        //         accelerationMax: 3,
-        //         keyboardSupport: 1,
-        //         arrowScroll: 20,
-        //         fixedBackground: 0,
-        //         touchpadSupport: true
-        //     })
-        // },pageContainer)
-        // return () => context.current.revert()
+        SmoothScroll({
+            frameRate: 60,
+            animationTime: 700,
+            stepSize: 75,
+            pulseAlgorithm: 1,
+            pulseScale: 3,
+            pulseNormalize: 1,
+            accelerationDelta: 50,
+            accelerationMax: 3,
+            keyboardSupport: 1,
+            arrowScroll: 20,
+            fixedBackground: 0,
+            touchpadSupport: true
+        })
 
     }, [])
 

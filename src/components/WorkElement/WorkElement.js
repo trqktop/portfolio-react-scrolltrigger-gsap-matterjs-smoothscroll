@@ -11,11 +11,13 @@ export function WorkElement(props) {
     const [windowWidth, setWindowWidth] = useState(null)
     const el = useRef(null)
     const timeline = useRef(null)
+    const matchMedia = useRef(null)
+
     useLayoutEffect(() => {
         // const ctx = gsap.context(() => {
-        let mm = gsap.matchMedia(),
-            breakPoint = 900;
-        mm.add({
+        matchMedia.current = gsap.matchMedia()
+        const breakPoint = 900;
+        matchMedia.current.add({
             isDesktop: `(min-width: ${breakPoint}px)`,
             isMobile: `(max-width: ${breakPoint - 1}px)`,
             reduceMotion: "(prefers-reduced-motion: reduce)"
@@ -40,7 +42,7 @@ export function WorkElement(props) {
         })
         // }, elementsContainer)
         setHoverState(false)
-        return () => mm.revert()
+        return () => matchMedia.current.revert()
     }, [])
 
     useEffect(() => {

@@ -13,6 +13,10 @@ export function Greeting(props) {
     const timeline = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
+    const context = useRef(null)
+    const context_2 = useRef(null)
+    const context_3 = useRef(null)
+    
     useLayoutEffect(() => {
         timeline_2.current = gsap.matchMedia();
         const breakPoint = 900;
@@ -22,10 +26,8 @@ export function Greeting(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-
                 timeline_3.current = gsap.timeline()
                 timeline_3.current.to('.greeting', {
-                    y: -100,
                     scale: .93,
                     scrollTrigger: {
                         trigger: '.greeting',
@@ -44,33 +46,33 @@ export function Greeting(props) {
     }, [])
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
+        context.current = gsap.context(() => {
             const catHand = catSvgHand.current
             timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
             timeline.current.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
                 .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
         }, panelGreeting)
-        return () => ctx.revert()
+        return () => context.current.revert()
     })
 
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
+        context_2.current = gsap.context(() => {
             timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
             timeline.current.to(catSvgSmile.current, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
                 .to(catSvgSmile.current, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
         }, panelGreeting)
-        return () => ctx.revert()
+        return () => context_2.current.revert()
     }, [])
 
     useLayoutEffect(() => {
         const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
-        const ctx = gsap.context(() => {
+        context_3.current = gsap.context(() => {
             timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
             timeline.current.to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
                 .to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
         }, panelGreeting)
-        return () => ctx.revert()
+        return () => context_3.current.revert()
     }, [])
 
     return (

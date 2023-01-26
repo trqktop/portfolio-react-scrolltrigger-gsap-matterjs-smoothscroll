@@ -101,7 +101,7 @@ export function Header(props) {
     const [headerMenuRect, setHeaderMenuRect] = useState({})
     const headerMainRef = useRef(null)
     let [sectionSelector, setCurrentSectionSelector] = useState(null)
-
+    const context = useRef(null)
     const timeline_1 = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
@@ -198,8 +198,11 @@ export function Header(props) {
 
     useLayoutEffect(() => {
         if (windowWidth > 900) {
-            const ctx = gsap.context(() => {
-                const d = gsap.to('.about', {
+            context.current = gsap.context(() => {
+
+                timeline_3.current = gsap.timeline()
+
+                timeline_3.current.to('.about', {
                     scrollTrigger: {
                         trigger: '.about',
                         pin: false,
@@ -217,7 +220,8 @@ export function Header(props) {
                         pin: false,
                     }
                 })
-                const q = gsap.to('footer', {
+                timeline_4.current = gsap.timeline()
+                timeline_4.current.to('footer', {
                     scrollTrigger: {
                         trigger: 'footer',
                         pin: false,
@@ -232,7 +236,7 @@ export function Header(props) {
                     }
                 })
             }, pageContainer)
-            return () => ctx.revert()
+            return () => context.current.revert()
         }
     }, [windowWidth])
 

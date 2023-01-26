@@ -7,6 +7,7 @@ const modalRoot = document.getElementById('react-modals')
 export default function Modals(props) {
     const { data, modalIsOpened, blackTheme, modalState, windowWidth, gsap } = { ...props }
     const modalContainer = useRef(null)
+    const timeline = useRef(null)
     function closeModalHandler(e) {
         const elClass = e.target.classList
         const closeButton = 'modal-container__close-button'
@@ -17,7 +18,8 @@ export default function Modals(props) {
     useEffect(() => {
         if (windowWidth < 900) {
             const ctx = gsap.context(() => {
-                gsap.fromTo(modalContainer.current, {
+                timeline.current = gsap.timeline()
+                timeline.current.fromTo(modalContainer.current, {
                     yPercent: +100
                 }, {
                     yPercent: 0
@@ -25,12 +27,12 @@ export default function Modals(props) {
             }, modalContainer)
             return () => ctx.revert();
         }
-        if (modalIsOpened) {
-            document.body.style.overflow = 'hidden'
-        }
-        else {
-            document.body.style.overflow = 'auto'
-        }
+        // if (modalIsOpened) {
+        //     document.body.style.overflow = 'hidden'
+        // }
+        // else {
+        //     document.body.style.overflow = 'auto'
+        // }
     }, [modalIsOpened])
     return ReactDOM.createPortal(
         (
