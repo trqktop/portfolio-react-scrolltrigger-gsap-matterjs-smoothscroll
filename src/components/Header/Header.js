@@ -183,7 +183,6 @@ export function Header(props) {
                 const timiout = setTimeout(() => {
                     const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
                     firstUpdate.current = false;
-
                     return () => {
                         clearTimeout(timiout)
                         ctx.revert()

@@ -2,6 +2,7 @@ import './greeting.css'
 import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
+
 export function Greeting(props) {
     const { pageContainer } = { ...props }
     const catSvgHand = useRef(null)
@@ -11,6 +12,7 @@ export function Greeting(props) {
     const panelGreeting = useRef(null)
     const timeline = useRef(null)
     const timeline_2 = useRef(null)
+    const timeline_3 = useRef(null)
     useLayoutEffect(() => {
         timeline_2.current = gsap.matchMedia();
         const breakPoint = 900;
@@ -20,13 +22,16 @@ export function Greeting(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-                const g = gsap.to('.greeting', {
+
+                timeline_3.current = gsap.timeline()
+                timeline_3.current.to('.greeting', {
                     y: -100,
+                    scale: .93,
                     scrollTrigger: {
                         trigger: '.greeting',
                         pin: true,
                         start: "top top",
-                        end: 'bottom top',
+                        end: 'bottom+=300px top',
                         anticipatePin: true,
                         pinSpacing: false,
                         pinType: 'fixed',

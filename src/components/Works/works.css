@@ -1,5 +1,5 @@
 .works {
-  min-height: 100vh;
+  min-height: calc(100vh + 2px);
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;

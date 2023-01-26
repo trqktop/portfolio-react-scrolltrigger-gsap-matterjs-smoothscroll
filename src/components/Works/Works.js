@@ -11,7 +11,9 @@ export function Works(props) {
     const elements = useRef(null)
     const timeline_1 = useRef(null)
     const timeline_2 = useRef(null)
-
+    const timeline_3 = useRef(null)
+    const timeline_4 = useRef(null)
+    const timeline_5 = useRef(null)
     useLayoutEffect(() => {
         elements.current = Array.from(elementsContainer.current.childNodes)
         const ctx = gsap.context(() => {
@@ -36,23 +38,26 @@ export function Works(props) {
     }, [])
 
     function hoverListener(e) {
-        const currentElements = elements.current.filter(item => {
-            if (item.id) {
-                if (e.currentTarget.id !== item.id)
-                    return item
-            }
-        })
-        const ctx = gsap.context(() => {
+        // const currentElements = elements.current.filter(item => {
+        //     if (item.id) {
+        //         if (e.currentTarget.id !== item.id)
+        //             return item
+        //     }
+        // })
+        timeline_3.current = gsap.context(() => {
             timeline_2.current = gsap.timeline()
-            timeline_2.current.to(currentElements, {
+            timeline_2.current.to('.works__item', {
                 '-webkit-filter': 'grayscale(100%)',
                 filter: 'grayscale(100%)',
                 scale: .96
             })
-            timeline_2.current.to(e.currentTarget, {
-                boxShadow: "0px 0px 50px rgba(89, 91, 167, .1)",
+            timeline_5.current = gsap.timeline()
+            timeline_5.current.to([e.currentTarget, '.works__item_soon'], {
                 opacity: 1,
-                delay: .1,
+                delay: 0,
+                '-webkit-filter': 'grayscale(0%)',
+                filter: 'grayscale(0%)',
+                scale: 1,
                 ease: 'none',
             })
         }, elementsContainer)
@@ -61,14 +66,19 @@ export function Works(props) {
     }
 
     function hoverLeaveListener(e) {
-        const ctx = gsap.context(() => {
-            const c = gsap.to(elements.current, {
-                opacity: 1,
-                scale: 1,
+        timeline_4.current = gsap.context(() => {
+            timeline_4.current = gsap.timeline()
+            timeline_4.current.to('.works__item', {
                 '-webkit-filter': 'grayscale(0%)',
                 filter: 'grayscale(0%)',
-                boxShadow: 'none',
+                scale: 1,
             })
+            // const c = gsap.to(elements.current, {
+            //     opacity: 1,
+            //     scale: 11,
+            //     '-webkit-filter': 'grayscale(0%)',
+            //     filter: 'grayscale(0%)',
+            // })
         }, elementsContainer)
         // return () => ctx.revert()
     }

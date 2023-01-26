@@ -1,5 +1,5 @@
 .works {
-    min-height: 100vh;
+    min-height: calc(100vh + 2px);
     height: fit-content;
     z-index: 4;
     background-color: inherit;

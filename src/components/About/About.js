@@ -2,14 +2,16 @@ import { useLayoutEffect, useRef } from 'react';
 import './about.css'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger)
+import { CSSRulePlugin } from 'gsap/all';
+
+gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
 
 
 
 
 function clickHandler(gsap, ScrollTrigger, context) {
     const ctx = gsap.context(() => {
-        return gsap.to(window, {
+        gsap.to(window, {
             scrollTo: () => `.footer`,
             duration: 1,
             delay: -1,
@@ -67,15 +69,17 @@ export function About(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-                const a = gsap.to('.about:before', {
-                    y: -1,
+                const about = CSSRulePlugin.getRule('.about:after');
+                timeline_4.current = gsap.timeline()
+                timeline_4.current.to(about, {
+                    x: 1,
                     scrollTrigger: {
                         trigger: '.about',
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom top',
+                        end: 'bottom+=300px top',
                         pinSpacing: false,
-                        scrub: true,
+                        scrub: 2,
                         anticipatePin: true,
                         pinType: 'fixed',
                     }
@@ -268,7 +272,7 @@ export function About(props) {
                             <li className="about__item">
                                 <div className='about__svg-item' style={{ margin: 0 }}></div>
                                 <div className="about__element-text-container">
-                                    <a onClick={() => clickHandler(gsap, ScrollTrigger, panelAbout.current)} className="about__element-resume-link">
+                                    <a onClick={() => clickHandler(gsap, ScrollTrigger, panelAbout)} className="about__element-resume-link">
                                         <p className="about__element-description">Больше подробной
                                             информации в моём резюме</p>
                                         <div className="about__svg-item">
