@@ -3,8 +3,8 @@ import './about.css'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { CSSRulePlugin } from 'gsap/all';
-
-gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
+import CSSPlugin from 'gsap/CSSPlugin';
+gsap.registerPlugin(ScrollTrigger, CSSPlugin, CSSRulePlugin)
 
 
 
@@ -74,15 +74,16 @@ export function About(props) {
                 const about = CSSRulePlugin.getRule('.about:after');
                 timeline_4.current = gsap.timeline()
                 timeline_4.current.to(about, {
-                    x: 1,
+                    y: '1px',
                     scrollTrigger: {
                         trigger: '.about',
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom+=300px top',
+                        end: 'bottom top',
                         pinSpacing: false,
+                        overwrite: 'auto',
                         scrub: 2,
-                        anticipatePin: .1,
+                        anticipatePin: 1,
                         pinType: 'fixed',
                     }
                 })
@@ -90,33 +91,7 @@ export function About(props) {
         });
         return () => timeline_3.current.revert();
     }, [])
-    // useLayoutEffect(() => {
-    //     const ctx = gsap.context(() => {
-    //         const a = gsap.to('.about', {
-    //             boxShadow: '0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08)'
-    //         })
-    //     }, panelAbout)
-    //     return () => ctx.revert()
-    // }, [])
-    // useLayoutEffect(() => {
-    //     const ctx = gsap.context(() => {
-    //         gsap.fromTo('.about__item', {
-    //             opacity: .2,
-    //         }, {
-    //             ease: "none",
-    //             opacity: 1,
-    //             scrollTrigger: {
-    //                 trigger: itemsContainer.current,
-    //                 pinSpacing: false,
-    //                 pin: false,
-    //                 start: 'top bottom',
-    //                 end: ' top top',
-    //                 scrub: true,
-    //             }
-    //         })
-    //     }, panelAbout)
-    //     // return () => ctx.revert()
-    // }, [])
+ 
 
     return (
         <section className='about__ST' ref={panelAbout}>

@@ -36,6 +36,7 @@ export function Greeting(props) {
                         end: 'bottom+=300px top',
                         anticipatePin: true,
                         pinSpacing: false,
+                        overwrite: 'auto',
                         pinType: 'fixed',
                         scrub: true,
                     }

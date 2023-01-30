@@ -7,12 +7,13 @@
     color: inherit;
     z-index: 2;
     width: 100%;
+    margin-bottom: 300px;
 
     &__ST {
         all: inherit;
     }
 
- 
+
 
     &__container {
         padding: 16px;
@@ -47,6 +48,7 @@
 @media screen and(max-width:900px) {
     .greeting {
         height: fit-content;
+        margin: 0;
 
         &__container {
             display: flex;

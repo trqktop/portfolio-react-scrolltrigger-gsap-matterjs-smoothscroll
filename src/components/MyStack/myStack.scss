@@ -1,0 +1,124 @@
+.my-stack {
+    display: block;
+    z-index: 3;
+
+
+    // border-radius: 64px 64px 0px 0px;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        min-width: 100%;
+        min-height: 100vh;
+        height: fit-content;
+        background-color: #1F1F21;
+        border-radius: 64px 64px 0px 0px;
+
+        .my-stach__title {
+            margin: auto;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            display: flex;
+            font-size: 40px;
+            line-height: 48px;
+            font-weight: 600;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            // border-radius: 64px 64px 0px 0px;
+            // box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
+        }
+
+        .my-stack__stack-list {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 200px);
+            justify-content: center;
+            border: 1px rgb(157, 150, 150) solid;
+
+        }
+
+        .my-stack__stack-item {
+            display: block;
+            padding: 50px;
+            border: 1px red solid;
+
+        }
+
+        .my-stack__stack-svg {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+.my-stack__tech-list {
+    display: flex;
+    column-gap: 6px;
+
+    height: fit-content;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+
+    .my-stack__tech-item {
+        display: flex;
+        flex-direction: column;
+        border: 11px red solid;
+        padding-top: 96px;
+        padding-left: 24px;
+        padding-right: 42px;
+        min-height: 436px;
+        background-color: aliceblue;
+        color: #1F1F21;
+
+        .my-stack__tech-item-body {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+            width: 234px;
+        }
+
+
+        .my-stack__tech-item-header {
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 700;
+        }
+
+        .my-stack__tech-item-body {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+        }
+    }
+}
+
+
+
+
+
+
+@media screen and(max-width:900px) {
+    .my-stack {
+        border-radius: 32px 32px 0px 0px;
+    }
+}
+
+@media screen and(max-width:600px) {
+    .my-stack {
+        .my-stack__container {
+            border-radius: 32px 32px 0px 0px;
+        }
+
+    }
+}
+
+
+@media screen and(max-width:412px) {}

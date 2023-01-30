@@ -7,10 +7,10 @@
   background-color: inherit;
   color: inherit;
   position: relative;
-  border-radius: 64px 64px 0px 0px;
   padding: 40px 16px;
   display: flex;
   flex-direction: column;
+  border-radius: 64px 64px 0px 0px;
 }
 .works::before {
   content: "";

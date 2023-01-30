@@ -5,13 +5,12 @@
     background-color: inherit;
     color: inherit;
     position: relative;
-    border-radius: 64px 64px 0px 0px;
+    // border-radius: 64px 64px 0px 0px;
     padding: 40px 16px;
     display: flex;
     flex-direction: column;
-
     // animation: infinitiTransform 99999s infinite forwards;
-
+    border-radius: 64px 64px 0px 0px;
 
     &::before {
         content: '';

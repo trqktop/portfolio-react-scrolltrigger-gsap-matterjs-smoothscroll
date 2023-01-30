@@ -23,12 +23,14 @@ function App() {
     const timeline = useRef(null)
     const context = useRef(null)
 
+
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
 
 
     useLayoutEffect(() => {
+
         SmoothScroll({
             frameRate: 60,
             animationTime: 700,
@@ -37,20 +39,19 @@ function App() {
             pulseScale: 3,
             pulseNormalize: 1,
             accelerationDelta: 50,
-            accelerationMax: 3,
+            accelerationMax: 2,
             keyboardSupport: 1,
             arrowScroll: 20,
             fixedBackground: 0,
             touchpadSupport: true
         })
-
     }, [])
-
+    const ctx = useRef(null)
     useLayoutEffect(() => {
         if (eggVisible) {
-            const ctx = gsap.context(() => {
+            ctx.current = gsap.context(() => {
                 timeline.current = gsap.timeline()
-                timeline.to('.easter_egg-dan', {
+                timeline.current.to('.easter_egg-dan', {
                     yPercent: -200,
                     duration: .5
                 })
@@ -62,7 +63,7 @@ function App() {
                     })
                 return timeline
             }, pageContainer)
-            return () => ctx.revert()
+            return () => ctx.current.revert()
         }
     }, [eggVisible])
 

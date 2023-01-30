@@ -92,6 +92,12 @@ export function Header(props) {
     const [scrollto, scrolltoState] = useState(null)
     const context_2 = useRef(null)
     const timeline_5 = useRef(null)
+
+
+    const timeline_6 = useRef(null)
+    const timeline_7 = useRef(null)
+
+
     useEffect(() => {
         if (scrollto) {
             console.log(scrollto)
@@ -206,9 +212,7 @@ export function Header(props) {
     useLayoutEffect(() => {
         if (windowWidth > 900) {
             context.current = gsap.context(() => {
-
                 timeline_3.current = gsap.timeline()
-
                 timeline_3.current.to('.about', {
                     scrollTrigger: {
                         trigger: '.about',
@@ -221,9 +225,9 @@ export function Header(props) {
                         onEnterBack: (e) => {
                             setCurrentSectionSelector('about')
                         },
-                        onLeave: (e) => {
-                            setCurrentSectionSelector('works')
-                        },
+                        // onLeave: (e) => {
+                        //     setCurrentSectionSelector('works')
+                        // },
                         pin: false,
                     }
                 })
@@ -242,6 +246,29 @@ export function Header(props) {
                         }
                     }
                 })
+
+
+                // timeline_7
+                timeline_6.current = gsap.timeline()
+                timeline_6.current.to('.my-stack', {
+                    scrollTrigger: {
+                        trigger: '.my-stack',
+                        pin: false,
+                        start: "center bottom",
+                        end: 'bottom+=30% bottom',
+                        markers: true,
+                        onEnter: e => {
+                            setCurrentSectionSelector('my-stack')
+                        },
+                        onLeave: () => {
+                            setCurrentSectionSelector('works')
+                        },
+                        onEnterBack: () => {
+                            setCurrentSectionSelector('my-stack')
+                        }
+                    }
+                })
+
             }, pageContainer)
             return () => context.current.revert()
         }
@@ -265,6 +292,8 @@ export function Header(props) {
                         onMouseLeave={() => setHoverState(false)}>
                         <li className='header__menu-item'><a className='header__menu-link' id='about'
                             onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>О себе</a></li>
+                        <li className='header__menu-item'><a className='header__menu-link' id='my-stack'
+                            onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>Мои cтэк</a></li>
                         <li className='header__menu-item' ><a className='header__menu-link' id='works'
                             onMouseLeave={leaveHoverElementHandler} onMouseEnter={(e) => setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElement, headerMenuRect, hoverMenuItem, setHoverState, gsap)}>Мои работы</a></li>
                         <li className='header__menu-item' ><a className='header__menu-link' id='footer'
