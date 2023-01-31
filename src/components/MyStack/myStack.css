@@ -14,6 +14,7 @@
   background-color: #1F1F21;
   border-radius: 64px 64px 0px 0px;
   padding-bottom: 60px;
+  position: relative;
 }
 .my-stack__container .my-stach__title {
   margin: auto;
@@ -51,9 +52,9 @@
   border-style: solid;
   border-color: #69707D;
   margin: -1px;
-  position: relative;
 }
 .my-stack__container .my-stack__stack-svg {
+  display: block;
   width: 100px;
   height: 100px;
 }

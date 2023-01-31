@@ -1,5 +1,6 @@
 import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
+
 import './myStack.css'
 export function MyStack(props) {
     const refContainer = useRef(null)
@@ -19,9 +20,7 @@ export function MyStack(props) {
         }, (context) => {
             let { isDesktop, isMobile } = context.conditions;
             if (isDesktop) {
-                timeline2.current = gsap.timeline()
-                timeline2.current.to(section.current, {
-                    y: '1px',
+                timeline2.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: section.current,
                         pin: true,
@@ -35,6 +34,12 @@ export function MyStack(props) {
                         pinType: 'fixed',
                     }
                 })
+                timeline2.current.to(section.current, {
+                    y: 1,
+                })
+
+
+
                 timeline_3.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: '.my-stack__stack-item',
@@ -48,28 +53,34 @@ export function MyStack(props) {
                     }
                 })
                 timeline_3.current.fromTo('.my-stack__stack-svg', {
-                    scale: .3,
+                    scale: .8,
                 }, {
                     scale: 1,
                 })
-                const elements = Array.from(techPanel.current.childNodes)
-                elements.forEach((el, i) => {
-                    timeline_3.current.fromTo(el, {
-                        // yPercent: 100,
-                        opacity: 0,
-                        scaleY: -1,
-                    }, {
-                        // yPercent: 0,
-                        scaleY: 1,
-                        opacity: 1,
-                        duration: .2
-                    })
-                })
-                // timeline_3.current.fromTo('.my-stack__tech-item', {
+
+                // const elements = Array.from(techPanel.current.childNodes)
+                // timeline_3.current.fromTo(elements[0], {
                 //     yPercent: 100
                 // }, {
-                //     yPercent: 0
-                // }, '+=1')
+                //     yPercent: 0,
+                // })
+                // timeline_3.current.fromTo(elements[1], {
+                //     yPercent: 100
+                // }, {
+                //     yPercent: 0,
+                // })
+                // timeline_3.current.fromTo(elements[2], {
+                //     yPercent: 100
+                // }, {
+                //     yPercent: 0,
+                // })
+                // timeline_3.current.fromTo(elements[0], {
+                //     yPercent: 100
+                // }, {
+                //     yPercent: 0,
+                // })
+
+
             }
             if (isMobile) {
                 timeline2.current = gsap.timeline({
@@ -92,63 +103,18 @@ export function MyStack(props) {
                 })
                 timeline2.current.from(techPanel.current, { y: 600 })
 
-                // .fromTo(techPanel.current, {
-                //     y: '+100%',
-                // }, {
-                //     x: 0,
-                //     // scrollTrigger: {
-                //     //     trigger: techPanel.current,
-                //     //     pin: true,
-                //     //     start: "top top",
-                //     //     end: () => '+=' + '100%',
-                //     //     pinSpacing: true,
-                //     //     overwrite: 'auto',
-                //     //     scrub: 1,
-                //     //     anticipatePin: 1,
-                //     //     pinType: 'fixed',
-                //     // }
-                // })
             }
         });
         return () => matchMedia.current.revert();
     }, [])
 
 
-    // const context_3 = useRef(null)
-    // const timeline3 = useRef(null)
-    // useLayoutEffect(() => {
-    //     context_3.current = gsap.context(() => {
-    //         timeline3.current = gsap.timeline()
-    //         timeline3.current.fromTo(xScrollElements.current, {
-    //             x: -2000,
-    //             y: 0
-    //         }, {
-    //             x: 0,
-    //             y: 0,
-    //             scrollTrigger: {
-    //                 trigger: section.current,
-    //                 // markers: true,
-    //                 pin: true,
-    //                 start: "top top",
-    //                 end: 'bottom',
-    //                 pinSpacing: true,
-    //                overwrite: 'auto',
-    //                 scrub: 2,
-    //                 // anticipatePin: 1,
-    //                 markers: true,
-    //                 pinType: 'fixed',
-    //             }
-    //         })
-    //     })
-    //     return () => context_3.current.revert();
-    // }, [])
-
 
     return (
         <section className='my-stack' ref={refContainer}>
             <div className='my-stack__container' ref={section}>
                 <h3 className='my-stach__title'>Мой стэк</h3>
-                <ul className='my-stack__stack-list' ref={xScrollElements}>
+                <ul className='my-stack__stack-list' ref={xScrollElements} >
                     <li className='my-stack__stack-item'>
                         <svg className='my-stack__stack-svg' xmlns="http://www.w3.org/2000/svg" fill="#E34F26" role="img" viewBox="0 0 24 24"><title>HTML5</title><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" /></svg>
                     </li>
@@ -180,7 +146,6 @@ export function MyStack(props) {
                         <svg className='my-stack__stack-svg' xmlns="http://www.w3.org/2000/svg" fill="#000000" role="img" viewBox="0 0 24 24"><title>BEM</title><path d="M0 5.163h5.61v1.65H0Zm0-3.065h5.61v1.65H0Zm10.067 6.106H0v1.65h9.69c1.06 0 3.536.024 4.455 1.51v-.92c-.448-1.462-1.768-2.24-4.078-2.24Zm.023 3.065H0v1.65h9.69c2.357 0 3.842.095 4.455.425v-.731c-.471-1.155-2.451-1.344-4.055-1.344Zm-.023 7.78H0V17.4h9.69c1.06 0 3.536-.024 4.455-1.509v.92c-.448 1.461-1.768 2.24-4.078 2.24zm.023-3.065H0v-1.65h9.69c2.357 0 3.842-.094 4.455-.424v.73c-.471 1.156-2.451 1.344-4.055 1.344zm6.507 5.918H24v-1.014h-7.19c-.637 0-2.146-.023-2.688-.896v.566c.26.872 1.06 1.344 2.475 1.344zm-.023-1.863h7.403v-1.013H16.81c-1.439 0-2.334-.047-2.688-.26v.448c.283.708 1.485.825 2.452.825z" /></svg>
                     </li>
                 </ul>
-
 
                 <ul className='my-stack__tech-list' ref={techPanel}>
                     <li className='my-stack__tech-item my-stack__tech-item_pink'>

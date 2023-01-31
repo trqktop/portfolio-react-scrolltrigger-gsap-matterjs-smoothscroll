@@ -3,6 +3,8 @@
     z-index: 3;
     padding-bottom: 50px;
 
+
+
     // border-radius: 64px 64px 0px 0px;
     &__container {
         display: flex;
@@ -13,6 +15,7 @@
         background-color: #1F1F21;
         border-radius: 64px 64px 0px 0px;
         padding-bottom: 60px;
+        position: relative;
 
 
         .my-stach__title {
@@ -35,7 +38,8 @@
             min-width: 100%;
             min-height: 100%;
             // border-radius: 64px 64px 0px 0px;
-            // box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
+            box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
+
         }
 
         .my-stack__stack-list {
@@ -44,6 +48,7 @@
             display: grid;
             grid-template-columns: repeat(5, 200px);
             overflow: hidden;
+
         }
 
         .my-stack__stack-item {
@@ -54,13 +59,17 @@
             border-style: solid;
             border-color: #69707D;
             margin: -1px;
-            position: relative;
+
+
         }
 
         .my-stack__stack-svg {
+            display: block;
             width: 100px;
             height: 100px;
         }
+
+
     }
 }
 
@@ -75,6 +84,7 @@
     justify-content: center;
     margin-top: 40px;
 
+
     .my-stack__tech-item {
         display: flex;
         flex-direction: column;
@@ -85,6 +95,7 @@
         background-color: aliceblue;
         color: #1F1F21;
         border-radius: 16px;
+
 
         &_pink {
             background: #E8B5D4;

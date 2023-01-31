@@ -72,9 +72,7 @@ export function About(props) {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
                 const about = CSSRulePlugin.getRule('.about:after');
-                timeline_4.current = gsap.timeline()
-                timeline_4.current.to(about, {
-                    y: '1px',
+                timeline_4.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: '.about',
                         pin: true,
@@ -83,16 +81,19 @@ export function About(props) {
                         pinSpacing: false,
                         overwrite: 'auto',
                         fastScrollEnd: true,
-                        scrub: 2,
+                        scrub: 1,
                         anticipatePin: 1,
                         pinType: 'fixed',
                     }
+                })
+                timeline_4.current.to(about, {
+                    y: '1px',
                 })
             }
         });
         return () => timeline_3.current.revert();
     }, [])
- 
+
 
     return (
         <section className='about__ST' ref={panelAbout}>
