@@ -16,7 +16,7 @@ export function Greeting(props) {
     const context = useRef(null)
     const context_2 = useRef(null)
     const context_3 = useRef(null)
-    
+
     useLayoutEffect(() => {
         timeline_2.current = gsap.matchMedia();
         const breakPoint = 900;
@@ -39,6 +39,7 @@ export function Greeting(props) {
                         overwrite: 'auto',
                         pinType: 'fixed',
                         scrub: true,
+                        fastScrollEnd: true,
                     }
                 });
             }

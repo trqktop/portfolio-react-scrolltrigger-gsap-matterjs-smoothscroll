@@ -100,7 +100,6 @@ export function Header(props) {
 
     useEffect(() => {
         if (scrollto) {
-            console.log(scrollto)
             context_2.current = gsap.context(() => {
                 const elementId = scrollto.target.id
                 if (elementId) {
@@ -256,7 +255,7 @@ export function Header(props) {
                         pin: false,
                         start: "center bottom",
                         end: 'bottom+=30% bottom',
-                        markers: true,
+                        // markers: true,
                         onEnter: e => {
                             setCurrentSectionSelector('my-stack')
                         },

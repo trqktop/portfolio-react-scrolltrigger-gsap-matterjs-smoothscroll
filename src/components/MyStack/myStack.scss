@@ -1,7 +1,7 @@
 .my-stack {
     display: block;
     z-index: 3;
-
+    padding-bottom: 50px;
 
     // border-radius: 64px 64px 0px 0px;
     &__container {
@@ -12,6 +12,8 @@
         height: fit-content;
         background-color: #1F1F21;
         border-radius: 64px 64px 0px 0px;
+        padding-bottom: 60px;
+
 
         .my-stach__title {
             margin: auto;
@@ -21,6 +23,8 @@
             font-size: 40px;
             line-height: 48px;
             font-weight: 600;
+            font-family: "Inter-SemiBold";
+            color: white;
         }
 
         &:after {
@@ -35,19 +39,22 @@
         }
 
         .my-stack__stack-list {
-            width: 100%;
+            max-width: fit-content;
+            margin: auto;
             display: grid;
             grid-template-columns: repeat(5, 200px);
-            justify-content: center;
-            border: 1px rgb(157, 150, 150) solid;
-
+            overflow: hidden;
         }
 
         .my-stack__stack-item {
             display: block;
             padding: 50px;
-            border: 1px red solid;
-
+            border: 1px solid #69707D;
+            border-width: 0px 1px 1px 0px;
+            border-style: solid;
+            border-color: #69707D;
+            margin: -1px;
+            position: relative;
         }
 
         .my-stack__stack-svg {
@@ -57,10 +64,12 @@
     }
 }
 
+
+
 .my-stack__tech-list {
     display: flex;
     column-gap: 6px;
-
+    row-gap: 12px;
     height: fit-content;
     flex-wrap: wrap;
     justify-content: center;
@@ -69,13 +78,29 @@
     .my-stack__tech-item {
         display: flex;
         flex-direction: column;
-        border: 11px red solid;
         padding-top: 96px;
         padding-left: 24px;
         padding-right: 42px;
         min-height: 436px;
         background-color: aliceblue;
         color: #1F1F21;
+        border-radius: 16px;
+
+        &_pink {
+            background: #E8B5D4;
+        }
+
+        &_yellow {
+            background: #D4E86D;
+        }
+
+        &_orange {
+            background: #F5BF41;
+        }
+
+        &_white {
+            background: #FEFAF7;
+        }
 
         .my-stack__tech-item-body {
             margin-top: 16px;
@@ -90,9 +115,11 @@
             font-size: 24px;
             line-height: 29px;
             font-weight: 700;
+            font-family: 'Inter-Bold';
         }
 
         .my-stack__tech-item-body {
+            font-family: 'Inter-Regular';
             font-weight: 400;
             font-size: 14px;
             line-height: 17px;
@@ -103,11 +130,22 @@
 
 
 
-
+@media screen and(max-width:1024px) {
+    .my-stack {
+        .my-stack__stack-list {
+            grid-template-columns: repeat(4, 200px);
+        }
+    }
+}
 
 @media screen and(max-width:900px) {
     .my-stack {
         border-radius: 32px 32px 0px 0px;
+        padding-bottom: 0;
+
+        .my-stack__stack-list {
+            grid-template-columns: repeat(3, 200px);
+        }
     }
 }
 
@@ -115,6 +153,16 @@
     .my-stack {
         .my-stack__container {
             border-radius: 32px 32px 0px 0px;
+            overflow: visible;
+
+            .my-stack__stack-list {
+                overflow: visible;
+                display: flex;
+
+                .my-stack__stack-item {
+                    border-width: 0px 1px 0px 1px;
+                }
+            }
         }
 
     }

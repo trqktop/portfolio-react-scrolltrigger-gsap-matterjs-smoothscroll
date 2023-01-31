@@ -82,6 +82,7 @@ export function About(props) {
                         end: 'bottom top',
                         pinSpacing: false,
                         overwrite: 'auto',
+                        fastScrollEnd: true,
                         scrub: 2,
                         anticipatePin: 1,
                         pinType: 'fixed',
