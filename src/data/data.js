@@ -3,8 +3,34 @@ import howToLearnLink from '../images/works/how-to-learn-plus.png'
 import mestoLink from '../images/works/mesto-project.png'
 import russiaTravelLink from '../images/works/russian-travel.png'
 import portfolioLink from '../images/works/portfolio.png'
-
+import reactCalc from '../images/works/react-calculator.png'
 export const data = [
+    {
+        projectName: 'react-calculator',
+        title: 'calculator',
+        projectTheme: 'Тема проекта «Калькулятор на Реакт»',
+        description: 'Простенький калькулятор выполненый на React с использованием хука useContext, без использования eval',
+        tech: [
+            'react',
+            'useContext',
+            'scss',
+            "HTML5",
+            "CSS3",
+            "Flexbox",
+            'regexp'
+        ],
+        gitHubPage: 'https://trqktop.github.io/react-calculator/',
+        repository: 'https://github.com/trqktop/react-calculator',
+        newKnowledge: [
+            "useContext",
+            'eval',
+            "useContext",
+        ],
+        images: reactCalc
+    },
+
+
+
     {
         projectName: 'portfolio',
         title: 'portfolio',

@@ -38,8 +38,6 @@ export function MyStack(props) {
                     y: 1,
                 })
 
-
-
                 timeline_3.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: '.my-stack__stack-item',

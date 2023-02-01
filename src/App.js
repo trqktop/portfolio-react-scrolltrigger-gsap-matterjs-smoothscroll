@@ -22,30 +22,31 @@ function App() {
     const DanImg = useRef(null)
     const timeline = useRef(null)
     const context = useRef(null)
-
+    const ctx = useRef(null)
 
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
 
+    useEffect(() => {
+        SmoothScroll({
+            frameRate: 60,
+            animationTime: 700,
+            stepSize: 75,
+            pulseAlgorithm: 1,
+            pulseScale: 3,
+            pulseNormalize: 1,
+            accelerationDelta: 50,
+            accelerationMax: 2,
+            keyboardSupport: 1,
+            arrowScroll: 20,
+            fixedBackground: 0,
+            touchpadSupport: true
+        })
+    }, [])
 
-    // useLayoutEffect(() => {
-    //     SmoothScroll({
-    //         frameRate: 60,
-    //         animationTime: 700,
-    //         stepSize: 75,
-    //         pulseAlgorithm: 1,
-    //         pulseScale: 3,
-    //         pulseNormalize: 1,
-    //         accelerationDelta: 50,
-    //         accelerationMax: 2,
-    //         keyboardSupport: 1,
-    //         arrowScroll: 20,
-    //         fixedBackground: 0,
-    //         touchpadSupport: true
-    //     })
-    // }, [])
-    const ctx = useRef(null)
+
+  
     useLayoutEffect(() => {
         if (eggVisible) {
             ctx.current = gsap.context(() => {
