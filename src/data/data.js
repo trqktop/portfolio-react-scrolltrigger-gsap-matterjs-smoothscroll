@@ -6,10 +6,10 @@ import portfolioLink from '../images/works/portfolio.png'
 import reactCalc from '../images/works/react-calculator.png'
 export const data = [
     {
-        projectName: 'react-calculator',
-        title: 'calculator',
+        projectName: 'React-calculator',
+        title: 'Calculator',
         projectTheme: 'Тема проекта «Калькулятор на Реакт»',
-        description: 'Простенький калькулятор выполненый на React с использованием хука useContext, без использования eval',
+        description: 'Простенький калькулятор выполненный на React с использованием хука useContext, без eval',
         tech: [
             'react',
             'useContext',

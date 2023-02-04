@@ -27,15 +27,6 @@
   font-family: "Inter-SemiBold";
   color: white;
 }
-.my-stack__container:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
-}
 .my-stack__container .my-stack__stack-list {
   max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
@@ -75,13 +66,14 @@
 .my-stack__tech-list .my-stack__tech-item {
   display: flex;
   flex-direction: column;
-  padding-top: 96px;
   padding-left: 24px;
   padding-right: 42px;
   min-height: 436px;
   background-color: aliceblue;
   color: #1F1F21;
   border-radius: 16px;
+  padding-top: 27px;
+  row-gap: 24px;
 }
 .my-stack__tech-list .my-stack__tech-item_pink {
   background: #E8B5D4;
@@ -97,22 +89,31 @@
 }
 .my-stack__tech-list .my-stack__tech-item .my-stack__tech-item-body {
   margin-top: 16px;
+  padding-bottom: 42px;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
-  width: 234px;
+  width: 268px;
+  text-indent: -1.5em;
+  padding-left: 1.5em;
+  list-style: disc;
+  list-style-position: inside;
 }
 .my-stack__tech-list .my-stack__tech-item .my-stack__tech-item-header {
-  font-size: 24px;
-  line-height: 29px;
   font-weight: 700;
   font-family: "Inter-Bold";
+  font-size: 32px;
+  line-height: 39px;
 }
 .my-stack__tech-list .my-stack__tech-item .my-stack__tech-item-body {
   font-family: "Inter-Regular";
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  margin: 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -125,19 +126,45 @@
     border-radius: 32px 32px 0px 0px;
     padding-bottom: 0;
   }
+  .my-stack .my-stack__container {
+    border-radius: 0;
+  }
   .my-stack .my-stack__stack-list {
     grid-template-columns: repeat(3, 200px);
   }
 }
 @media screen and (max-width: 600px) {
   .my-stack .my-stack__container {
-    border-radius: 32px 32px 0px 0px;
-    overflow: visible;
+    overflow: hidden;
   }
   .my-stack .my-stack__container .my-stack__stack-list {
-    display: none;
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: -20px;
+    padding-bottom: 56px;
+  }
+  .my-stack .my-stack__container .my-stack__stack-list .my-stack__stack-item {
+    padding: 37px;
+    border-bottom: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .my-stack .my-stack__container .my-stack__stack-list .my-stack__stack-item .my-stack__stack-svg {
+    display: flex;
+    width: 75px;
+    height: 75px;
+  }
+  .my-stack .my-stack__container .my-stack__tech-list {
+    z-index: 3;
+    margin: 0;
   }
   .my-stack .my-stack__tech-item {
     width: 100%;
+  }
+  .my-stack .my-stach__title {
+    margin-top: 36px;
+    margin-bottom: 36px;
   }
 }/*# sourceMappingURL=myStack.css.map */

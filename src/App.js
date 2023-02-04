@@ -12,7 +12,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmoothScroll from 'smoothscroll-for-websites'
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SmoothScroll);
 
 
 function App() {
@@ -27,10 +27,10 @@ function App() {
     SmoothScroll({
         animationTime: 1900,
         stepSize: 75,
-        pulseAlgorithm: true,
-        pulseScale: 4,
-        pulseNormalize: 1,
+        touchpadSupport: true,
     })
+
+
 
 
     useEffect(() => {

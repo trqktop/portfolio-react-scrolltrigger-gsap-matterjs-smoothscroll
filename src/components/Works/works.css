@@ -49,6 +49,7 @@
 @media screen and (max-width: 900px) {
   .works {
     padding: 40px 6px;
+    margin-top: -32px;
   }
   .works__container {
     max-width: 100%;
@@ -62,12 +63,23 @@
   .works {
     border-radius: 32px 32px 0px 0px;
   }
+  .works::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: none;
+    box-shadow: none;
+  }
   .works .works__title {
     font-size: 32px;
     line-height: 39px;
   }
   .works__container .works__list {
     grid-template-columns: repeat(1, 338px);
+    row-gap: 16px;
   }
   .works .works__item_soon .works__item-comming-soon {
     font-size: 18px;

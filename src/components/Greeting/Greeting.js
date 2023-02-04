@@ -39,8 +39,9 @@ export function Greeting(props) {
                         trigger: '.greeting',
                         pin: true,
                         start: "top top",
-                        end: 'bottom+=300px top',
+                        end: 'bottom+=299px top',
                         anticipatePin: .5,
+                        fastScrollEnd: true,
                         pinSpacing: false,
                         overwrite: 'auto',
                         onEnterBack: () => {
@@ -57,16 +58,16 @@ export function Greeting(props) {
                         scrub: 2,
                         // fastScrollEnd: true,
                     }
-                });
+                })
             }
             if (isMobile) {
-                timeline_3.current = gsap.timeline()
-                timeline_3.current.fromTo('.greeting', {
-                    yPercent: 100,
-                }, {
-                    yPercent: 2,
-                    delay: 2.5
-                })
+                // timeline_3.current = gsap.timeline({})
+                // timeline_3.current.fromTo('.greeting', {
+                //     yPercent: 100,
+                // }, {
+                //     yPercent: 2,
+                //     delay: 2.5
+                // })
             }
         });
         return () => timeline_2.current.revert();
@@ -109,9 +110,9 @@ export function Greeting(props) {
         <section className='greeting__ST' ref={panelGreeting}>
             <div className='greeting' >
                 <article className='greeting__container'>
-                    <span className='greeting__text'>Привет! Меня зовут Павел Ширин.</span>
-                    <span className='greeting__text'> Я начинающий Frontend-разработчик и это — мой сайт портфолио.</span>
-                    <span className='greeting__text'>Дайте мне минутку рассказать о себе</span>
+                    <span className='greeting__text'>Привет! Меня зовут Павел&nbsp;Ширин.</span>
+                    <span className='greeting__text'> Я Frontend-разработчик и это — мой сайт портфолио.</span>
+                    {/* <span className='greeting__text'>Дайте мне минутку рассказать о себе</span> */}
                     <svg className='greeting__cat-svg' xmlns="http://www.w3.org/2000/svg" width="198" height="166" viewBox="0 0 198 166" fill="none">
                         <g>
                             <g >

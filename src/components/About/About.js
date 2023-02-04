@@ -93,7 +93,7 @@ export function About(props) {
                             timeline_1.current.play()
                         },
                         scrub: 2,
-                        anticipatePin: .5,
+                        anticipatePin: .1,
                         pinType: 'fixed',
                     }
                 })
@@ -114,22 +114,24 @@ export function About(props) {
                 })
             }
             if (isMobile) {
-                const elements = Array.from(itemsContainer.current.childNodes)
-                elements.forEach(el => {
-                    timeline_5.current = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top bottom',
-                            end: '200px bottom',
-                            once: true,
-                            scrub: false
-                        }
-                    })
-                    timeline_5.current.from(el, {
-                        yPercent: 100, autoAlpha: 0,
-                        duration: .6
-                    })
-                })
+                // const elements = Array.from(itemsContainer.current.childNodes)
+                // elements.forEach(el => {
+                //     timeline_5.current = gsap.timeline({
+                //         scrollTrigger: {
+                //             trigger: el,
+                //             start: 'top bottom',
+                //             // end: '200px bottom',
+                //             pin: false,
+                //             pinSpacing: false,
+                //             once: true,
+                //             scrub: false,
+                //         }
+                //     })
+                //     timeline_5.current.from(el, {
+                //         yPercent: 100, autoAlpha: 0,
+                //         duration: .6
+                //     })
+                // })
             }
         });
         return () => timeline_3.current.revert();

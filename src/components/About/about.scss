@@ -127,9 +127,11 @@
 
 
 @media screen and(max-width:900px) {
+    .about__ST {
+        z-index: 2;
+    }
+
     .about {
-
-
         &__container {
             display: flex;
             flex-direction: column-reverse;
@@ -174,16 +176,18 @@
 @media screen and(max-width:600px) {
     .about__ST {
         border-radius: 32px 32px 0px 0px;
-    }
 
-    .about {
-        border-radius: 32px 32px 0px 0px;
-        transform: translateY(24px);
-
-        &:after {
+        .about {
             border-radius: 32px 32px 0px 0px;
+
+            &:after {
+                border-radius: 32px 32px 0px 0px;
+            }
         }
+
     }
+
+
 }
 
 

@@ -65,6 +65,7 @@
 @media screen and(max-width:900px) {
     .works {
         padding: 40px 6px;
+        margin-top: -32px;
 
         &__container {
             max-width: 100%;
@@ -81,6 +82,17 @@
     .works {
         border-radius: 32px 32px 0px 0px;
 
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: none;
+            box-shadow: none;
+        }
+
         .works__title {
             font-size: 32px;
             line-height: 39px;
@@ -89,6 +101,7 @@
         &__container {
             .works__list {
                 grid-template-columns: repeat(1, 338px);
+                row-gap: 16px;
             }
         }
 

@@ -29,7 +29,7 @@ export function MyStack(props) {
                         start: "bottom bottom",
                         end: 'bottom+=300px top',
                         pinSpacing: false,
-                        // fastScrollEnd: true,
+                        fastScrollEnd: true,
                         overwrite: 'auto',
                         scrub: 2,
                         anticipatePin: .5,
@@ -62,6 +62,7 @@ export function MyStack(props) {
                         scrollTrigger: {
                             trigger: techPanel.current,
                             start: 'top bottom',
+                            fastScrollEnd: true,
                             once: true,
                             scrub: false
                         }
@@ -138,6 +139,9 @@ export function MyStack(props) {
 
                 <ul className='my-stack__tech-list' ref={techPanel}>
                     <li className='my-stack__tech-item my-stack__tech-item_pink'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 0L27.516 12.0255L36.9754 3.80992L33.4318 15.8273L45.8312 14.03L36.353 22.2239L47.7557 27.4156L35.3522 29.1844L42.138 39.7167L30.7472 34.4988L30.7616 47.0278L24 36.48L17.2384 47.0278L17.2528 34.4988L5.86201 39.7167L12.6478 29.1844L0.244286 27.4156L11.647 22.2239L2.16883 14.03L14.5682 15.8273L11.0246 3.80992L20.484 12.0255L24 0Z" fill="#1F1F21" />
+                        </svg>
                         <h6 className='my-stack__tech-item-header'>HTML5:</h6>
                         <ul className='my-stack__tech-item-body'>
                             <li className='my-stack__tech-item-el'>Хорошо знаю HTML5;</li>
@@ -146,6 +150,9 @@ export function MyStack(props) {
                         </ul>
                     </li>
                     <li className='my-stack__tech-item my-stack__tech-item_yellow'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                            <path d="M19.2585 1.53518C19.9357 -0.123518 22.2845 -0.12352 22.9617 1.53517L27.7504 13.2641C27.9536 13.7617 28.3484 14.1566 28.846 14.3597L40.5749 19.1484C42.2336 19.8256 42.2336 22.1744 40.5749 22.8516L28.846 27.6403C28.3484 27.8434 27.9536 28.2383 27.7504 28.7359L22.9617 40.4648C22.2845 42.1235 19.9357 42.1235 19.2585 40.4648L14.4698 28.7359C14.2667 28.2383 13.8718 27.8434 13.3742 27.6403L1.64528 22.8516C-0.0134108 22.1744 -0.0134127 19.8256 1.64528 19.1484L13.3742 14.3597C13.8718 14.1566 14.2667 13.7617 14.4698 13.2641L19.2585 1.53518Z" fill="#1F1F21" />
+                        </svg>
                         <h6 className='my-stack__tech-item-header'>CSS3:</h6>
                         <ul className='my-stack__tech-item-body'>
                             <li className='my-stack__tech-item-el'>Придерживаюсь принципов отзывчивого веб-дизайна;</li>
@@ -157,6 +164,9 @@ export function MyStack(props) {
                         </ul>
                     </li>
                     <li className='my-stack__tech-item my-stack__tech-item_orange'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M23.5343 35.7334C32.2327 35.7333 39.2841 28.6818 39.2841 19.9834C39.2841 11.2849 32.2325 4.2334 23.5341 4.2334V12.1086C14.8357 12.1087 7.7843 19.1602 7.7843 27.8586C7.7843 36.5571 14.8358 43.6086 23.5343 43.6086V35.7334Z" fill="#1F1F21" />
+                        </svg>
                         <h6 className='my-stack__tech-item-header'>JavaScript:</h6>
                         <ul className='my-stack__tech-item-body'>
                             <li className='my-stack__tech-item-el'>ES6;</li>
@@ -170,6 +180,12 @@ export function MyStack(props) {
                         </ul>
                     </li>
                     <li className='my-stack__tech-item my-stack__tech-item_white'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                            <path d="M0 18.8125H42V23.1875H0V18.8125Z" fill="#1F1F21" />
+                            <path d="M23.1875 1.91237e-07L23.1875 42H18.8125L18.8125 0L23.1875 1.91237e-07Z" fill="#1F1F21" />
+                            <path d="M37.396 7.69759L7.69751 37.3961L4.60392 34.3025L34.3024 4.60399L37.396 7.69759Z" fill="#1F1F21" />
+                            <path d="M34.3024 37.3961L4.60393 7.69762L7.69752 4.60403L37.396 34.3025L34.3024 37.3961Z" fill="#1F1F21" />
+                        </svg>
                         <h6 className='my-stack__tech-item-header'>Tools:</h6>
                         <ul className='my-stack__tech-item-body'>
                             <li className='my-stack__tech-item-el'>Figma;</li>

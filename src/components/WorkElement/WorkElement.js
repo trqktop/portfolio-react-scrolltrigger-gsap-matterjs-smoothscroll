@@ -24,20 +24,20 @@ export function WorkElement(props) {
         }, (context) => {
             let { isDesktop, isMobile, reduceMotion } = context.conditions;
             if (isMobile) {
-                timeline.current = gsap.timeline()
-                timeline.current.to(el.current, {
-                    scrollTrigger: {
-                        trigger: el.current,
-                        pinSpacing: false,
-                        pin: false,
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => setHoverState(true),
-                        onEnterBack: () => setHoverState(true),
-                        onLeave: () => setHoverState(false),
-                        onLeaveBack: () => setHoverState(false),
-                    }
-                })
+                // timeline.current = gsap.timeline()
+                // timeline.current.to(el.current, {
+                //     scrollTrigger: {
+                //         trigger: el.current,
+                //         pinSpacing: false,
+                //         pin: false,
+                //         start: "center center",
+                //         end: "+=100",
+                //         onEnter: () => setHoverState(true),
+                //         onEnterBack: () => setHoverState(true),
+                //         onLeave: () => setHoverState(false),
+                //         onLeaveBack: () => setHoverState(false),
+                //     }
+                // })
             }
         })
         // }, elementsContainer)
