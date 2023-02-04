@@ -41,7 +41,7 @@ export function Greeting(props) {
                         start: "top top",
                         end: 'bottom+=299px top',
                         anticipatePin: .5,
-                        fastScrollEnd: true,
+                        // fastScrollEnd: true,
                         pinSpacing: false,
                         overwrite: 'auto',
                         onEnterBack: () => {

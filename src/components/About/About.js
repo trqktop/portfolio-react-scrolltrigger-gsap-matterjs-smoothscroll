@@ -80,7 +80,7 @@ export function About(props) {
                         trigger: '.about',
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom+=300px top',
+                        end: 'bottom+=350px top',
                         pinSpacing: false,
                         overwrite: 'auto',
                         // fastScrollEnd: true,

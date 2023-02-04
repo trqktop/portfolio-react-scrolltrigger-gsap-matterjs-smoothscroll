@@ -89,8 +89,12 @@
   position: fixed;
   top: 16px;
   pointer-events: none;
-  width: 350px;
+  width: 463px;
+  border: 11px red solid;
   height: 50px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  clip: rect(auto, auto, auto, -1px);
   border-radius: 24px;
   visibility: hidden;
 }

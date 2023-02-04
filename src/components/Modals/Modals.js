@@ -116,9 +116,7 @@ export default function Modals(props) {
                             </li>
                         </ul>
                     </div>
-
                 </div>
-
             </div>
         ), modalRoot
     )

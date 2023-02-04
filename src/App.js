@@ -25,7 +25,7 @@ function App() {
     const context = useRef(null)
     const ctx = useRef(null)
     SmoothScroll({
-        animationTime: 1900,
+        animationTime: 1100,
         stepSize: 75,
         touchpadSupport: true,
     })
