@@ -26,9 +26,11 @@ export function Greeting(props) {
         const breakPoint = 900;
         timeline_2.current.add({
             isDesktop: `(min-width: ${breakPoint}px)`,
+            isMobile: `(max-width: ${breakPoint - 1}px)`,
             all: `(min-width: ${222}px)`,
         }, (context) => {
             let { isDesktop } = context.conditions;
+            let { isMobile } = context.conditions;
             if (isDesktop) {
                 timeline_3.current = gsap.timeline()
                 timeline_3.current.to('.greeting', {
@@ -56,6 +58,15 @@ export function Greeting(props) {
                         // fastScrollEnd: true,
                     }
                 });
+            }
+            if (isMobile) {
+                timeline_3.current = gsap.timeline()
+                timeline_3.current.fromTo('.greeting', {
+                    yPercent: 100,
+                }, {
+                    yPercent: 2,
+                    delay: 2.5
+                })
             }
         });
         return () => timeline_2.current.revert();

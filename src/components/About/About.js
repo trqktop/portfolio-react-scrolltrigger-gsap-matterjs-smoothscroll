@@ -70,8 +70,10 @@ export function About(props) {
         const breakPoint = 900;
         timeline_3.current.add({
             isDesktop: `(min-width: ${breakPoint}px)`,
+            isMobile: `(max-width: ${breakPoint - 1}px)`,
         }, (context) => {
             let { isDesktop } = context.conditions;
+            let { isMobile } = context.conditions;
             if (isDesktop) {
                 timeline_4.current = gsap.timeline({
                     scrollTrigger: {
@@ -103,6 +105,24 @@ export function About(props) {
                             start: 'top bottom',
                             end: '200px bottom',
                             once: true
+                        }
+                    })
+                    timeline_5.current.from(el, {
+                        yPercent: 100, autoAlpha: 0,
+                        duration: .6
+                    })
+                })
+            }
+            if (isMobile) {
+                const elements = Array.from(itemsContainer.current.childNodes)
+                elements.forEach(el => {
+                    timeline_5.current = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top bottom',
+                            end: '200px bottom',
+                            once: true,
+                            scrub: false
                         }
                     })
                     timeline_5.current.from(el, {

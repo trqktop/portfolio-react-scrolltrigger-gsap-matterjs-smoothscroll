@@ -77,23 +77,21 @@ export function MyStack(props) {
                 })
             }
             if (isMobile) {
-                timeline2.current = gsap.timeline()
-
-                timeline2.current.to(xScrollElements.current, {
-                    x: () => -(xScrollElements.current.scrollWidth - document.documentElement.clientWidth) + "px",
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: xScrollElements.current,
-                        pin: true,
-                        start: 'center center',
-                        invalidateOnRefresh: true,
-                        pinSpacing: true,
-                        scrub: 1,
-                        snap: false,
-                        end: () => "+=" + xScrollElements.current.offsetWidth
-                    }
-                })
-                timeline2.current.from(techPanel.current, { y: 600 })
+                // timeline2.current = gsap.timeline()
+                // timeline2.current.to(xScrollElements.current, {
+                //     x: () => -(xScrollElements.current.scrollWidth - document.documentElement.clientWidth) + "px",
+                //     ease: "none",
+                //     scrollTrigger: {
+                //         trigger: xScrollElements.current,
+                //         pin: true,
+                //         start: 'center center',
+                //         invalidateOnRefresh: true,
+                //         pinSpacing: true,
+                //         scrub: 1,
+                //         snap: false,
+                //         end: () => "+=" + xScrollElements.current.offsetWidth
+                //     }
+                // })
             }
         });
         return () => matchMedia.current.revert();
