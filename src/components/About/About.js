@@ -32,6 +32,8 @@ export function About(props) {
     const timeline_4 = useRef(null)
     const context = useRef(null)
     const context_2 = useRef(null)
+    const timeline_5 = useRef(null)
+    const timeline_6 = useRef(null)
     useLayoutEffect(() => {
         context_2.current = gsap.context(() => {
             const rigthElement = catRigthEye.current
@@ -93,10 +95,21 @@ export function About(props) {
                         pinType: 'fixed',
                     }
                 })
-
-                // timeline_4.current.to(about, {
-                //     y: '1px',
-                // })
+                const elements = Array.from(itemsContainer.current.childNodes)
+                elements.forEach(el => {
+                    timeline_5.current = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top bottom',
+                            end: '200px bottom',
+                            once: true
+                        }
+                    })
+                    timeline_5.current.from(el, {
+                        yPercent: 100, autoAlpha: 0,
+                        duration: .6
+                    })
+                })
             }
         });
         return () => timeline_3.current.revert();

@@ -11,6 +11,8 @@ export function MyStack(props) {
     const xScrollElements = useRef(null)
     const techPanel = useRef(null)
     const timeline_3 = useRef(null)
+    const timeline_4 = useRef(null)
+    const timeline_5 = useRef(null)
     useLayoutEffect(() => {
         matchMedia.current = gsap.matchMedia();
         const breakPoint = 900;
@@ -34,9 +36,7 @@ export function MyStack(props) {
                         pinType: 'fixed',
                     }
                 })
-                // timeline2.current.to(section.current, {
-                //     y: 1,
-                // })
+
                 timeline_3.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: section.current,
@@ -44,6 +44,7 @@ export function MyStack(props) {
                         start: "top center",
                         end: '+=20%',
                         pinSpacing: false,
+                        once: true,
                         scrub: 2,
                     }
                 })
@@ -53,28 +54,46 @@ export function MyStack(props) {
                         scale: 1,
                     })
 
+
+
+                const elements = Array.from(techPanel.current.childNodes)
+                elements.forEach((element, i) => {
+                    timeline_4.current = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: techPanel.current,
+                            start: 'top bottom',
+                            once: true,
+                            scrub: false
+                        }
+                    })
+                    timeline_4.current.from(element, {
+                        yPercent: 100,
+                        scaleY: .8,
+                        skewY: -5,
+                        scaleX: .9,
+                        skewX: 5,
+                        duration: 1.1
+                    }, i / 10)
+                })
             }
             if (isMobile) {
-                timeline2.current = gsap.timeline({
+                timeline2.current = gsap.timeline()
+
+                timeline2.current.to(xScrollElements.current, {
+                    x: () => -(xScrollElements.current.scrollWidth - document.documentElement.clientWidth) + "px",
+                    ease: "none",
                     scrollTrigger: {
-                        trigger: section.current,
+                        trigger: xScrollElements.current,
                         pin: true,
-                        start: "top top",
-                        end: () => '+=' + '300%',
+                        start: 'center center',
+                        invalidateOnRefresh: true,
                         pinSpacing: true,
-                        overwrite: 'auto',
                         scrub: 1,
-                        anticipatePin: 1,
-                        pinType: 'fixed',
+                        snap: false,
+                        end: () => "+=" + xScrollElements.current.offsetWidth
                     }
                 })
-                timeline2.current.fromTo(xScrollElements.current, {
-                    x: '-84%',
-                }, {
-                    x: 0,
-                })
                 timeline2.current.from(techPanel.current, { y: 600 })
-
             }
         });
         return () => matchMedia.current.revert();

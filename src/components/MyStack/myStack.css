@@ -141,4 +141,7 @@
   .my-stack .my-stack__container .my-stack__stack-list .my-stack__stack-item {
     border-width: 0px 1px 0px 1px;
   }
+  .my-stack .my-stack__tech-item {
+    width: 85%;
+  }
 }/*# sourceMappingURL=myStack.css.map */

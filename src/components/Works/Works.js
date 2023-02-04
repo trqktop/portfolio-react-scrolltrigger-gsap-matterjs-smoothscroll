@@ -15,6 +15,8 @@ export function Works(props) {
     const timeline_4 = useRef(null)
     const timeline_5 = useRef(null)
     const context = useRef(null)
+    const timeline_8 = useRef(null)
+    const timeline_9 = useRef(null)
     useLayoutEffect(() => {
         elements.current = Array.from(elementsContainer.current.childNodes)
         context.current = gsap.context(() => {
@@ -63,7 +65,6 @@ export function Works(props) {
             })
         }, elementsContainer)
         // return () => ctx.revert()
-
     }
 
     function hoverLeaveListener(e) {
@@ -84,6 +85,34 @@ export function Works(props) {
         // return () => ctx.revert()
     }
 
+    useLayoutEffect(() => {
+        timeline_9.current = gsap.matchMedia();
+        const breakPoint = 900;
+        timeline_9.current.add({
+            isDesktop: `(min-width: ${breakPoint}px)`,
+        }, (context) => {
+            let { isDesktop } = context.conditions;
+            if (isDesktop) {
+                const elements = Array.from(elementsContainer.current.childNodes)
+                elements.forEach((element, i) => {
+                    timeline_8.current = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top bottom',
+                            end: 'top +=50%',
+                        }
+                    })
+                    timeline_8.current.fromTo(element, {
+                        y: 100
+                    }, {
+                        y: 0
+                    })
+                })
+            }
+        });
+        return () => timeline_9.current.revert();
+    }, [])
+
 
     return (
         <section className='works' >
@@ -98,7 +127,6 @@ export function Works(props) {
                             blackTheme={blackTheme}
                             data={project}
                             elementsContainer={elementsContainer}
-
                         />
                     ))}
                     <li className='works__item works__item_soon'>
