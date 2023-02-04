@@ -2,11 +2,6 @@ import './header.css'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 
-
-
-
-
-
 function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
     if (menuRef) {
         const elements = Array.from(menuRef.childNodes).filter(item => item.classList.contains('header__menu-item'))
@@ -29,7 +24,6 @@ function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
         })
         setHeaderMenuRect({ ...data })
     }
-
 }
 
 
@@ -41,15 +35,13 @@ function setHoverElementPositionHandler(e, windowWidth, firstUpdateToHoverElemen
         if (firstUpdateToHoverElement.current) {
             const ctx = setHoverElementPosition(0, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
             setTimeout(() => firstUpdateToHoverElement.current = false, 1)
-            // return () => ctx.revert()
-
         }
         else {
             const ctx = setHoverElementPosition(.3, e, headerMenuRect, hoverMenuItem, setHoverState, gsap)
-            // return () => ctx.revert()
         }
     }
 }
+
 
 function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHoverState, gsap) {
     if (hoverMenuItem.current) {
@@ -64,10 +56,10 @@ function setHoverElementPosition(dur, e, headerMenuRect, hoverMenuItem, setHover
 
         e.target.classList.add('header__menu-link_hover')
         setHoverState(true)
-        // return ctx
     }
-
 }
+
+
 
 
 
@@ -189,15 +181,17 @@ export function Header(props) {
         }
     }, [blackTheme])
 
+
+    const context_4 = useRef(null)
+
     useLayoutEffect(() => {
         if (windowWidth > 900) {
             if (firstUpdate.current) {
-                const timiout = setTimeout(() => {
-                    const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
+                setTimeout(() => {
+                    context_4.current = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
                     firstUpdate.current = false;
                     return () => {
-                        clearTimeout(timiout)
-                        ctx.revert()
+                        context_4.current.revert()
                     }
                 }, 1)
             }
@@ -275,6 +269,21 @@ export function Header(props) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const context_5 = useRef(null)
     function leaveHoverElementHandler(e) {
         e.target.classList.remove('header__menu-link_hover')
     }

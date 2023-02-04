@@ -13,9 +13,13 @@ export function Greeting(props) {
     const timeline = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
-    const context = useRef(null)
+    const context_1 = useRef(null)
     const context_2 = useRef(null)
     const context_3 = useRef(null)
+    const timeline_catHand = useRef(null)
+    const timeline_catSvgSmile = useRef(null)
+    const timeline_catEyes = useRef(null)
+
 
     useLayoutEffect(() => {
         timeline_2.current = gsap.matchMedia();
@@ -34,12 +38,22 @@ export function Greeting(props) {
                         pin: true,
                         start: "top top",
                         end: 'bottom+=300px top',
-                        anticipatePin: true,
+                        anticipatePin: .5,
                         pinSpacing: false,
                         overwrite: 'auto',
+                        onEnterBack: () => {
+                            timeline_catHand.current.play()
+                            timeline_catSvgSmile.current.play()
+                            timeline_catEyes.current.play()
+                        },
+                        onLeave: () => {
+                            timeline_catHand.current.pause()
+                            timeline_catSvgSmile.current.pause()
+                            timeline_catEyes.current.pause()
+                        },
                         pinType: 'fixed',
-                        scrub: true,
-                        fastScrollEnd: true,
+                        scrub: 2,
+                        // fastScrollEnd: true,
                     }
                 });
             }
@@ -47,31 +61,34 @@ export function Greeting(props) {
         return () => timeline_2.current.revert();
     }, [])
 
+
     useLayoutEffect(() => {
-        context.current = gsap.context(() => {
+        context_1.current = gsap.context(() => {
             const catHand = catSvgHand.current
-            timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
-            timeline.current.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
+            timeline_catHand.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true, })
+            timeline_catHand.current.to(catHand, { duration: .8, ease: "none", rotate: -5.2, ease: "none", transformOrigin: 'bottom right' })
                 .to(catHand, { duration: .8, ease: "none", rotate: 5.2, ease: "none", transformOrigin: 'bottom right' })
         }, panelGreeting)
-        return () => context.current.revert()
+        return () => context_1.current.revert()
     })
+
 
 
     useLayoutEffect(() => {
         context_2.current = gsap.context(() => {
-            timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-            timeline.current.to(catSvgSmile.current, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
+            timeline_catSvgSmile.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+            timeline_catSvgSmile.current.to(catSvgSmile.current, { duration: 1, rotate: -5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.2 })
                 .to(catSvgSmile.current, { duration: 1, rotate: 5.2, ease: "none", transformOrigin: 'bottom right', scaleX: 1.5 })
         }, panelGreeting)
         return () => context_2.current.revert()
     }, [])
 
+
     useLayoutEffect(() => {
         const catEyes = [catSvgLefthEye.current, catSvgRigthEye.current]
         context_3.current = gsap.context(() => {
-            timeline.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
-            timeline.current.to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
+            timeline_catEyes.current = gsap.timeline({ repeatDelay: 0, repeat: -1, delay: -1, repeatRefresh: true })
+            timeline_catEyes.current.to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 0, yoyo: true, delay: 3 })
                 .to(catEyes, { duration: .2, ease: "none", transformOrigin: 'center center', scaleY: 1, yoyo: true })
         }, panelGreeting)
         return () => context_3.current.revert()

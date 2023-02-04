@@ -12,7 +12,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmoothScroll from 'smoothscroll-for-websites'
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SmoothScroll);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 
 function App() {
 
@@ -23,30 +24,20 @@ function App() {
     const timeline = useRef(null)
     const context = useRef(null)
     const ctx = useRef(null)
+    SmoothScroll({
+        animationTime: 1900,
+        stepSize: 75,
+        pulseAlgorithm: true,
+        pulseScale: 4,
+        pulseNormalize: 1,
+    })
+
 
     useEffect(() => {
         localStorage.setItem('themeIsBlack', JSON.stringify(blackTheme));
     }, [blackTheme])
 
-    useEffect(() => {
-        SmoothScroll({
-            frameRate: 60,
-            animationTime: 700,
-            stepSize: 75,
-            pulseAlgorithm: 1,
-            pulseScale: 3,
-            pulseNormalize: 1,
-            accelerationDelta: 50,
-            accelerationMax: 2,
-            keyboardSupport: 1,
-            arrowScroll: 20,
-            fixedBackground: 0,
-            touchpadSupport: true
-        })
-    }, [])
 
-
-  
     useLayoutEffect(() => {
         if (eggVisible) {
             ctx.current = gsap.context(() => {
@@ -95,5 +86,5 @@ function App() {
 
 
 
-// ScrollTrigger.refresh()
+ScrollTrigger.refresh()
 export default App;

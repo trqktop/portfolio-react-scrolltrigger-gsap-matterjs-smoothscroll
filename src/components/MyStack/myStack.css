@@ -34,6 +34,7 @@
   left: 0;
   min-width: 100%;
   min-height: 100%;
+  box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
 }
 .my-stack__container .my-stack__stack-list {
   max-width: -webkit-fit-content;

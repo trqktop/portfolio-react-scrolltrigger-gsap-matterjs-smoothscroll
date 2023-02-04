@@ -71,24 +71,32 @@ export function About(props) {
         }, (context) => {
             let { isDesktop } = context.conditions;
             if (isDesktop) {
-                const about = CSSRulePlugin.getRule('.about:after');
                 timeline_4.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: '.about',
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom top',
+                        end: 'bottom+=300px top',
                         pinSpacing: false,
                         overwrite: 'auto',
-                        fastScrollEnd: true,
-                        scrub: 1,
-                        anticipatePin: 1,
+                        // fastScrollEnd: true,
+                        onLeave: () => {
+                            timeline_2.current.pause()
+                            timeline_1.current.pause()
+                        },
+                        onEnterBack: () => {
+                            timeline_2.current.play()
+                            timeline_1.current.play()
+                        },
+                        scrub: 2,
+                        anticipatePin: .5,
                         pinType: 'fixed',
                     }
                 })
-                timeline_4.current.to(about, {
-                    y: '1px',
-                })
+
+                // timeline_4.current.to(about, {
+                //     y: '1px',
+                // })
             }
         });
         return () => timeline_3.current.revert();

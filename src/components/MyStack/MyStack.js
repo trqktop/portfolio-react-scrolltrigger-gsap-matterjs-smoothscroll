@@ -25,59 +25,33 @@ export function MyStack(props) {
                         trigger: section.current,
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom+=50px top',
+                        end: 'bottom+=300px top',
                         pinSpacing: false,
-                        fastScrollEnd: true,
+                        // fastScrollEnd: true,
                         overwrite: 'auto',
                         scrub: 2,
                         anticipatePin: .5,
                         pinType: 'fixed',
                     }
                 })
-                timeline2.current.to(section.current, {
-                    y: 1,
-                })
-
+                // timeline2.current.to(section.current, {
+                //     y: 1,
+                // })
                 timeline_3.current = gsap.timeline({
                     scrollTrigger: {
-                        trigger: '.my-stack__stack-item',
+                        trigger: section.current,
                         pin: false,
                         start: "top center",
-                        // end: 'center+=10% top',
+                        end: '+=20%',
                         pinSpacing: false,
-                        // once: true,
-                        toggleActions: 'play none none reverse',
-                        overwrite: 'auto',
+                        scrub: 2,
                     }
                 })
-                timeline_3.current.fromTo('.my-stack__stack-svg', {
-                    scale: .8,
-                }, {
-                    scale: 1,
-                })
-
-                // const elements = Array.from(techPanel.current.childNodes)
-                // timeline_3.current.fromTo(elements[0], {
-                //     yPercent: 100
-                // }, {
-                //     yPercent: 0,
-                // })
-                // timeline_3.current.fromTo(elements[1], {
-                //     yPercent: 100
-                // }, {
-                //     yPercent: 0,
-                // })
-                // timeline_3.current.fromTo(elements[2], {
-                //     yPercent: 100
-                // }, {
-                //     yPercent: 0,
-                // })
-                // timeline_3.current.fromTo(elements[0], {
-                //     yPercent: 100
-                // }, {
-                //     yPercent: 0,
-                // })
-
+                    .fromTo('.my-stack__stack-svg', {
+                        scale: 0,
+                    }, {
+                        scale: 1,
+                    })
 
             }
             if (isMobile) {
