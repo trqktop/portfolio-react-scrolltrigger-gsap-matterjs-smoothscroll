@@ -24,10 +24,10 @@
   right: 0;
   z-index: 22;
   opacity: 0;
-  cursor: url("./images/meme-pop-cat-cursor.png") 4 1, pointer;
+  cursor: pointer;
 }
 .page__container .easter_egg-container .easter_egg-button:active {
-  cursor: url("./images/meme-pop-cat-pointer.png") 4 1, pointer;
+  cursor: pointer;
 }
 .page__container .easter_egg-container .easter_egg-dan {
   width: 100px;

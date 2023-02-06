@@ -12,7 +12,7 @@
   overflow: hidden;
   position: relative;
   display: block;
-  cursor: url("../../images/arrow2662.png") 4 1, pointer;
+  cursor: pointer;
   font-size: 0;
   width: 100%;
   border-collapse: collapse;

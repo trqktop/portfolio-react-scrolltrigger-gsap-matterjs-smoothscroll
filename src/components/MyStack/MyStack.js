@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useState } from 'react';
 import gsap from 'gsap';
 
 import './myStack.css'
@@ -27,15 +27,18 @@ export function MyStack(props) {
                         trigger: section.current,
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom+=400px top',
+                        end: 'bottom+=350px top',
                         pinSpacing: false,
-                        // fastScrollEnd: true,
+                        fastScrollEnd: true,
                         overwrite: 'auto',
                         scrub: 2,
-                        anticipatePin: .5,
+                        anticipatePin: .1,
                         pinType: 'fixed',
                     }
                 })
+
+
+
 
                 timeline_3.current = gsap.timeline({
                     scrollTrigger: {
@@ -71,10 +74,11 @@ export function MyStack(props) {
                     timeline_4.current.from(element, {
                         yPercent: 100,
                         scaleY: .8,
+                        opacity: 0,
                         skewY: -5,
                         scaleX: .9,
                         skewX: 5,
-                        duration: 1.1
+                        duration: .6
                     }, i / 10)
                 })
             }
@@ -98,7 +102,6 @@ export function MyStack(props) {
         });
         return () => matchMedia.current.revert();
     }, [])
-
 
 
     return (

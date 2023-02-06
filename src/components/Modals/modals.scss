@@ -84,7 +84,7 @@
         right: 16px;
         // background-image: url('../../../images/work-modal/close_32.svg');
         background-color: inherit;
-        cursor: url('../../images/arrow2662.png') 4 1, pointer;
+        cursor: pointer;
 
 
 
@@ -120,7 +120,7 @@
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
-        cursor: url('../../images/arrow2662.png') 4 1, pointer;
+        cursor: pointer;
     }
 
     &-title {
@@ -274,9 +274,7 @@ $tablet: 900px;
         }
 
         .modal__header {
-            .modal__header-link {
-               
-            }
+            .modal__header-link {}
         }
     }
 

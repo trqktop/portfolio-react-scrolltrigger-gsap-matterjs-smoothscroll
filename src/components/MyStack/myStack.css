@@ -44,6 +44,7 @@
   border-style: solid;
   border-color: #69707D;
   margin: -1px;
+  position: relative;
 }
 .my-stack__container .my-stack__stack-svg {
   display: block;

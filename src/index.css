@@ -10,7 +10,7 @@
   display: block;
   background-color: white;
   color: black;
-  cursor: url('./images/arrow2662\ \(1\).png') 4 1, default;
+  cursor: default;
 }
 
 #root {
@@ -25,4 +25,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-

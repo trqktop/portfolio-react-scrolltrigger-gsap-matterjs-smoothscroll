@@ -62,7 +62,7 @@
   top: 16px;
   right: 16px;
   background-color: inherit;
-  cursor: url("../../images/arrow2662.png") 4 1, pointer;
+  cursor: pointer;
 }
 .modal-container__close-button:hover {
   transform: scale(1.1);
@@ -93,7 +93,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  cursor: url("../../images/arrow2662.png") 4 1, pointer;
+  cursor: pointer;
 }
 .modal__header-title {
   font-family: "Inter-Medium";

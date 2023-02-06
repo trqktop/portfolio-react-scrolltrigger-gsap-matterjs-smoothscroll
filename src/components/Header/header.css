@@ -80,7 +80,6 @@
   border: none;
   cursor: pointer;
   margin-left: auto;
-  cursor: url("../../images/arrow2662.png") 4 1, pointer;
 }
 .header__theme-button:hover {
   transform: scale(1.1);
