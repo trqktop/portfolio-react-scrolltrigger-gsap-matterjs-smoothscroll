@@ -91,24 +91,36 @@ export function Header(props) {
 
 
     useEffect(() => {
-        if (scrollto) {
-            context_2.current = gsap.context(() => {
-                const elementId = scrollto.target.id
-                if (elementId) {
-                    const STS = ScrollTrigger.getAll()
-                    STS.forEach(st => st.disable())
-                    timeline_5.current = gsap.timeline()
-                    timeline_5.current.to(window, {
-                        scrollTo: () => `.${elementId}`,
-                        duration: .001,
-                        delay: .001,
-                        ease: "power4",
-                        onComplete: () => STS.forEach(st => st.enable())
-                    })
+        timeline_7.current = gsap.matchMedia();
+        const breakPoint = 900;
+        timeline_7.current.add({
+            isDesktop: `(min-width: ${breakPoint}px)`,
+            isMobile: `(max-width: ${breakPoint - 1}px)`,
+            all: `(min-width: ${222}px)`,
+        }, (context) => {
+            let { isDesktop } = context.conditions;
+            let { isMobile } = context.conditions;
+            if (isDesktop) {
+
+                if (scrollto) {
+                    const elementId = scrollto.target.id
+                    if (elementId) {
+                        const STS = ScrollTrigger.getAll()
+                        STS.forEach(st => st.disable())
+                        timeline_5.current = gsap.timeline()
+                        timeline_5.current.to(window, {
+                            scrollTo: () => `.${elementId}`,
+                            duration: .001,
+                            delay: .001,
+                            ease: "power4",
+                            onComplete: () => STS.forEach(st => st.enable())
+                        })
+                    }
+
                 }
-            }, headerMainRef)
-            return () => context_2.current.revert()
-        }
+            }
+        })
+        return () => timeline_7.current.revert()
     }, [scrollto])
 
     useEffect(() => {
@@ -136,13 +148,13 @@ export function Header(props) {
     }
 
     useLayoutEffect(() => {
-        const ctx = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+        setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
         window.onresize = () => {
             setWindowWidth(window.innerWidth)
             ScrollTrigger.refresh()
         }
-        return () => ctx.revert()
+        // return () => ctx.revert()
     }, [windowWidth])
 
 
