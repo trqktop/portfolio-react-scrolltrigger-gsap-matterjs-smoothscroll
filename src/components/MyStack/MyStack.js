@@ -24,12 +24,13 @@ export function MyStack(props) {
                     scrollTrigger: {
                         trigger: section.current,
                         pin: true,
-                        start: "bottom bottom-=2px",
-                        end: 'bottom+=350px top',
+                        start: "bottom bottom",
+                        end: 'bottom+=300px top',
                         pinSpacing: false,
-                        // fastScrollEnd: true,
-                        // overwrite: 'auto',
-                        scrub: 2,
+                        preventOverlaps: true,
+                        fastScrollEnd: true,
+                        overwrite: true,
+                        scrub: true,
                         anticipatePin: .1,
                         pinType: 'fixed',
                     }

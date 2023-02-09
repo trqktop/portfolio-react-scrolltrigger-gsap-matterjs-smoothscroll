@@ -24,7 +24,6 @@ export function About(props) {
     const matter_gravity = useRef(null)
     const about = useRef(null)
     useLayoutEffect(() => {
-
         timeline_3.current = gsap.matchMedia();
         const breakPoint = 900;
         timeline_3.current.add({
@@ -39,15 +38,18 @@ export function About(props) {
                         trigger: about.current,
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom+=350px top',
+                        end: 'bottom+=300px top',
                         pinSpacing: false,
                         onUpdate: e => matter_gravity.current = e.direction,
-                        scrub: 2,
+                        scrub: true,
                         anticipatePin: .1,
+                        preventOverlaps: true,
                         fastScrollEnd: true,
+                        overwrite: true,
                         pinType: 'fixed',
                     }
                 })
+
             }
             if (isMobile) {
 
@@ -58,8 +60,9 @@ export function About(props) {
 
 
     const container = useRef(null)
-
     const timeline_9 = useRef(null)
+
+
     useLayoutEffect(() => {
         timeline_9.current = gsap.matchMedia();
         const breakPoint = 900;

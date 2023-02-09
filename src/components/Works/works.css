@@ -1,6 +1,5 @@
 .works {
   min-height: calc(100vh + 2px);
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   z-index: 4;
@@ -98,17 +97,6 @@
   .works__container .works__list {
     grid-template-columns: repeat(1, 95vw);
     max-width: 100%;
-  }
-}
-@-webkit-keyframes infinitiTransform {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(1px);
-  }
-  100% {
-    transform: translateY(-1px);
   }
 }
 @keyframes infinitiTransform {

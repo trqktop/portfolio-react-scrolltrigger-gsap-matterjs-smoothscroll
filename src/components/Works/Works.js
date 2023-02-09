@@ -41,12 +41,6 @@ export function Works(props) {
     }, [])
 
     function hoverListener(e) {
-        // const currentElements = elements.current.filter(item => {
-        //     if (item.id) {
-        //         if (e.currentTarget.id !== item.id)
-        //             return item
-        //     }
-        // })
         timeline_3.current = gsap.context(() => {
             timeline_2.current = gsap.timeline()
             timeline_2.current.to(elements.current, {

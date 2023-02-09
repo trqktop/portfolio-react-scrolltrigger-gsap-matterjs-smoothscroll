@@ -93,9 +93,9 @@ SmoothScroll({
     // Максимальное ускорение
     accelerationMax: 1,
     // Поддержка клавиатуры
-    keyboardSupport: true,
+    // keyboardSupport: true,
     // Шаг скролла стрелками на клавиатуре в пикселях
-    arrowScroll: 50,
+    // arrowScroll: 50,
     // Pulse (less tweakable)
     // ratio of "tail" to "acceleration"
     pulseAlgorithm: true,

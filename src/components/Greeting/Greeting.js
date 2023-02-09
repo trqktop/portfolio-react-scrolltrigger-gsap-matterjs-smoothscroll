@@ -1,5 +1,5 @@
 import './greeting.css'
-import { useRef,  useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
 
@@ -37,7 +37,7 @@ export function Greeting(props) {
                         trigger: panelGreeting.current,
                         pin: true,
                         start: "top top",
-                        end: 'bottom+=299px top',
+                        end: 'bottom+=300px top',
                         anticipatePin: .5,
                         // fastScrollEnd: true,
                         pinSpacing: false,
@@ -55,7 +55,7 @@ export function Greeting(props) {
 
                         },
                         pinType: 'fixed',
-                        scrub: 2,
+                        scrub: true,
                     }
                 })
 
