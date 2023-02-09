@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState, useEffect } from 'react';
+import { useRef, useLayoutEffect} from 'react';
 import gsap from 'gsap';
 
 import './myStack.css'
@@ -6,13 +6,11 @@ export function MyStack(props) {
     const refContainer = useRef(null)
     const section = useRef(null)
     const matchMedia = useRef(null)
-    const timeline = useRef(null)
     const timeline2 = useRef(null)
     const xScrollElements = useRef(null)
     const techPanel = useRef(null)
     const timeline_3 = useRef(null)
-    const timeline_4 = useRef(null)
-    const timeline_5 = useRef(null)
+
     useLayoutEffect(() => {
         matchMedia.current = gsap.matchMedia();
         const breakPoint = 900;

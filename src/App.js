@@ -22,8 +22,9 @@ function App() {
     let pageContainer = useRef()
     const DanImg = useRef(null)
     const timeline = useRef(null)
-    const context = useRef(null)
     const ctx = useRef(null)
+
+
 
 
 
@@ -90,7 +91,7 @@ SmoothScroll({
     // Ускорение 
     accelerationDelta: 30,
     // Максимальное ускорение
-    accelerationMax: 2,
+    accelerationMax: 1,
     // Поддержка клавиатуры
     keyboardSupport: true,
     // Шаг скролла стрелками на клавиатуре в пикселях
@@ -103,5 +104,7 @@ SmoothScroll({
     // Поддержка тачпада
     touchpadSupport: true,
 })
+
+
 ScrollTrigger.refresh()
 export default App;

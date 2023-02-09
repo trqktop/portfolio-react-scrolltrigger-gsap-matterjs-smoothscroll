@@ -2,11 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './about.css'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-
-import { CSSRulePlugin } from 'gsap/all';
-import CSSPlugin from 'gsap/CSSPlugin';
 import Matter from 'matter-js'
-
 import sprt_1 from '../../images/about/cat_color.png'
 import sprt_2 from '../../images/about/cat_color-1.png'
 import block_1 from '../../images/about/Block.svg'
@@ -17,46 +13,17 @@ import block_5 from '../../images/about/Block-5.svg'
 import block_6 from '../../images/about/Block-6.svg'
 import block_7 from '../../images/about/Перфекционист.svg'
 
-
-
-
 gsap.registerPlugin(ScrollTrigger, Matter)
 
 
-
-
-function clickHandler(gsap, ScrollTrigger, context) {
-    const ctx = gsap.context(() => {
-        gsap.to(window, {
-            scrollTo: () => `.footer`,
-            duration: 1,
-            delay: -1,
-            ease: "power4",
-        })
-    }, context)
-}
-
 export function About(props) {
-    const { pageContainer } = { ...props }
-    const catRigthEye = useRef(null)
-    const catLeftEye = useRef(null)
-    const itemsContainer = useRef(null)
     const panelAbout = useRef()
-    const timeline_1 = useRef(null)
-    const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
     const timeline_4 = useRef(null)
-    const context = useRef(null)
-    const context_2 = useRef(null)
-    const timeline_5 = useRef(null)
-    const timeline_6 = useRef(null)
-
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const matter_gravity = useRef(null)
 
     useLayoutEffect(() => {
-
-
 
         timeline_3.current = gsap.matchMedia();
         const breakPoint = 900;
@@ -88,7 +55,6 @@ export function About(props) {
         });
         return () => timeline_3.current.revert();
     }, [])
-
 
 
     const container = useRef(null)

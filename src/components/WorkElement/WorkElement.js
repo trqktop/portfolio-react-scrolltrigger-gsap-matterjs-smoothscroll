@@ -4,13 +4,12 @@ import gsap from 'gsap';
 
 import './WorkElement.css'
 export function WorkElement(props) {
-    const { data, blackTheme, hoverListener, hoverLeaveListener, elementsContainer } = { ...props }
+    const { data, blackTheme, hoverListener, hoverLeaveListener } = { ...props }
     const [isHover, setHoverState] = useState(false)
     const [modalIsOpened, modalState] = useState(false)
-    const { projectName, title, projectTheme, description, gitHubPage, images, newKnowledge, tech } = { ...data }
+    const { projectName, title, images, tech } = { ...data }
     const [windowWidth, setWindowWidth] = useState(null)
     const el = useRef(null)
-    const timeline = useRef(null)
     const matchMedia = useRef(null)
 
     useLayoutEffect(() => {

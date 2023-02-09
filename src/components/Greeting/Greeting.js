@@ -1,16 +1,14 @@
 import './greeting.css'
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useRef,  useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
 
 export function Greeting(props) {
-    const { pageContainer } = { ...props }
     const catSvgHand = useRef(null)
     const catSvgSmile = useRef(null)
     const catSvgLefthEye = useRef(null)
     const catSvgRigthEye = useRef(null)
     const panelGreeting = useRef(null)
-    const timeline = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
     const context_1 = useRef(null)
