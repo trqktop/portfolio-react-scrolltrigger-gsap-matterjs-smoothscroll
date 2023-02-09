@@ -23,6 +23,7 @@ function getheaderMenuRectData(menuRef, setHeaderMenuRect) {
             }
         })
         setHeaderMenuRect({ ...data })
+        return data
     }
 }
 
@@ -123,13 +124,7 @@ export function Header(props) {
         return () => timeline_7.current.revert()
     }, [scrollto])
 
-    useEffect(() => {
-        getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
-        setWindowWidth(window.innerWidth)
-        setTimeout(() => {
-            getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
-        }, 1000)
-    }, [])
+
 
 
     function setactiveSectionHeaderItemPosition(dur, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef) {
@@ -147,16 +142,45 @@ export function Header(props) {
 
     }
 
-    useLayoutEffect(() => {
-        getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
-        setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
+    useEffect(() => {
+        setWindowWidth(window.innerWidth)
         window.onresize = () => {
             setWindowWidth(window.innerWidth)
+            const data = getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+            setactiveSectionHeaderItemPosition(1, sectionSelector, activeSectionHeaderItem, data, gsap, menuRef)
             ScrollTrigger.refresh()
         }
-        // return () => ctx.revert()
-    }, [windowWidth])
+    }, [windowWidth, blackTheme])
 
+
+    useEffect(() => {
+        if (windowWidth > 900) {
+            if (firstUpdate.current) {
+                document.fonts.ready
+                    .then(res => {
+                        const data = getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+                        context_4.current = setactiveSectionHeaderItemPosition(0, 'about', activeSectionHeaderItem, data, gsap, menuRef)
+                    })
+                firstUpdate.current = false
+            }
+            else {
+                const data = getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+                setactiveSectionHeaderItemPosition(1, sectionSelector, activeSectionHeaderItem, data, gsap, menuRef)
+            }
+
+        }
+
+
+    }, [sectionSelector, windowWidth])
+
+
+    // useEffect(() => {
+    //     getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+
+    //     setTimeout(() => {
+    //         getheaderMenuRectData(menuRef.current, setHeaderMenuRect)
+    //     }, 1000)
+    // }, [])
 
 
     useLayoutEffect(() => {
@@ -196,22 +220,7 @@ export function Header(props) {
 
     const context_4 = useRef(null)
 
-    useLayoutEffect(() => {
-        if (windowWidth > 900) {
-            if (firstUpdate.current) {
-                setTimeout(() => {
-                    context_4.current = setactiveSectionHeaderItemPosition(0, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
-                    firstUpdate.current = false;
-                    return () => {
-                        context_4.current.revert()
-                    }
-                }, 1)
-            }
-            else {
-                setactiveSectionHeaderItemPosition(1, sectionSelector, activeSectionHeaderItem, headerMenuRect, gsap, menuRef)
-            }
-        }
-    }, [sectionSelector])
+
 
 
     useLayoutEffect(() => {

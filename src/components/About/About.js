@@ -9,7 +9,6 @@ import Matter from 'matter-js'
 
 import sprt_1 from '../../images/about/cat_color.png'
 import sprt_2 from '../../images/about/cat_color-1.png'
-
 import block_1 from '../../images/about/Block.svg'
 import block_2 from '../../images/about/Block-1.svg'
 import block_3 from '../../images/about/Block-3.svg'
@@ -17,8 +16,6 @@ import block_4 from '../../images/about/Block-4.svg'
 import block_5 from '../../images/about/Block-5.svg'
 import block_6 from '../../images/about/Block-6.svg'
 import block_7 from '../../images/about/Перфекционист.svg'
-
-
 
 
 
@@ -58,6 +55,9 @@ export function About(props) {
     const matter_gravity = useRef(null)
 
     useLayoutEffect(() => {
+
+
+
         timeline_3.current = gsap.matchMedia();
         const breakPoint = 900;
         timeline_3.current.add({
@@ -178,7 +178,7 @@ export function About(props) {
                                 frictionAir: 0.06,
                                 restitution: 0.3,
                                 friction: 0.01,
-                                
+
                                 // strokeStyle: '#ffffff',
                                 sprite: {
                                     texture: sprt_1,
@@ -226,13 +226,13 @@ export function About(props) {
                 })
                 const block_3_rectangle = Bodies.rectangle(window.innerWidth / 4 * 2, 55, 220, 95, {
                     chamfer: 30,
-                     render: {
-                         sprite: {
-                             texture: block_3,
-                             yScale: .35,
-                             xScale: .35,
-                         }
-                     }
+                    render: {
+                        sprite: {
+                            texture: block_3,
+                            yScale: .35,
+                            xScale: .35,
+                        }
+                    }
                 })
                 const block_4_rectangle = Bodies.rectangle(window.innerWidth / 4 * 3, 66, 240, 95, {
                     chamfer: 30,
@@ -313,8 +313,7 @@ export function About(props) {
                     min: { x: 0, y: 0 },
                     max: { x: window.innerWidth, y: window.innerHeight }
                 });
-                mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
-                mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
                 world.current = render.canvas
                 render.canvas.width = window.innerWidth;
                 render.canvas.height = window.innerHeight;
@@ -344,6 +343,9 @@ export function About(props) {
                     },
                 })
 
+                mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+                mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
                 ScrollTrigger.refresh()
                 return () => {
                     Render.stop(render)
@@ -364,14 +366,14 @@ export function About(props) {
                 }
             }
         })
+
         return () => {
             timeline_9.current.revert()
         }
     }, [windowWidth])
 
     useEffect(() => {
-        window.addEventListener('resize', resize)
-
+        window.addEventListener('resize', resize, true)
         function resize() {
             setWindowWidth(window.innerWidth)
         }

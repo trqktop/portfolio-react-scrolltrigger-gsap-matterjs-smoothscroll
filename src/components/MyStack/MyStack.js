@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import gsap from 'gsap';
 
 import './myStack.css'
@@ -63,7 +63,7 @@ export function MyStack(props) {
                             fastScrollEnd: true,
                             once: true,
                             start: "top top",
-                        
+                            fastScrollEnd: true
                         }
                     })
                     timeline_3.current.from(element, {
@@ -96,6 +96,9 @@ export function MyStack(props) {
         });
         return () => matchMedia.current.revert();
     }, [])
+
+
+
 
 
     return (
