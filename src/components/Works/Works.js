@@ -49,7 +49,7 @@ export function Works(props) {
         // })
         timeline_3.current = gsap.context(() => {
             timeline_2.current = gsap.timeline()
-            timeline_2.current.to('.works__item', {
+            timeline_2.current.to(elements.current, {
                 '-webkit-filter': 'grayscale(100%)',
                 filter: 'grayscale(100%)',
                 scale: .96
@@ -70,7 +70,7 @@ export function Works(props) {
     function hoverLeaveListener(e) {
         timeline_4.current = gsap.context(() => {
             timeline_4.current = gsap.timeline()
-            timeline_4.current.to('.works__item', {
+            timeline_4.current.to(elements.current, {
                 '-webkit-filter': 'grayscale(0%)',
                 filter: 'grayscale(0%)',
                 scale: 1,
@@ -95,19 +95,17 @@ export function Works(props) {
             if (isDesktop) {
                 const elements = Array.from(elementsContainer.current.childNodes)
                 elements.forEach((element, i) => {
-                    timeline_8.current = gsap.timeline({
+                    timeline_8.current = gsap.from(element, {
+                        y: 100,
                         scrollTrigger: {
                             trigger: element,
                             start: 'top bottom',
                             end: 'top +=50%',
+                            scrub: true,
                         }
                     })
-                    timeline_8.current.fromTo(element, {
-                        y: 100
-                    }, {
-                        y: 0
-                    })
                 })
+                return () => timeline_8.current.revert()
             }
         });
         return () => timeline_9.current.revert();

@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect} from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
 import './myStack.css'
@@ -30,7 +30,6 @@ export function MyStack(props) {
                         // fastScrollEnd: true,
                         // overwrite: 'auto',
                         scrub: 2,
-
                         anticipatePin: .1,
                         pinType: 'fixed',
                     }
@@ -47,31 +46,22 @@ export function MyStack(props) {
                             start: "top bottom",
                             end: 'center center',
                             pinSpacing: false,
-                            scrub: 2,
-                            once: true,
+                            scrub: true,
                         }
                     })
 
                 const elements = Array.from(techPanel.current.childNodes)
                 elements.forEach((element, i) => {
-                    timeline_3.current = gsap.timeline({
+                    timeline_3.current = gsap.from(element, {
+                        yPercent: 30,
+                        opacity: 0,
                         scrollTrigger: {
                             trigger: refContainer.current,
-                            scrub: false,
-                            fastScrollEnd: true,
-                            once: true,
+                            scrub: true,
                             start: "top top",
-                            fastScrollEnd: true
+                            end: 'bottom bottom',
                         }
                     })
-                    timeline_3.current.from(element, {
-                        yPercent: 55,
-                        scaleY: .8,
-                        opacity: 0,
-                        skewY: -5,
-                        scaleX: .9,
-                        skewX: 5,
-                    }, i / 10)
                 })
             }
             if (isMobile) {
