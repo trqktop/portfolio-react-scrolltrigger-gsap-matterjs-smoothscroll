@@ -22,7 +22,7 @@ export function About(props) {
     const timeline_4 = useRef(null)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const matter_gravity = useRef(null)
-
+    const about = useRef(null)
     useLayoutEffect(() => {
 
         timeline_3.current = gsap.matchMedia();
@@ -34,9 +34,9 @@ export function About(props) {
             let { isDesktop } = context.conditions;
             let { isMobile } = context.conditions;
             if (isDesktop) {
-                timeline_4.current = gsap.timeline({
+                timeline_4.current = gsap.to(about.current, {
                     scrollTrigger: {
-                        trigger: '.about',
+                        trigger: about.current,
                         pin: true,
                         start: "bottom bottom",
                         end: 'bottom+=350px top',
@@ -348,7 +348,7 @@ export function About(props) {
 
     return (
         <section className='about__ST' ref={panelAbout}>
-            <div className='about'>
+            <div className='about' ref={about}>
                 <div className='about__container' ref={container}>
                 </div>
             </div >

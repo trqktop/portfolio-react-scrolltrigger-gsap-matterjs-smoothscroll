@@ -20,7 +20,7 @@ export function MyStack(props) {
         }, (context) => {
             let { isDesktop, isMobile } = context.conditions;
             if (isDesktop) {
-                timeline2.current = gsap.timeline({
+                timeline2.current = gsap.to(section.current, {
                     scrollTrigger: {
                         trigger: section.current,
                         pin: true,
@@ -35,20 +35,21 @@ export function MyStack(props) {
                     }
                 })
 
-                timeline_3.current = gsap.timeline()
-                    .fromTo(xScrollElements.current.childNodes, {
-                        scale: 0,
-                    }, {
-                        scale: 1,
-                        scrollTrigger: {
-                            trigger: xScrollElements.current.childNodes,
-                            pin: false,
-                            start: "top bottom",
-                            end: 'center center',
-                            pinSpacing: false,
-                            scrub: true,
-                        }
-                    })
+                timeline_3.current = gsap.fromTo(xScrollElements.current.childNodes, {
+                    opacity: 0,
+                    scale: .5
+                }, {
+                    opacity: 1,
+                    scale: 1,
+                    scrollTrigger: {
+                        trigger: section.current,
+                        pin: false,
+                        scrub: true,
+                        start: "top bottom",
+                        end: 'center center',
+                        pinSpacing: false,
+                    }
+                })
 
                 const elements = Array.from(techPanel.current.childNodes)
                 elements.forEach((element, i) => {
