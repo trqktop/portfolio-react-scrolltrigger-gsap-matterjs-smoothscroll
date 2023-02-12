@@ -3,7 +3,7 @@ import './footer.css'
 import portfolio from '../../pdf-portfolio/portfolio.pdf'
 
 export function Footer(props) {
-    const { forwardRef } = { ...props }
+ 
 
     return (
         <footer className='footer'>

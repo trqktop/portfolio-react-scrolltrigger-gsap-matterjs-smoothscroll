@@ -1,6 +1,10 @@
 import './preloader.css'
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, } from 'react';
 import * as ReactDOM from 'react-dom';
+
+
+
+
 const modalRoot = document.getElementById('react-modals')
 
 export default function Preloader(props) {

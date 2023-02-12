@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
 import './myStack.css'
@@ -6,13 +6,11 @@ export function MyStack(props) {
     const refContainer = useRef(null)
     const section = useRef(null)
     const matchMedia = useRef(null)
-    const timeline = useRef(null)
     const timeline2 = useRef(null)
     const xScrollElements = useRef(null)
     const techPanel = useRef(null)
     const timeline_3 = useRef(null)
-    const timeline_4 = useRef(null)
-    const timeline_5 = useRef(null)
+
     useLayoutEffect(() => {
         matchMedia.current = gsap.matchMedia();
         const breakPoint = 900;
@@ -22,64 +20,50 @@ export function MyStack(props) {
         }, (context) => {
             let { isDesktop, isMobile } = context.conditions;
             if (isDesktop) {
-                timeline2.current = gsap.timeline({
+                timeline2.current = gsap.to(section.current, {
                     scrollTrigger: {
                         trigger: section.current,
                         pin: true,
                         start: "bottom bottom",
-                        end: 'bottom+=350px top',
+                        end: 'bottom+=300px top',
                         pinSpacing: false,
+                        preventOverlaps: true,
                         fastScrollEnd: true,
-                        overwrite: 'auto',
-                        scrub: 2,
+                        overwrite: true,
+                        scrub: true,
                         anticipatePin: .1,
                         pinType: 'fixed',
                     }
                 })
 
-
-
-
-                timeline_3.current = gsap.timeline({
+                timeline_3.current = gsap.fromTo(xScrollElements.current.childNodes, {
+                    opacity: 0,
+                    scale: .5
+                }, {
+                    opacity: 1,
+                    scale: 1,
                     scrollTrigger: {
                         trigger: section.current,
                         pin: false,
-                        start: "top center",
-                        end: '+=20%',
+                        scrub: true,
+                        start: "top bottom",
+                        end: 'center center',
                         pinSpacing: false,
-                        fastScrollEnd: true,
-                        once: true,
-                        scrub: 2,
                     }
                 })
-                    .fromTo('.my-stack__stack-svg', {
-                        scale: 0,
-                    }, {
-                        scale: 1,
-                    })
-
-
 
                 const elements = Array.from(techPanel.current.childNodes)
                 elements.forEach((element, i) => {
-                    timeline_4.current = gsap.timeline({
+                    timeline_3.current = gsap.from(element, {
+                        yPercent: 30,
+                        opacity: 0,
                         scrollTrigger: {
-                            trigger: techPanel.current,
-                            start: 'top bottom',
-                            fastScrollEnd: true,
-                            once: true,
-                            scrub: false
+                            trigger: refContainer.current,
+                            scrub: true,
+                            start: "top top",
+                            end: 'bottom bottom',
                         }
                     })
-                    timeline_4.current.from(element, {
-                        yPercent: 100,
-                        scaleY: .8,
-                        opacity: 0,
-                        skewY: -5,
-                        scaleX: .9,
-                        skewX: 5,
-                        duration: .6
-                    }, i / 10)
                 })
             }
             if (isMobile) {
@@ -102,6 +86,9 @@ export function MyStack(props) {
         });
         return () => matchMedia.current.revert();
     }, [])
+
+
+
 
 
     return (
@@ -165,6 +152,7 @@ export function MyStack(props) {
                             <li className='my-stack__tech-item-el'>Flex, grid;</li>
                             <li className='my-stack__tech-item-el'>Архитектура БЭМ;</li>
                             <li className='my-stack__tech-item-el'>Использую normalize;</li>
+                            <li className='my-stack__tech-item-el'>Оптимизирую изображения;</li>
                         </ul>
                     </li>
                     <li className='my-stack__tech-item my-stack__tech-item_orange'>
@@ -176,11 +164,9 @@ export function MyStack(props) {
                             <li className='my-stack__tech-item-el'>ES6;</li>
                             <li className='my-stack__tech-item-el'>Fetch API;</li>
                             <li className='my-stack__tech-item-el'>ООП;</li>
-                            <li className='my-stack__tech-item-el'>Module loader (Webpack);</li>
-                            <li className='my-stack__tech-item-el'>Gsap (ScrollTrigger, Scroll Smoother, ScrollTolPlugin,
-                                Css Plugin);</li>
+                            <li className='my-stack__tech-item-el'>Изучаю физический движок Matter-js;</li>
                             <li className='my-stack__tech-item-el'>Понимаю основы React (активно его изучаю);</li>
-                            <li className='my-stack__tech-item-el'>Promise;</li>
+                            <li className='my-stack__tech-item-el'>Promise и ассинхронное програмирование;</li>
                         </ul>
                     </li>
                     <li className='my-stack__tech-item my-stack__tech-item_white'>
@@ -195,6 +181,9 @@ export function MyStack(props) {
                             <li className='my-stack__tech-item-el'>Figma;</li>
                             <li className='my-stack__tech-item-el'>VS code;</li>
                             <li className='my-stack__tech-item-el'>Git;</li>
+                            <li className='my-stack__tech-item-el'>Module loader (Webpack);</li>
+                            <li className='my-stack__tech-item-el'>Gsap (ScrollTrigger, Scroll Smoother, ScrollTolPlugin,
+                                Css Plugin);</li>
                         </ul>
                     </li>
                 </ul>

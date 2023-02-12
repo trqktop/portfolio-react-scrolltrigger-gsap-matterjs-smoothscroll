@@ -26,41 +26,22 @@
 .preloader #teabag {
   transform-origin: top center;
   transform: rotate(3deg);
-  -webkit-animation: swing 2s infinite;
-          animation: swing 2s infinite;
+  animation: swing 2s infinite;
 }
 .preloader #steamL {
   stroke-dasharray: 13;
   stroke-dashoffset: 13;
-  -webkit-animation: steamLarge 2s infinite;
-          animation: steamLarge 2s infinite;
+  animation: steamLarge 2s infinite;
 }
 .preloader #steamR {
   stroke-dasharray: 9;
   stroke-dashoffset: 9;
-  -webkit-animation: steamSmall 2s infinite;
-          animation: steamSmall 2s infinite;
-}
-
-@-webkit-keyframes swing {
-  50% {
-    transform: rotate(-3deg);
-  }
+  animation: steamSmall 2s infinite;
 }
 
 @keyframes swing {
   50% {
     transform: rotate(-3deg);
-  }
-}
-@-webkit-keyframes steamLarge {
-  0% {
-    stroke-dashoffset: 13;
-    opacity: 0.6;
-  }
-  100% {
-    stroke-dashoffset: 39;
-    opacity: 0;
   }
 }
 @keyframes steamLarge {
@@ -70,20 +51,6 @@
   }
   100% {
     stroke-dashoffset: 39;
-    opacity: 0;
-  }
-}
-@-webkit-keyframes steamSmall {
-  10% {
-    stroke-dashoffset: 9;
-    opacity: 0.6;
-  }
-  80% {
-    stroke-dashoffset: 27;
-    opacity: 0;
-  }
-  100% {
-    stroke-dashoffset: 27;
     opacity: 0;
   }
 }

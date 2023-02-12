@@ -36,6 +36,7 @@
     &__container {
         margin: auto;
 
+
         .works__list {
             display: grid;
             list-style: none;
@@ -46,7 +47,8 @@
 }
 
 
-@media screen and(min-width:1400px) {
+
+@media screen and (min-width:1400px) {
     .works {
 
 
@@ -62,7 +64,7 @@
 }
 
 
-@media screen and(max-width:900px) {
+@media screen and (max-width:900px) {
     .works {
         padding: 40px 6px;
         margin-top: -32px;
@@ -78,7 +80,7 @@
     }
 }
 
-@media screen and(max-width:600px) {
+@media screen and (max-width:600px) {
     .works {
         border-radius: 32px 32px 0px 0px;
 
@@ -117,7 +119,7 @@
     }
 }
 
-@media screen and(max-width:412px) {
+@media screen and (max-width:412px) {
     .works {
         .works__title {
             padding-bottom: 32px;

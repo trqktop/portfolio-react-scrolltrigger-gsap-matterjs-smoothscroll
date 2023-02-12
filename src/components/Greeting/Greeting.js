@@ -1,16 +1,14 @@
 import './greeting.css'
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
 
 export function Greeting(props) {
-    const { pageContainer } = { ...props }
     const catSvgHand = useRef(null)
     const catSvgSmile = useRef(null)
     const catSvgLefthEye = useRef(null)
     const catSvgRigthEye = useRef(null)
     const panelGreeting = useRef(null)
-    const timeline = useRef(null)
     const timeline_2 = useRef(null)
     const timeline_3 = useRef(null)
     const context_1 = useRef(null)
@@ -33,44 +31,57 @@ export function Greeting(props) {
             let { isMobile } = context.conditions;
             if (isDesktop) {
                 timeline_3.current = gsap.timeline()
-                timeline_3.current.to('.greeting', {
+                timeline_3.current.to(panelGreeting.current, {
                     scale: .93,
                     scrollTrigger: {
-                        trigger: '.greeting',
+                        trigger: panelGreeting.current,
                         pin: true,
                         start: "top top",
-                        end: 'bottom+=299px top',
+                        end: 'bottom+=300px top',
                         anticipatePin: .5,
                         // fastScrollEnd: true,
                         pinSpacing: false,
-                        overwrite: 'auto',
+                        // overwrite: 'auto',
                         onEnterBack: () => {
                             timeline_catHand.current.play()
                             timeline_catSvgSmile.current.play()
                             timeline_catEyes.current.play()
+
                         },
                         onLeave: () => {
                             timeline_catHand.current.pause()
                             timeline_catSvgSmile.current.pause()
                             timeline_catEyes.current.pause()
+
                         },
                         pinType: 'fixed',
-                        scrub: 2,
-                        // fastScrollEnd: true,
+                        scrub: true,
                     }
                 })
+
             }
             if (isMobile) {
-                // timeline_3.current = gsap.timeline({})
-                // timeline_3.current.fromTo('.greeting', {
-                //     yPercent: 100,
-                // }, {
-                //     yPercent: 2,
-                //     delay: 2.5
+                // timeline_3.current = gsap.timeline()
+                // timeline_3.current.to(panelGreeting.current, {
+                //     scale: .9,
+                //     scrollTrigger: {
+                //         trigger: panelGreeting.current,
+                //         pin: true,
+                //         start: "top top",
+                //         end: `+=${panelGreeting.current.getBoundingClientRect().height}`,
+                //         anticipatePin: .5,
+                //         pinSpacing: false,
+                //         markers: true,
+                //         pinType: 'fixed',
+                //         scrub: 2,
+                //     }
                 // })
             }
         });
-        return () => timeline_2.current.revert();
+        return () => {
+            // timeline_3.current.revert()
+            timeline_2.current.revert();
+        }
     }, [])
 
 

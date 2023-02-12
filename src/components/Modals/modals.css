@@ -20,7 +20,6 @@
 .modal-container {
   width: 83.3vw;
   min-height: 95.5vh;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   padding: 32px 80px 50px 80px;
@@ -85,8 +84,7 @@
   display: flex;
   -moz-column-gap: 10px;
        column-gap: 10px;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
   color: #595BA7;
   font-family: "Inter-Medium";
   font-style: normal;

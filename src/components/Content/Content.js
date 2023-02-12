@@ -3,12 +3,9 @@ import { Greeting } from '../Greeting/Greeting';
 import { About } from '../About/About';
 import { Works } from '../Works/Works';
 import { MyStack } from '../MyStack/MyStack';
-import { useRef } from 'react';
-
-import gsap from 'gsap';
 
 export function Content(props) {
-    const { blackTheme, ScrollTrigger, pageContainer } = { ...props }
+    const { blackTheme,  pageContainer } = { ...props }
 
     return (
         <main className='content'>

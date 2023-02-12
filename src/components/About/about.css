@@ -1,20 +1,16 @@
 .about__ST {
   width: 100%;
   height: 100%;
-  border-radius: 64px 64px 0px 0px;
 }
 
 .about {
   min-height: 100vh;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   z-index: 3;
   color: white;
-  padding: 32px 16px;
   display: flex;
-  background-color: #595BA7;
-  border-radius: 64px 64px 0px 0px;
+  padding: 0;
 }
 .about:after {
   content: "";
@@ -25,161 +21,26 @@
   min-height: 100%;
   border-radius: 64px 64px 0px 0px;
   box-shadow: 0px -42px 60px rgba(0, 0, 0, 0.1), 0px -300px 250px rgba(0, 0, 0, 0.08);
+  background-color: #595BA7;
+  border-radius: 64px 64px 0px 0px;
 }
 .about__container {
-  display: grid;
-  margin: auto;
-  grid-template-columns: -webkit-min-content auto;
-  grid-template-columns: min-content auto;
-  flex-wrap: wrap;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  -moz-column-gap: 8vw;
-       column-gap: 8vw;
-}
-.about__image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.about__list-container {
-  display: flex;
-}
-.about__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  max-width: 778px;
-}
-.about__list .about__svg-item {
-  margin: auto;
-  display: flex;
-  min-width: 60px;
-  height: 60px;
-}
-.about__list .about__item {
-  display: flex;
-  -moz-column-gap: 41px;
-       column-gap: 41px;
-}
-.about__list .about__item-text-container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.about__list .about__item_vertical-svg-container {
-  height: 24px;
-  width: 60px;
-}
-.about__list .about__item_vertical-svg-container svg {
   display: flex;
   margin: auto;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
-.about__list .about__item span {
-  color: #A7A9E3;
-}
-.about__list .about__item-header {
-  max-width: 100%;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-  font-family: "Inter-Medium";
-}
-.about__list .about__item-description {
-  max-width: 100%;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  font-family: "Inter-Regular";
-}
-.about .about__element-resume-link {
-  display: flex;
-  -moz-column-gap: 8px;
-       column-gap: 8px;
-  padding-top: 25px;
-  text-decoration: underline;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-  color: #F5F7FA;
-  font-family: "Inter-Medium";
-  cursor: pointer;
-}
-.about .about__element-resume-link:hover {
-  opacity: 0.8;
+.about__container canvas {
+  z-index: 1;
+  cursor: grab;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 900px) {
   .about__ST {
-    z-index: 2;
-  }
-  .about__container {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-  }
-  .about__container .about__list {
-    margin-bottom: 36px;
-  }
-  .about__container .about__list .about__item {
-    -moz-column-gap: 12px;
-         column-gap: 12px;
-  }
-  .about__container .about__list .about__item-header {
-    font-size: 20px;
-    line-height: 24px;
-  }
-  .about__container .about__list .about__item-description {
-    font-size: 18px;
-    line-height: 22px;
-  }
-  .about__container .about__list .about__element-resume-link {
-    display: flex;
-    flex-direction: row-reverse;
-    font-size: 18px;
-    line-height: 22px;
-  }
-  .about__container .about__list .about__svg-item {
-    min-width: 40px;
-    height: 40px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .about__ST {
-    border-radius: 32px 32px 0px 0px;
-  }
-  .about__ST .about {
-    border-radius: 32px 32px 0px 0px;
-  }
-  .about__ST .about:after {
-    border-radius: 32px 32px 0px 0px;
-  }
-}
-@media screen and (max-width: 412px) {
-  .about .about__element-resume-link {
-    gap: 0;
-  }
-  .about .about__element-description {
-    font-size: 18px;
-    line-height: 22px;
-  }
-  .about .about__item-text-container {
-    row-gap: 8px;
-  }
-  .about .about__item-text-container .about__item-header {
-    font-size: 20px;
-    line-height: 24px;
-  }
-  .about .about__item-text-container .about__item-description {
-    font-size: 18px;
-    line-height: 22px;
+    display: none;
+    z-index: -1;
   }
 }/*# sourceMappingURL=about.css.map */
